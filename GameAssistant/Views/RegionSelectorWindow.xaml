@@ -1,0 +1,20 @@
+<Window x:Class="GameAssistant.Views.RegionSelectorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="选择区域" Height="400" Width="600"
+        WindowState="Maximized" WindowStyle="None" 
+        Background="Transparent" AllowsTransparency="True"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        MouseMove="Window_MouseMove"
+        MouseLeftButtonUp="Window_MouseLeftButtonUp"
+        KeyDown="Window_KeyDown">
+    <Canvas x:Name="SelectionCanvas" Background="#40000000">
+        <Rectangle x:Name="SelectionRectangle" 
+                   Stroke="Red" StrokeThickness="2" 
+                   Fill="#20FF0000"
+                   Visibility="Collapsed"/>
+        <TextBlock Canvas.Left="10" Canvas.Top="10" 
+                   Text="拖拽鼠标选择区域，按ESC取消，按Enter确认" 
+                   Foreground="White" FontSize="16" Background="#80000000" Padding="5"/>
+    </Canvas>
+</Window>

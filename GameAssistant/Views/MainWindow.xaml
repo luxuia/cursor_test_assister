@@ -1,0 +1,81 @@
+<Window x:Class="GameAssistant.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="游戏辅助工具" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 工具栏 -->
+        <Border Grid.Row="0" Background="#FF2D2D30" Padding="10">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="StartButton" Content="开始识别" Width="100" Height="30" 
+                        Margin="5,0" Click="StartButton_Click"/>
+                <Button x:Name="StopButton" Content="停止识别" Width="100" Height="30" 
+                        Margin="5,0" Click="StopButton_Click" IsEnabled="False"/>
+                <Button x:Name="SettingsButton" Content="设置" Width="100" Height="30" 
+                        Margin="5,0" Click="SettingsButton_Click"/>
+                <Separator Margin="10,0"/>
+                <TextBlock x:Name="StatusLabel" Text="未启动" Foreground="White" 
+                           VerticalAlignment="Center" Margin="10,0"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- 主内容区 -->
+        <TabControl Grid.Row="1">
+            <TabItem Header="识别状态">
+                <ScrollViewer>
+                    <StackPanel Margin="10">
+                        <GroupBox Header="游戏状态信息" Margin="5">
+                            <StackPanel Margin="10">
+                                <TextBlock x:Name="GameStateText" Text="等待识别..." 
+                                           TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </GroupBox>
+                        
+                        <GroupBox Header="性能监控" Margin="5">
+                            <StackPanel Margin="10">
+                                <TextBlock x:Name="PerformanceText" Text="FPS: 0&#x0a;识别耗时: 0ms" 
+                                           TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            
+            <TabItem Header="配置">
+                <ScrollViewer>
+                    <StackPanel Margin="10">
+                        <GroupBox Header="游戏窗口配置" Margin="5">
+                            <StackPanel Margin="10">
+                                <TextBlock Text="窗口标题:" Margin="0,5"/>
+                                <TextBox x:Name="WindowTitleTextBox" Margin="0,5"/>
+                                <TextBlock Text="进程名称:" Margin="0,5"/>
+                                <TextBox x:Name="ProcessNameTextBox" Margin="0,5"/>
+                                <Button Content="查找窗口" Click="FindWindowButton_Click" Margin="0,5"/>
+                            </StackPanel>
+                        </GroupBox>
+                        
+                        <GroupBox Header="识别区域配置" Margin="5">
+                            <StackPanel Margin="10">
+                                <TextBlock Text="点击下方按钮选择识别区域" Margin="0,5"/>
+                                <Button Content="选择英雄阵容区域" Click="SelectHeroRegionButton_Click" Margin="0,5"/>
+                                <Button Content="选择小地图区域" Click="SelectMinimapRegionButton_Click" Margin="0,5"/>
+                                <Button Content="选择装备面板区域" Click="SelectEquipmentRegionButton_Click" Margin="0,5"/>
+                                <Button Content="选择状态栏区域" Click="SelectStatusRegionButton_Click" Margin="0,5"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+        
+        <!-- 状态栏 -->
+        <Border Grid.Row="2" Background="#FF2D2D30" Padding="5">
+            <TextBlock x:Name="BottomStatusText" Text="就绪" Foreground="White" FontSize="10"/>
+        </Border>
+    </Grid>
+</Window>
