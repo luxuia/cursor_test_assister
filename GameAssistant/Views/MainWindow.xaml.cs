@@ -12,6 +12,7 @@ using GameAssistant.Services.DecisionEngine;
 using GameAssistant.Services.ImageRecognition;
 using GameAssistant.Services.ScreenCapture;
 using GameAssistant.ViewModels;
+using GameAssistant.Views;
 
 namespace GameAssistant.Views
 {
@@ -78,8 +79,8 @@ namespace GameAssistant.Views
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: 打开设置窗口
-            MessageBox.Show("设置功能待实现", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+            var ruleWindow = new RuleManagementWindow();
+            ruleWindow.ShowDialog();
         }
 
         private void FindWindowButton_Click(object sender, RoutedEventArgs e)
@@ -165,6 +166,24 @@ namespace GameAssistant.Views
                 MessageBox.Show($"已保存{regionName}配置", "成功", 
                     MessageBoxButton.OK, MessageBoxImage.Information);
             }
+        }
+
+        private void DebugButton_Click(object sender, RoutedEventArgs e)
+        {
+            var debugWindow = new DebugWindow(_viewModel);
+            debugWindow.Show();
+        }
+
+        private void TemplateCaptureButton_Click(object sender, RoutedEventArgs e)
+        {
+            var templateWindow = new TemplateCaptureWindow();
+            templateWindow.Show();
+        }
+
+        private void HeroDownloadButton_Click(object sender, RoutedEventArgs e)
+        {
+            var downloadWindow = new HeroDownloadWindow();
+            downloadWindow.Show();
         }
     }
 }

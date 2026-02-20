@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using OpenCvSharp;
 
 namespace GameAssistant.Services.ImageRecognition
@@ -42,9 +43,9 @@ namespace GameAssistant.Services.ImageRecognition
         }
 
         /// <summary>
-        /// 模板匹配
+        /// 模板匹配（支持多尺度）
         /// </summary>
-        public List<MatchResult> Match(Mat source, string templateName, double threshold = 0.8)
+        public List<MatchResult> Match(Mat source, string templateName, double threshold = 0.8, bool multiScale = false)
         {
             if (!_templateCache.TryGetValue(templateName, out var template))
             {
@@ -56,7 +57,6 @@ namespace GameAssistant.Services.ImageRecognition
             }
 
             var results = new List<MatchResult>();
-            Mat result = new Mat();
             
             // 转换为灰度图
             Mat graySource = new Mat();
@@ -69,11 +69,49 @@ namespace GameAssistant.Services.ImageRecognition
                 graySource = source.Clone();
             }
 
-            // 模板匹配
-            Cv2.MatchTemplate(graySource, template, result, TemplateMatchModes.CCoeffNormed);
+            if (multiScale)
+            {
+                // 多尺度匹配
+                double[] scales = { 0.8, 0.9, 1.0, 1.1, 1.2 };
+                foreach (double scale in scales)
+                {
+                    int newWidth = (int)(template.Width * scale);
+                    int newHeight = (int)(template.Height * scale);
+                    
+                    if (newWidth > graySource.Width || newHeight > graySource.Height)
+                        continue;
+                    
+                    Mat scaledTemplate = new Mat();
+                    Cv2.Resize(template, scaledTemplate, new OpenCvSharp.Size(newWidth, newHeight));
+                    
+                    Mat result = new Mat();
+                    Cv2.MatchTemplate(graySource, scaledTemplate, result, TemplateMatchModes.CCoeffNormed);
+                    
+                    FindMatches(result, scaledTemplate, threshold, results, templateName);
+                    
+                    scaledTemplate.Dispose();
+                    result.Dispose();
+                }
+            }
+            else
+            {
+                // 单尺度匹配
+                Mat result = new Mat();
+                Cv2.MatchTemplate(graySource, template, result, TemplateMatchModes.CCoeffNormed);
+                FindMatches(result, template, threshold, results, templateName);
+                result.Dispose();
+            }
 
-            // 查找所有匹配点
-            Cv2.Threshold(result, result, threshold, 1.0, ThresholdTypes.Binary);
+            graySource.Dispose();
+
+            // 去重：如果多个匹配结果位置相近，只保留置信度最高的
+            return RemoveDuplicateMatches(results);
+        }
+
+        private void FindMatches(Mat result, Mat template, double threshold, List<MatchResult> results, string templateName)
+        {
+            Mat binary = new Mat();
+            Cv2.Threshold(result, binary, threshold, 1.0, ThresholdTypes.Binary);
             
             while (true)
             {
@@ -94,15 +132,59 @@ namespace GameAssistant.Services.ImageRecognition
 
                 // 将已匹配的区域置零，避免重复匹配
                 Cv2.Rectangle(result, 
-                    new OpenCvSharp.Rect(maxLoc.X - template.Width / 2, maxLoc.Y - template.Height / 2, 
-                        template.Width, template.Height), 
+                    new OpenCvSharp.Rect(
+                        Math.Max(0, maxLoc.X - template.Width / 2), 
+                        Math.Max(0, maxLoc.Y - template.Height / 2),
+                        template.Width, 
+                        template.Height), 
                     Scalar.All(0), -1);
             }
+            
+            binary.Dispose();
+        }
 
-            graySource.Dispose();
-            result.Dispose();
+        private List<MatchResult> RemoveDuplicateMatches(List<MatchResult> matches)
+        {
+            if (matches.Count <= 1)
+                return matches;
 
-            return results;
+            var uniqueMatches = new List<MatchResult>();
+            var used = new bool[matches.Count];
+
+            for (int i = 0; i < matches.Count; i++)
+            {
+                if (used[i]) continue;
+
+                var currentMatch = matches[i];
+                var group = new List<MatchResult> { currentMatch };
+                used[i] = true;
+
+                // 查找位置相近的匹配
+                for (int j = i + 1; j < matches.Count; j++)
+                {
+                    if (used[j]) continue;
+
+                    var otherMatch = matches[j];
+                    int distance = (int)Math.Sqrt(
+                        Math.Pow(currentMatch.Location.X - otherMatch.Location.X, 2) +
+                        Math.Pow(currentMatch.Location.Y - otherMatch.Location.Y, 2)
+                    );
+
+                    // 如果距离小于阈值（20像素），认为是重复
+                    if (distance < 20)
+                    {
+                        group.Add(otherMatch);
+                        used[j] = true;
+                    }
+                }
+
+                // 保留置信度最高的
+                var bestMatch = group.OrderByDescending(m => m.Confidence).First();
+                uniqueMatches.Add(bestMatch);
+            }
+
+            return uniqueMatches;
+        }
         }
 
         /// <summary>

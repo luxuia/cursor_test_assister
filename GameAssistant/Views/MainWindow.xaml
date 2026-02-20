@@ -16,8 +16,14 @@
                         Margin="5,0" Click="StartButton_Click"/>
                 <Button x:Name="StopButton" Content="停止识别" Width="100" Height="30" 
                         Margin="5,0" Click="StopButton_Click" IsEnabled="False"/>
-                <Button x:Name="SettingsButton" Content="设置" Width="100" Height="30" 
+                <Button x:Name="SettingsButton" Content="规则管理" Width="100" Height="30" 
                         Margin="5,0" Click="SettingsButton_Click"/>
+                <Button x:Name="DebugButton" Content="调试窗口" Width="100" Height="30" 
+                        Margin="5,0" Click="DebugButton_Click"/>
+                <Button x:Name="TemplateCaptureButton" Content="模板采集" Width="100" Height="30" 
+                        Margin="5,0" Click="TemplateCaptureButton_Click"/>
+                <Button x:Name="HeroDownloadButton" Content="下载英雄图标" Width="120" Height="30" 
+                        Margin="5,0" Click="HeroDownloadButton_Click"/>
                 <Separator Margin="10,0"/>
                 <TextBlock x:Name="StatusLabel" Text="未启动" Foreground="White" 
                            VerticalAlignment="Center" Margin="10,0"/>

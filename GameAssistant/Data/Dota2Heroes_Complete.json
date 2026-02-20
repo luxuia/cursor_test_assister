@@ -1,0 +1,775 @@
+{
+  "game": "Dota2",
+  "version": "7.40c",
+  "totalHeroes": 128,
+  "heroes": [
+    {
+      "id": "alchemist",
+      "name": "Alchemist",
+      "nameCn": "炼金术士",
+      "attribute": "Strength"
+    },
+    {
+      "id": "axe",
+      "name": "Axe",
+      "nameCn": "斧王",
+      "attribute": "Strength"
+    },
+    {
+      "id": "bristleback",
+      "name": "Bristleback",
+      "nameCn": "刚背兽",
+      "attribute": "Strength"
+    },
+    {
+      "id": "centaur_warrunner",
+      "name": "Centaur Warrunner",
+      "nameCn": "半人马战行者",
+      "attribute": "Strength"
+    },
+    {
+      "id": "chaos_knight",
+      "name": "Chaos Knight",
+      "nameCn": "混沌骑士",
+      "attribute": "Strength"
+    },
+    {
+      "id": "clockwerk",
+      "name": "Clockwerk",
+      "nameCn": "发条技师",
+      "attribute": "Strength"
+    },
+    {
+      "id": "dawnbreaker",
+      "name": "Dawnbreaker",
+      "nameCn": "破晓辰星",
+      "attribute": "Strength"
+    },
+    {
+      "id": "doom",
+      "name": "Doom",
+      "nameCn": "末日使者",
+      "attribute": "Strength"
+    },
+    {
+      "id": "dragon_knight",
+      "name": "Dragon Knight",
+      "nameCn": "龙骑士",
+      "attribute": "Strength"
+    },
+    {
+      "id": "earth_spirit",
+      "name": "Earth Spirit",
+      "nameCn": "大地之灵",
+      "attribute": "Strength"
+    },
+    {
+      "id": "earthshaker",
+      "name": "Earthshaker",
+      "nameCn": "撼地者",
+      "attribute": "Strength"
+    },
+    {
+      "id": "elder_titan",
+      "name": "Elder Titan",
+      "nameCn": "上古巨神",
+      "attribute": "Strength"
+    },
+    {
+      "id": "huskar",
+      "name": "Huskar",
+      "nameCn": "哈斯卡",
+      "attribute": "Strength"
+    },
+    {
+      "id": "kunkka",
+      "name": "Kunkka",
+      "nameCn": "昆卡",
+      "attribute": "Strength"
+    },
+    {
+      "id": "largo",
+      "name": "Largo",
+      "nameCn": "拉戈",
+      "attribute": "Strength"
+    },
+    {
+      "id": "legion_commander",
+      "name": "Legion Commander",
+      "nameCn": "军团指挥官",
+      "attribute": "Strength"
+    },
+    {
+      "id": "lifestealer",
+      "name": "Lifestealer",
+      "nameCn": "噬魂鬼",
+      "attribute": "Strength"
+    },
+    {
+      "id": "lycan",
+      "name": "Lycan",
+      "nameCn": "狼人",
+      "attribute": "Strength"
+    },
+    {
+      "id": "mars",
+      "name": "Mars",
+      "nameCn": "玛尔斯",
+      "attribute": "Strength"
+    },
+    {
+      "id": "night_stalker",
+      "name": "Night Stalker",
+      "nameCn": "暗夜魔王",
+      "attribute": "Strength"
+    },
+    {
+      "id": "ogre_magi",
+      "name": "Ogre Magi",
+      "nameCn": "食人魔魔法师",
+      "attribute": "Strength"
+    },
+    {
+      "id": "omniknight",
+      "name": "Omniknight",
+      "nameCn": "全能骑士",
+      "attribute": "Strength"
+    },
+    {
+      "id": "phoenix",
+      "name": "Phoenix",
+      "nameCn": "凤凰",
+      "attribute": "Strength"
+    },
+    {
+      "id": "primal_beast",
+      "name": "Primal Beast",
+      "nameCn": "原始野兽",
+      "attribute": "Strength"
+    },
+    {
+      "id": "pudge",
+      "name": "Pudge",
+      "nameCn": "帕吉",
+      "attribute": "Strength"
+    },
+    {
+      "id": "slardar",
+      "name": "Slardar",
+      "nameCn": "斯拉达",
+      "attribute": "Strength"
+    },
+    {
+      "id": "spirit_breaker",
+      "name": "Spirit Breaker",
+      "nameCn": "裂魂人",
+      "attribute": "Strength"
+    },
+    {
+      "id": "sven",
+      "name": "Sven",
+      "nameCn": "斯温",
+      "attribute": "Strength"
+    },
+    {
+      "id": "tidehunter",
+      "name": "Tidehunter",
+      "nameCn": "潮汐猎人",
+      "attribute": "Strength"
+    },
+    {
+      "id": "timbersaw",
+      "name": "Timbersaw",
+      "nameCn": "伐木机",
+      "attribute": "Strength"
+    },
+    {
+      "id": "tiny",
+      "name": "Tiny",
+      "nameCn": "小小",
+      "attribute": "Strength"
+    },
+    {
+      "id": "treant_protector",
+      "name": "Treant Protector",
+      "nameCn": "树精卫士",
+      "attribute": "Strength"
+    },
+    {
+      "id": "tusk",
+      "name": "Tusk",
+      "nameCn": "巨牙海民",
+      "attribute": "Strength"
+    },
+    {
+      "id": "underlord",
+      "name": "Underlord",
+      "nameCn": "孽主",
+      "attribute": "Strength"
+    },
+    {
+      "id": "undying",
+      "name": "Undying",
+      "nameCn": "不朽尸王",
+      "attribute": "Strength"
+    },
+    {
+      "id": "wraith_king",
+      "name": "Wraith King",
+      "nameCn": "冥魂大帝",
+      "attribute": "Strength"
+    },
+    {
+      "id": "anti_mage",
+      "name": "Anti-Mage",
+      "nameCn": "敌法师",
+      "attribute": "Agility"
+    },
+    {
+      "id": "bloodseeker",
+      "name": "Bloodseeker",
+      "nameCn": "血魔",
+      "attribute": "Agility"
+    },
+    {
+      "id": "bounty_hunter",
+      "name": "Bounty Hunter",
+      "nameCn": "赏金猎人",
+      "attribute": "Agility"
+    },
+    {
+      "id": "broodmother",
+      "name": "Broodmother",
+      "nameCn": "育母蜘蛛",
+      "attribute": "Agility"
+    },
+    {
+      "id": "clinkz",
+      "name": "Clinkz",
+      "nameCn": "克林克兹",
+      "attribute": "Agility"
+    },
+    {
+      "id": "drow_ranger",
+      "name": "Drow Ranger",
+      "nameCn": "卓尔游侠",
+      "attribute": "Agility"
+    },
+    {
+      "id": "ember_spirit",
+      "name": "Ember Spirit",
+      "nameCn": "灰烬之灵",
+      "attribute": "Agility"
+    },
+    {
+      "id": "faceless_void",
+      "name": "Faceless Void",
+      "nameCn": "虚空假面",
+      "attribute": "Agility"
+    },
+    {
+      "id": "gyrocopter",
+      "name": "Gyrocopter",
+      "nameCn": "矮人直升机",
+      "attribute": "Agility"
+    },
+    {
+      "id": "hoodwink",
+      "name": "Hoodwink",
+      "nameCn": "森海飞霞",
+      "attribute": "Agility"
+    },
+    {
+      "id": "juggernaut",
+      "name": "Juggernaut",
+      "nameCn": "主宰",
+      "attribute": "Agility"
+    },
+    {
+      "id": "kez",
+      "name": "Kez",
+      "nameCn": "克兹",
+      "attribute": "Agility"
+    },
+    {
+      "id": "lone_druid",
+      "name": "Lone Druid",
+      "nameCn": "德鲁伊",
+      "attribute": "Agility"
+    },
+    {
+      "id": "luna",
+      "name": "Luna",
+      "nameCn": "露娜",
+      "attribute": "Agility"
+    },
+    {
+      "id": "medusa",
+      "name": "Medusa",
+      "nameCn": "美杜莎",
+      "attribute": "Agility"
+    },
+    {
+      "id": "meepo",
+      "name": "Meepo",
+      "nameCn": "米波",
+      "attribute": "Agility"
+    },
+    {
+      "id": "mirana",
+      "name": "Mirana",
+      "nameCn": "米拉娜",
+      "attribute": "Agility"
+    },
+    {
+      "id": "monkey_king",
+      "name": "Monkey King",
+      "nameCn": "齐天大圣",
+      "attribute": "Agility"
+    },
+    {
+      "id": "morphling",
+      "name": "Morphling",
+      "nameCn": "变体精灵",
+      "attribute": "Agility"
+    },
+    {
+      "id": "naga_siren",
+      "name": "Naga Siren",
+      "nameCn": "娜迦海妖",
+      "attribute": "Agility"
+    },
+    {
+      "id": "phantom_assassin",
+      "name": "Phantom Assassin",
+      "nameCn": "幻影刺客",
+      "attribute": "Agility"
+    },
+    {
+      "id": "phantom_lancer",
+      "name": "Phantom Lancer",
+      "nameCn": "幻影长矛手",
+      "attribute": "Agility"
+    },
+    {
+      "id": "razor",
+      "name": "Razor",
+      "nameCn": "剃刀",
+      "attribute": "Agility"
+    },
+    {
+      "id": "riki",
+      "name": "Riki",
+      "nameCn": "力丸",
+      "attribute": "Agility"
+    },
+    {
+      "id": "shadow_fiend",
+      "name": "Shadow Fiend",
+      "nameCn": "影魔",
+      "attribute": "Agility"
+    },
+    {
+      "id": "slark",
+      "name": "Slark",
+      "nameCn": "斯拉克",
+      "attribute": "Agility"
+    },
+    {
+      "id": "sniper",
+      "name": "Sniper",
+      "nameCn": "狙击手",
+      "attribute": "Agility"
+    },
+    {
+      "id": "spectre",
+      "name": "Spectre",
+      "nameCn": "幽鬼",
+      "attribute": "Agility"
+    },
+    {
+      "id": "templar_assassin",
+      "name": "Templar Assassin",
+      "nameCn": "圣堂刺客",
+      "attribute": "Agility"
+    },
+    {
+      "id": "terrorblade",
+      "name": "Terrorblade",
+      "nameCn": "恐怖利刃",
+      "attribute": "Agility"
+    },
+    {
+      "id": "troll_warlord",
+      "name": "Troll Warlord",
+      "nameCn": "巨魔战将",
+      "attribute": "Agility"
+    },
+    {
+      "id": "ursa",
+      "name": "Ursa",
+      "nameCn": "熊战士",
+      "attribute": "Agility"
+    },
+    {
+      "id": "vengeful_spirit",
+      "name": "Vengeful Spirit",
+      "nameCn": "复仇之魂",
+      "attribute": "Agility"
+    },
+    {
+      "id": "viper",
+      "name": "Viper",
+      "nameCn": "冥界亚龙",
+      "attribute": "Agility"
+    },
+    {
+      "id": "weaver",
+      "name": "Weaver",
+      "nameCn": "编织者",
+      "attribute": "Agility"
+    },
+    {
+      "id": "ancient_apparition",
+      "name": "Ancient Apparition",
+      "nameCn": "远古冰魄",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "chen",
+      "name": "Chen",
+      "nameCn": "陈",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "crystal_maiden",
+      "name": "Crystal Maiden",
+      "nameCn": "水晶室女",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "dark_seer",
+      "name": "Dark Seer",
+      "nameCn": "黑暗贤者",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "dark_willow",
+      "name": "Dark Willow",
+      "nameCn": "邪影芳灵",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "disruptor",
+      "name": "Disruptor",
+      "nameCn": "干扰者",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "enchantress",
+      "name": "Enchantress",
+      "nameCn": "魅惑魔女",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "grimstroke",
+      "name": "Grimstroke",
+      "nameCn": "天涯墨客",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "invoker",
+      "name": "Invoker",
+      "nameCn": "祈求者",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "jakiro",
+      "name": "Jakiro",
+      "nameCn": "杰奇洛",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "keeper_of_the_light",
+      "name": "Keeper of the Light",
+      "nameCn": "光之守卫",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "leshrac",
+      "name": "Leshrac",
+      "nameCn": "拉席克",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "lich",
+      "name": "Lich",
+      "nameCn": "巫妖",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "lina",
+      "name": "Lina",
+      "nameCn": "莉娜",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "lion",
+      "name": "Lion",
+      "nameCn": "莱恩",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "muerta",
+      "name": "Muerta",
+      "nameCn": "穆尔塔",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "necrophos",
+      "name": "Necrophos",
+      "nameCn": "瘟疫法师",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "oracle",
+      "name": "Oracle",
+      "nameCn": "神谕者",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "outworld_destroyer",
+      "name": "Outworld Destroyer",
+      "nameCn": "殁境神蚀者",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "puck",
+      "name": "Puck",
+      "nameCn": "帕克",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "pugna",
+      "name": "Pugna",
+      "nameCn": "帕格纳",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "queen_of_pain",
+      "name": "Queen of Pain",
+      "nameCn": "痛苦女王",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "ringmaster",
+      "name": "Ringmaster",
+      "nameCn": "马戏团大师",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "rubick",
+      "name": "Rubick",
+      "nameCn": "拉比克",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "shadow_demon",
+      "name": "Shadow Demon",
+      "nameCn": "暗影恶魔",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "shadow_shaman",
+      "name": "Shadow Shaman",
+      "nameCn": "暗影萨满",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "silencer",
+      "name": "Silencer",
+      "nameCn": "沉默术士",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "skywrath_mage",
+      "name": "Skywrath Mage",
+      "nameCn": "天怒法师",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "storm_spirit",
+      "name": "Storm Spirit",
+      "nameCn": "风暴之灵",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "tinker",
+      "name": "Tinker",
+      "nameCn": "修补匠",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "warlock",
+      "name": "Warlock",
+      "nameCn": "术士",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "winter_wyvern",
+      "name": "Winter Wyvern",
+      "nameCn": "寒冬飞龙",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "witch_doctor",
+      "name": "Witch Doctor",
+      "nameCn": "巫医",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "zeus",
+      "name": "Zeus",
+      "nameCn": "宙斯",
+      "attribute": "Intelligence"
+    },
+    {
+      "id": "abaddon",
+      "name": "Abaddon",
+      "nameCn": "亚巴顿",
+      "attribute": "Universal"
+    },
+    {
+      "id": "arc_warden",
+      "name": "Arc Warden",
+      "nameCn": "天穹守望者",
+      "attribute": "Universal"
+    },
+    {
+      "id": "bane",
+      "name": "Bane",
+      "nameCn": "祸乱之源",
+      "attribute": "Universal"
+    },
+    {
+      "id": "batrider",
+      "name": "Batrider",
+      "nameCn": "蝙蝠骑士",
+      "attribute": "Universal"
+    },
+    {
+      "id": "beastmaster",
+      "name": "Beastmaster",
+      "nameCn": "兽王",
+      "attribute": "Universal"
+    },
+    {
+      "id": "brewmaster",
+      "name": "Brewmaster",
+      "nameCn": "酒仙",
+      "attribute": "Universal"
+    },
+    {
+      "id": "dazzle",
+      "name": "Dazzle",
+      "nameCn": "戴泽",
+      "attribute": "Universal"
+    },
+    {
+      "id": "death_prophet",
+      "name": "Death Prophet",
+      "nameCn": "死亡先知",
+      "attribute": "Universal"
+    },
+    {
+      "id": "enigma",
+      "name": "Enigma",
+      "nameCn": "谜团",
+      "attribute": "Universal"
+    },
+    {
+      "id": "io",
+      "name": "Io",
+      "nameCn": "艾欧",
+      "attribute": "Universal"
+    },
+    {
+      "id": "magnus",
+      "name": "Magnus",
+      "nameCn": "马格纳斯",
+      "attribute": "Universal"
+    },
+    {
+      "id": "marci",
+      "name": "Marci",
+      "nameCn": "玛西",
+      "attribute": "Universal"
+    },
+    {
+      "id": "natures_prophet",
+      "name": "Nature's Prophet",
+      "nameCn": "先知",
+      "attribute": "Universal"
+    },
+    {
+      "id": "nyx_assassin",
+      "name": "Nyx Assassin",
+      "nameCn": "司夜刺客",
+      "attribute": "Universal"
+    },
+    {
+      "id": "pangolier",
+      "name": "Pangolier",
+      "nameCn": "石鳞剑士",
+      "attribute": "Universal"
+    },
+    {
+      "id": "sand_king",
+      "name": "Sand King",
+      "nameCn": "沙王",
+      "attribute": "Universal"
+    },
+    {
+      "id": "snapfire",
+      "name": "Snapfire",
+      "nameCn": "电炎绝手",
+      "attribute": "Universal"
+    },
+    {
+      "id": "spirit_bear",
+      "name": "Spirit Bear",
+      "nameCn": "熊灵",
+      "attribute": "Universal"
+    },
+    {
+      "id": "techies",
+      "name": "Techies",
+      "nameCn": "工程师",
+      "attribute": "Universal"
+    },
+    {
+      "id": "venomancer",
+      "name": "Venomancer",
+      "nameCn": "剧毒术士",
+      "attribute": "Universal"
+    },
+    {
+      "id": "visage",
+      "name": "Visage",
+      "nameCn": "维萨吉",
+      "attribute": "Universal"
+    },
+    {
+      "id": "void_spirit",
+      "name": "Void Spirit",
+      "nameCn": "虚无之灵",
+      "attribute": "Universal"
+    },
+    {
+      "id": "windranger",
+      "name": "Windranger",
+      "nameCn": "风行者",
+      "attribute": "Universal"
+    }
+  ]
+}

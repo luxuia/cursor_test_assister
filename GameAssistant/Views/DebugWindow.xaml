@@ -1,0 +1,145 @@
+<Window x:Class="GameAssistant.Views.DebugWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="识别调试窗口" Height="800" Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 工具栏 -->
+        <Border Grid.Row="0" Background="#FF2D2D30" Padding="10">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="CaptureButton" Content="捕获当前帧" Width="120" Height="30" 
+                        Margin="5,0" Click="CaptureButton_Click"/>
+                <Button x:Name="RefreshButton" Content="刷新识别" Width="120" Height="30" 
+                        Margin="5,0" Click="RefreshButton_Click"/>
+                <Separator Margin="10,0"/>
+                <CheckBox x:Name="AutoRefreshCheckBox" Content="自动刷新" 
+                          VerticalAlignment="Center" Margin="10,0"/>
+                <TextBlock Text="刷新间隔(ms):" VerticalAlignment="Center" Margin="10,0"/>
+                <TextBox x:Name="RefreshIntervalTextBox" Width="80" Height="25" 
+                         Text="500" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- 主内容区 -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- 左侧：图像预览 -->
+            <ScrollViewer Grid.Column="0" Margin="5">
+                <StackPanel>
+                    <GroupBox Header="原始画面" Margin="5">
+                        <Image x:Name="OriginalImage" Stretch="Uniform" MaxHeight="400"/>
+                    </GroupBox>
+                    
+                    <GroupBox Header="识别区域预览" Margin="5">
+                        <Canvas x:Name="RegionCanvas" Width="800" Height="600" Background="#FF1E1E1E">
+                            <Image x:Name="RegionImage" Stretch="None"/>
+                            <!-- 识别区域标记 -->
+                            <Rectangle x:Name="HeroRegionRect" Stroke="Red" StrokeThickness="2" 
+                                      Fill="#20FF0000" Visibility="Collapsed"/>
+                            <Rectangle x:Name="MinimapRegionRect" Stroke="Blue" StrokeThickness="2" 
+                                      Fill="#200000FF" Visibility="Collapsed"/>
+                            <Rectangle x:Name="EquipmentRegionRect" Stroke="Green" StrokeThickness="2" 
+                                      Fill="#2000FF00" Visibility="Collapsed"/>
+                            <Rectangle x:Name="StatusRegionRect" Stroke="Yellow" StrokeThickness="2" 
+                                      Fill="#20FFFF00" Visibility="Collapsed"/>
+                        </Canvas>
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+            
+            <!-- 右侧：识别结果 -->
+            <ScrollViewer Grid.Column="1" Margin="5">
+                <StackPanel>
+                    <GroupBox Header="识别结果" Margin="5">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="英雄阵容:" FontWeight="Bold" Margin="0,5"/>
+                            <ItemsControl x:Name="HeroesList">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#AA333333" CornerRadius="3" Margin="0,2" Padding="5">
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding HeroName}" Foreground="White" FontSize="12"/>
+                                                <TextBlock Text="{Binding HeroId}" Foreground="#FFAAAAAA" FontSize="10"/>
+                                                <TextBlock>
+                                                    <Run Text="血量: "/>
+                                                    <Run Text="{Binding HealthPercentage, StringFormat={}{0:F1}%}"/>
+                                                    <Run Text=" 存活: "/>
+                                                    <Run Text="{Binding IsAlive}"/>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            
+                            <TextBlock Text="小地图标记:" FontWeight="Bold" Margin="0,10,0,5"/>
+                            <ItemsControl x:Name="MinimapMarkersList">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Foreground="White" FontSize="11" Margin="5,2"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            
+                            <TextBlock Text="装备信息:" FontWeight="Bold" Margin="0,10,0,5"/>
+                            <ItemsControl x:Name="EquipmentList">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#AA333333" CornerRadius="3" Margin="0,2" Padding="5">
+                                            <TextBlock Text="{Binding EquipmentName}" Foreground="White" FontSize="11"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            
+                            <TextBlock Text="状态信息:" FontWeight="Bold" Margin="0,10,0,5"/>
+                            <StackPanel x:Name="StatusInfoPanel">
+                                <TextBlock x:Name="HealthText" Text="血量: --" Foreground="White" FontSize="11"/>
+                                <TextBlock x:Name="ManaText" Text="魔法: --" Foreground="White" FontSize="11"/>
+                                <TextBlock Text="技能:" FontWeight="Bold" Margin="0,5,0,2"/>
+                                <ItemsControl x:Name="SkillsList">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Background="#AA333333" CornerRadius="3" Margin="0,2" Padding="5">
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding SkillName}" Foreground="White" FontSize="11"/>
+                                                    <TextBlock>
+                                                        <Run Text="可用: "/>
+                                                        <Run Text="{Binding IsAvailable}"/>
+                                                        <Run Text=" 冷却: "/>
+                                                        <Run Text="{Binding CooldownSeconds, StringFormat={}{0:F1}s}"/>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    
+                    <GroupBox Header="性能信息" Margin="5">
+                        <StackPanel Margin="10">
+                            <TextBlock x:Name="RecognitionTimeText" Text="识别耗时: --" Foreground="White" FontSize="11"/>
+                            <TextBlock x:Name="ConfidenceText" Text="置信度: --" Foreground="White" FontSize="11"/>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        
+        <!-- 状态栏 -->
+        <Border Grid.Row="2" Background="#FF2D2D30" Padding="5">
+            <TextBlock x:Name="StatusText" Text="就绪" Foreground="White" FontSize="10"/>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,159 @@
+<Window x:Class="GameAssistant.Views.RuleManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="建议规则管理" Height="700" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 工具栏 -->
+        <Border Grid.Row="0" Background="#FF2D2D30" Padding="10">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="AddButton" Content="添加规则" Width="100" Height="30" 
+                        Margin="5,0" Click="AddButton_Click"/>
+                <Button x:Name="EditButton" Content="编辑规则" Width="100" Height="30" 
+                        Margin="5,0" Click="EditButton_Click" IsEnabled="False"/>
+                <Button x:Name="DeleteButton" Content="删除规则" Width="100" Height="30" 
+                        Margin="5,0" Click="DeleteButton_Click" IsEnabled="False"/>
+                <Separator Margin="10,0"/>
+                <Button x:Name="ImportButton" Content="导入" Width="80" Height="30" 
+                        Margin="5,0" Click="ImportButton_Click"/>
+                <Button x:Name="ExportButton" Content="导出" Width="80" Height="30" 
+                        Margin="5,0" Click="ExportButton_Click"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- 主内容区 -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- 左侧：规则列表 -->
+            <Border Grid.Column="0" BorderBrush="#FF3F3F46" BorderThickness="0,0,1,0" Margin="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Row="0" Text="规则列表" FontWeight="Bold" Margin="10,5"/>
+                    <ListBox x:Name="RulesListBox" Grid.Row="1" SelectionChanged="RulesListBox_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="#AA333333" CornerRadius="3" Margin="2" Padding="8">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding AdviceContent}" Foreground="White" 
+                                                   TextWrapping="Wrap" FontSize="12" FontWeight="Bold"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                            <TextBlock Text="优先级: " Foreground="#FFAAAAAA" FontSize="10"/>
+                                            <TextBlock Text="{Binding Priority}" Foreground="White" FontSize="10"/>
+                                            <TextBlock Text="  类型: " Foreground="#FFAAAAAA" FontSize="10" Margin="10,0,0,0"/>
+                                            <TextBlock Text="{Binding Type}" Foreground="White" FontSize="10"/>
+                                        </StackPanel>
+                                        <CheckBox Content="启用" IsChecked="{Binding IsEnabled}" 
+                                                  Foreground="White" FontSize="10" Margin="0,5,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Border>
+            
+            <!-- 右侧：规则编辑 -->
+            <ScrollViewer Grid.Column="1" Margin="5">
+                <StackPanel>
+                    <GroupBox Header="规则信息" Margin="5">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="建议内容:" Margin="0,5"/>
+                            <TextBox x:Name="AdviceContentTextBox" Height="80" 
+                                     TextWrapping="Wrap" AcceptsReturn="True" Margin="0,5"/>
+                            
+                            <Grid Margin="0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                    <TextBlock Text="优先级:" Margin="0,5"/>
+                                    <TextBox x:Name="PriorityTextBox" Margin="0,5"/>
+                                    
+                                    <TextBlock Text="类型:" Margin="0,10,0,5"/>
+                                    <ComboBox x:Name="TypeComboBox" Margin="0,5">
+                                        <ComboBoxItem Content="战斗建议" Tag="0"/>
+                                        <ComboBoxItem Content="策略建议" Tag="1"/>
+                                        <ComboBoxItem Content="装备建议" Tag="2"/>
+                                        <ComboBoxItem Content="站位建议" Tag="3"/>
+                                        <ComboBoxItem Content="警告提示" Tag="4"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                
+                                <StackPanel Grid.Column="1">
+                                    <CheckBox x:Name="IsEnabledCheckBox" Content="启用规则" 
+                                              VerticalAlignment="Center" Margin="0,30"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                    
+                    <GroupBox Header="匹配条件" Margin="5">
+                        <StackPanel Margin="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                    <TextBlock Text="血量阈值:" Margin="0,5"/>
+                                    <TextBox x:Name="HealthThresholdTextBox" Margin="0,5" 
+                                             ToolTip="低于此血量百分比时触发"/>
+                                    
+                                    <TextBlock Text="游戏阶段:" Margin="0,10,0,5"/>
+                                    <ComboBox x:Name="PhaseComboBox" Margin="0,5">
+                                        <ComboBoxItem Content="(不限制)" Tag=""/>
+                                        <ComboBoxItem Content="前期" Tag="Early"/>
+                                        <ComboBoxItem Content="中期" Tag="Mid"/>
+                                        <ComboBoxItem Content="后期" Tag="Late"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="地图区域:" Margin="0,5"/>
+                                    <TextBox x:Name="MapRegionTextBox" Margin="0,5"/>
+                                    
+                                    <TextBlock Text="英雄组合:" Margin="0,10,0,5"/>
+                                    <TextBox x:Name="HeroCombinationTextBox" Margin="0,5" 
+                                             ToolTip="英雄ID，用逗号分隔"/>
+                                </StackPanel>
+                            </Grid>
+                            
+                            <TextBlock Text="装备组合:" Margin="0,10,0,5"/>
+                            <TextBox x:Name="EquipmentCombinationTextBox" Height="60" 
+                                     TextWrapping="Wrap" AcceptsReturn="True" Margin="0,5"
+                                     ToolTip="装备ID，用逗号分隔"/>
+                        </StackPanel>
+                    </GroupBox>
+                    
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                        <Button x:Name="SaveButton" Content="保存" Width="100" Height="30" 
+                                Margin="5" Click="SaveButton_Click"/>
+                        <Button x:Name="CancelButton" Content="取消" Width="100" Height="30" 
+                                Margin="5" Click="CancelButton_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        
+        <!-- 状态栏 -->
+        <Border Grid.Row="2" Background="#FF2D2D30" Padding="5">
+            <TextBlock x:Name="StatusText" Text="就绪" Foreground="White" FontSize="10"/>
+        </Border>
+    </Grid>
+</Window>

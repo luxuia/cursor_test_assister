@@ -1,0 +1,111 @@
+<Window x:Class="GameAssistant.Views.TemplateCaptureWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="模板采集工具" Height="700" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 工具栏 -->
+        <Border Grid.Row="0" Background="#FF2D2D30" Padding="10">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="CaptureScreenButton" Content="捕获游戏画面" Width="150" Height="30" 
+                            Margin="5,0" Click="CaptureScreenButton_Click"/>
+                    <Button x:Name="LoadImageButton" Content="加载图片文件" Width="150" Height="30" 
+                            Margin="5,0" Click="LoadImageButton_Click"/>
+                    <Separator Margin="10,0"/>
+                    <TextBlock Text="模板名称:" VerticalAlignment="Center" Margin="10,0"/>
+                    <TextBox x:Name="TemplateNameTextBox" Width="150" Height="25" 
+                             VerticalAlignment="Center" Text="template_001"/>
+                    <TextBlock Text="分类:" VerticalAlignment="Center" Margin="10,0"/>
+                    <ComboBox x:Name="CategoryComboBox" Width="120" Height="25" 
+                              VerticalAlignment="Center" SelectedIndex="0">
+                        <ComboBoxItem Content="Heroes"/>
+                        <ComboBoxItem Content="Equipment"/>
+                        <ComboBoxItem Content="Skills"/>
+                        <ComboBoxItem Content="UI"/>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock Text="提示: 在图片上拖拽鼠标选择区域，然后点击保存模板按钮" 
+                               Foreground="#FFAAAAAA" FontSize="11"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        
+        <!-- 主内容区 -->
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- 左侧：图片预览和选择 -->
+            <Border Grid.Column="0" BorderBrush="#FF3F3F46" BorderThickness="1" Margin="0,0,5,0">
+                <Canvas x:Name="ImageCanvas" Background="#FF1E1E1E" MouseLeftButtonDown="ImageCanvas_MouseLeftButtonDown"
+                        MouseMove="ImageCanvas_MouseMove" MouseLeftButtonUp="ImageCanvas_MouseLeftButtonUp">
+                    <Image x:Name="SourceImage" Stretch="Uniform"/>
+                    <Rectangle x:Name="SelectionRectangle" Stroke="Red" StrokeThickness="2" 
+                              Fill="#20FF0000" Visibility="Collapsed"/>
+                </Canvas>
+            </Border>
+            
+            <!-- 右侧：模板预览和操作 -->
+            <ScrollViewer Grid.Column="1">
+                <StackPanel>
+                    <GroupBox Header="模板预览" Margin="5">
+                        <Border Background="#FF1E1E1E" Height="200" Margin="5">
+                            <Image x:Name="TemplatePreview" Stretch="Uniform" Margin="5"/>
+                        </Border>
+                    </GroupBox>
+                    
+                    <GroupBox Header="模板信息" Margin="5">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="名称:" Margin="0,5"/>
+                            <TextBox x:Name="PreviewNameTextBox" Margin="0,5"/>
+                            
+                            <TextBlock Text="分类:" Margin="0,10,0,5"/>
+                            <ComboBox x:Name="PreviewCategoryComboBox" Margin="0,5">
+                                <ComboBoxItem Content="Heroes"/>
+                                <ComboBoxItem Content="Equipment"/>
+                                <ComboBoxItem Content="Skills"/>
+                                <ComboBoxItem Content="UI"/>
+                            </ComboBox>
+                            
+                            <TextBlock x:Name="SizeText" Text="尺寸: --" Margin="0,10,0,5"/>
+                        </StackPanel>
+                    </GroupBox>
+                    
+                    <GroupBox Header="操作" Margin="5">
+                        <StackPanel Margin="10">
+                            <Button x:Name="SaveTemplateButton" Content="保存模板" Height="35" 
+                                    Margin="0,5" Click="SaveTemplateButton_Click" IsEnabled="False"/>
+                            <Button x:Name="ClearSelectionButton" Content="清除选择" Height="30" 
+                                    Margin="0,5" Click="ClearSelectionButton_Click"/>
+                            <Button x:Name="AdjustBrightnessButton" Content="调整亮度" Height="30" 
+                                    Margin="0,5" Click="AdjustBrightnessButton_Click"/>
+                        </StackPanel>
+                    </GroupBox>
+                    
+                    <GroupBox Header="批量操作" Margin="5">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="从游戏画面批量提取模板" TextWrapping="Wrap" Margin="0,5"/>
+                            <Button x:Name="BatchCaptureButton" Content="批量采集" Height="30" 
+                                    Margin="0,5" Click="BatchCaptureButton_Click"/>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        
+        <!-- 状态栏 -->
+        <Border Grid.Row="2" Background="#FF2D2D30" Padding="5">
+            <TextBlock x:Name="StatusText" Text="就绪 - 请先捕获游戏画面或加载图片" 
+                       Foreground="White" FontSize="10"/>
+        </Border>
+    </Grid>
+</Window>
