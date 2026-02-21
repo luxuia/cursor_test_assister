@@ -545,7 +545,7 @@ namespace GameAssistant.Services.ImageRecognition
 
                 Mat skillRoi = new Mat(statusMat, roi);
                 Mat gray = new Mat();
-                Cv2.CvtColor(skillRoi, gray, ColorConversionCodes.BGR2Grayscale);
+                Cv2.CvtColor(skillRoi, gray, ColorConversionCodes.BGR2GRAY);
                 
                 // 计算平均亮度
                 Scalar mean = Cv2.Mean(gray);
@@ -587,7 +587,7 @@ namespace GameAssistant.Services.ImageRecognition
 
                 Mat skillRoi = new Mat(statusMat, roi);
                 Mat gray = new Mat();
-                Cv2.CvtColor(skillRoi, gray, ColorConversionCodes.BGR2Grayscale);
+                Cv2.CvtColor(skillRoi, gray, ColorConversionCodes.BGR2GRAY);
                 
                 Scalar mean = Cv2.Mean(gray);
                 double avgBrightness = mean.Val0;

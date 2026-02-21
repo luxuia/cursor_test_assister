@@ -62,7 +62,7 @@ namespace GameAssistant.Services.ImageRecognition
             Mat graySource = new Mat();
             if (source.Channels() == 3)
             {
-                Cv2.CvtColor(source, graySource, ColorConversionCodes.BGR2Grayscale);
+                Cv2.CvtColor(source, graySource, ColorConversionCodes.BGR2GRAY);
             }
             else
             {
@@ -184,7 +184,6 @@ namespace GameAssistant.Services.ImageRecognition
             }
 
             return uniqueMatches;
-        }
         }
 
         /// <summary>

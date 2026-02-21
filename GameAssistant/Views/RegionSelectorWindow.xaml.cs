@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -11,7 +12,7 @@ namespace GameAssistant.Views
     {
         private bool _isSelecting = false;
         private System.Windows.Point _startPoint;
-        public Rectangle SelectedRegion { get; private set; } = new Rectangle(0, 0, 0, 0);
+        public System.Drawing.Rectangle SelectedRegion { get; private set; } = new System.Drawing.Rectangle(0, 0, 0, 0);
 
         public RegionSelectorWindow(string regionName)
         {
@@ -59,7 +60,7 @@ namespace GameAssistant.Views
                 var screenStart = PointToScreen(_startPoint);
                 var screenEnd = PointToScreen(e.GetPosition(SelectionCanvas));
                 
-                SelectedRegion = new Rectangle(
+                SelectedRegion = new System.Drawing.Rectangle(
                     (int)Math.Min(screenStart.X, screenEnd.X),
                     (int)Math.Min(screenStart.Y, screenEnd.Y),
                     (int)Math.Abs(screenEnd.X - screenStart.X),

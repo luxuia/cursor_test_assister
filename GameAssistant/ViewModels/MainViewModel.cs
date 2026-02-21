@@ -16,7 +16,7 @@ namespace GameAssistant.ViewModels
 {
     public class MainViewModel
     {
-        private readonly IScreenCapture? _screenCapture;
+        private IScreenCapture? _screenCapture;
         private readonly IImageRecognizer _imageRecognizer;
         private readonly IDecisionEngine _decisionEngine;
         private readonly DispatcherTimer _recognitionTimer;

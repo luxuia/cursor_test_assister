@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using GameAssistant.Tools;
-using HeroInfo = GameAssistant.Tools.HeroIconDownloader.HeroInfo;
-using ItemInfo = GameAssistant.Tools.HeroIconDownloader.ItemInfo;
 
 namespace GameAssistant.Views
 {

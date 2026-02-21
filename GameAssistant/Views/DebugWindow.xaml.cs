@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using System.Windows.Threading;
 using GameAssistant.Core.Models;
 using GameAssistant.ViewModels;
@@ -149,7 +151,7 @@ namespace GameAssistant.Views
         private BitmapSource ConvertBitmap(Bitmap bitmap)
         {
             var bitmapData = bitmap.LockBits(
-                new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                new System.Drawing.Rectangle(0, 0, bitmap.Width, bitmap.Height),
                 ImageLockMode.ReadOnly,
                 bitmap.PixelFormat);
 
@@ -180,7 +182,7 @@ namespace GameAssistant.Views
             UpdateRegionRect(StatusRegionRect, regions.StatusBarRegion, "状态栏");
         }
 
-        private void UpdateRegionRect(Rectangle rect, System.Drawing.Rectangle region, string label)
+        private void UpdateRegionRect(System.Windows.Shapes.Rectangle rect, System.Drawing.Rectangle region, string label)
         {
             if (region.Width > 0 && region.Height > 0)
             {
