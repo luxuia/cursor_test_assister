@@ -1,0 +1,35 @@
+{
+  "Filename": "test1_small.png",
+  "ImageSize": {
+    "Width": 1024,
+    "Height": 576
+  },
+  "Timestamp": "2026-02-21T23:25:26.7567535+08:00",
+  "RecognitionRegions": {
+    "HeroRosterRegion": "10, 10, 400, 100",
+    "MinimapRegion": "1600, 800, 300, 300",
+    "EquipmentPanelRegion": "800, 200, 400, 600",
+    "StatusBarRegion": "100, 900, 500, 150"
+  },
+  "Results": {
+    "HeroRoster": {
+      "Heroes": [],
+      "Confidence": 0.0
+    },
+    "Minimap": {
+      "HeroPositions": [],
+      "Confidence": 0.0
+    },
+    "Equipment": {
+      "EquipmentList": [],
+      "TargetHeroId": null,
+      "Confidence": 0.0
+    },
+    "Status": {
+      "HealthPercentage": 0.0,
+      "ManaPercentage": 100.0,
+      "Skills": [],
+      "Confidence": 0.0
+    }
+  }
+}

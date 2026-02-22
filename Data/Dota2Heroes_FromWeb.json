@@ -1,0 +1,905 @@
+{
+  "sourceUrl": "https://liquipedia.net/dota2/Portal:Heroes",
+  "fetchedAt": "2026-02-22T08:20:22.6555156Z",
+  "game": "Dota2",
+  "count": 128,
+  "description": "英雄 id/name/nameCn/attribute/iconUrl 中英双版对应关系，从 Portal:Heroes 拉取",
+  "heroes": [
+    {
+      "id": "alchemist",
+      "name": "Alchemist",
+      "nameCn": "炼金术士",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/44/Alchemist_icon_dota2_gameasset.png/100px-Alchemist_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "axe",
+      "name": "Axe",
+      "nameCn": "斧王",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/08/Axe_icon_dota2_gameasset.png/100px-Axe_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "bristleback",
+      "name": "Bristleback",
+      "nameCn": "刚背兽",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/8e/Bristleback_icon_dota2_gameasset.png/100px-Bristleback_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "centaur_warrunner",
+      "name": "Centaur Warrunner",
+      "nameCn": "半人马战行者",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/8b/Centaur_Warrunner_icon_dota2_gameasset.png/100px-Centaur_Warrunner_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "chaos_knight",
+      "name": "Chaos Knight",
+      "nameCn": "混沌骑士",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/f1/Chaos_Knight_icon_dota2_gameasset.png/100px-Chaos_Knight_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "clockwerk",
+      "name": "Clockwerk",
+      "nameCn": "发条技师",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/6b/Clockwerk_icon_dota2_gameasset.png/100px-Clockwerk_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "dawnbreaker",
+      "name": "Dawnbreaker",
+      "nameCn": "破晓辰星",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/27/Dawnbreaker_icon_dota2_gameasset.png/100px-Dawnbreaker_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "doom",
+      "name": "Doom",
+      "nameCn": "末日使者",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/57/Doom_icon_dota2_gameasset.png/100px-Doom_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "dragon_knight",
+      "name": "Dragon Knight",
+      "nameCn": "龙骑士",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/61/Dragon_Knight_icon_dota2_gameasset.png/100px-Dragon_Knight_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "earth_spirit",
+      "name": "Earth Spirit",
+      "nameCn": "大地之灵",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/46/Earth_Spirit_icon_dota2_gameasset.png/100px-Earth_Spirit_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "earthshaker",
+      "name": "Earthshaker",
+      "nameCn": "撼地者",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/66/Earthshaker_icon_dota2_gameasset.png/100px-Earthshaker_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "elder_titan",
+      "name": "Elder Titan",
+      "nameCn": "上古巨神",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/c/cc/Elder_Titan_icon_dota2_gameasset.png/100px-Elder_Titan_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "huskar",
+      "name": "Huskar",
+      "nameCn": "哈斯卡",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/e/ee/Huskar_icon_dota2_gameasset.png/100px-Huskar_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "kunkka",
+      "name": "Kunkka",
+      "nameCn": "昆卡",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/2d/Kunkka_icon_dota2_gameasset.png/100px-Kunkka_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "largo",
+      "name": "Largo",
+      "nameCn": "拉戈",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/78/Largo_icon_dota2_gameasset.png/100px-Largo_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "legion_commander",
+      "name": "Legion Commander",
+      "nameCn": "军团指挥官",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/28/Legion_Commander_icon_dota2_gameasset.png/100px-Legion_Commander_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "lifestealer",
+      "name": "Lifestealer",
+      "nameCn": "噬魂鬼",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/8f/Lifestealer_icon_dota2_gameasset.png/100px-Lifestealer_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "lycan",
+      "name": "Lycan",
+      "nameCn": "狼人",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/7a/Lycan_icon_dota2_gameasset.png/100px-Lycan_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "mars",
+      "name": "Mars",
+      "nameCn": "玛尔斯",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/6f/Mars_icon_dota2_gameasset.png/100px-Mars_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "night_stalker",
+      "name": "Night Stalker",
+      "nameCn": "暗夜魔王",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/65/Night_Stalker_icon_dota2_gameasset.png/100px-Night_Stalker_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "ogre_magi",
+      "name": "Ogre Magi",
+      "nameCn": "食人魔魔法师",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/ba/Ogre_Magi_icon_dota2_gameasset.png/100px-Ogre_Magi_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "omniknight",
+      "name": "Omniknight",
+      "nameCn": "全能骑士",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d3/Omniknight_icon_dota2_gameasset.png/100px-Omniknight_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "phoenix",
+      "name": "Phoenix",
+      "nameCn": "凤凰",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d7/Phoenix_icon_dota2_gameasset.png/100px-Phoenix_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "primal_beast",
+      "name": "Primal Beast",
+      "nameCn": "原始野兽",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/92/Primal_Beast_icon_dota2_gameasset.png/100px-Primal_Beast_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "pudge",
+      "name": "Pudge",
+      "nameCn": "帕吉",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/e/e9/Pudge_icon_dota2_gameasset.png/100px-Pudge_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "slardar",
+      "name": "Slardar",
+      "nameCn": "斯拉达",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/5b/Slardar_icon_dota2_gameasset.png/100px-Slardar_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "spirit_breaker",
+      "name": "Spirit Breaker",
+      "nameCn": "裂魂人",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/57/Spirit_Breaker_icon_dota2_gameasset.png/100px-Spirit_Breaker_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "sven",
+      "name": "Sven",
+      "nameCn": "斯温",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/75/Sven_icon_dota2_gameasset.png/100px-Sven_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "tidehunter",
+      "name": "Tidehunter",
+      "nameCn": "潮汐猎人",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/b0/Tidehunter_icon_dota2_gameasset.png/100px-Tidehunter_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "timbersaw",
+      "name": "Timbersaw",
+      "nameCn": "伐木机",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/1e/Timbersaw_icon_dota2_gameasset.png/100px-Timbersaw_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "tiny",
+      "name": "Tiny",
+      "nameCn": "小小",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/07/Tiny_icon_dota2_gameasset.png/100px-Tiny_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "treant_protector",
+      "name": "Treant Protector",
+      "nameCn": "树精卫士",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/6d/Treant_Protector_icon_dota2_gameasset.png/100px-Treant_Protector_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "tusk",
+      "name": "Tusk",
+      "nameCn": "巨牙海民",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/b4/Tusk_icon_dota2_gameasset.png/100px-Tusk_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "underlord",
+      "name": "Underlord",
+      "nameCn": "孽主",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/70/Underlord_icon_dota2_gameasset.png/100px-Underlord_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "undying",
+      "name": "Undying",
+      "nameCn": "不朽尸王",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/00/Undying_icon_dota2_gameasset.png/100px-Undying_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "wraith_king",
+      "name": "Wraith King",
+      "nameCn": "冥魂大帝",
+      "attribute": "Strength",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/c/cc/Wraith_King_icon_dota2_gameasset.png/100px-Wraith_King_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "anti_mage",
+      "name": "Anti-Mage",
+      "nameCn": "敌法师",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d4/Anti-Mage_icon_dota2_gameasset.png/100px-Anti-Mage_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "bloodseeker",
+      "name": "Bloodseeker",
+      "nameCn": "血魔",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/00/Bloodseeker_icon_dota2_gameasset.png/100px-Bloodseeker_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "bounty_hunter",
+      "name": "Bounty Hunter",
+      "nameCn": "赏金猎人",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/04/Bounty_Hunter_icon_dota2_gameasset.png/100px-Bounty_Hunter_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "broodmother",
+      "name": "Broodmother",
+      "nameCn": "育母蜘蛛",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/9b/Broodmother_icon_dota2_gameasset.png/100px-Broodmother_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "clinkz",
+      "name": "Clinkz",
+      "nameCn": "克林克兹",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/6b/Clinkz_icon_dota2_gameasset.png/100px-Clinkz_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "drow_ranger",
+      "name": "Drow Ranger",
+      "nameCn": "卓尔游侠",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/85/Drow_Ranger_icon_dota2_gameasset.png/100px-Drow_Ranger_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "ember_spirit",
+      "name": "Ember Spirit",
+      "nameCn": "灰烬之灵",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/97/Ember_Spirit_icon_dota2_gameasset.png/100px-Ember_Spirit_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "faceless_void",
+      "name": "Faceless Void",
+      "nameCn": "虚空假面",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/6f/Faceless_Void_icon_dota2_gameasset.png/100px-Faceless_Void_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "gyrocopter",
+      "name": "Gyrocopter",
+      "nameCn": "矮人直升机",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/1b/Gyrocopter_icon_dota2_gameasset.png/100px-Gyrocopter_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "hoodwink",
+      "name": "Hoodwink",
+      "nameCn": "森海飞霞",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/5b/Hoodwink_icon_dota2_gameasset.png/100px-Hoodwink_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "juggernaut",
+      "name": "Juggernaut",
+      "nameCn": "主宰",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/5c/Juggernaut_icon_dota2_gameasset.png/100px-Juggernaut_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "kez",
+      "name": "Kez",
+      "nameCn": "克兹",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/b1/Kez_icon_dota2_gameasset.png/100px-Kez_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "lone_druid",
+      "name": "Lone Druid",
+      "nameCn": "德鲁伊",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/5c/Lone_Druid_icon_dota2_gameasset.png/100px-Lone_Druid_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "luna",
+      "name": "Luna",
+      "nameCn": "露娜",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/8d/Luna_icon_dota2_gameasset.png/100px-Luna_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "medusa",
+      "name": "Medusa",
+      "nameCn": "美杜莎",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/c/c6/Medusa_icon_dota2_gameasset.png/100px-Medusa_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "meepo",
+      "name": "Meepo",
+      "nameCn": "米波",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/40/Meepo_icon_dota2_gameasset.png/100px-Meepo_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "mirana",
+      "name": "Mirana",
+      "nameCn": "米拉娜",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/01/Mirana_icon_dota2_gameasset.png/100px-Mirana_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "monkey_king",
+      "name": "Monkey King",
+      "nameCn": "齐天大圣",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/7c/Monkey_King_icon_dota2_gameasset.png/100px-Monkey_King_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "morphling",
+      "name": "Morphling",
+      "nameCn": "变体精灵",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/65/Morphling_icon_dota2_gameasset.png/100px-Morphling_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "naga_siren",
+      "name": "Naga Siren",
+      "nameCn": "娜迦海妖",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/db/Naga_Siren_icon_dota2_gameasset.png/100px-Naga_Siren_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "phantom_assassin",
+      "name": "Phantom Assassin",
+      "nameCn": "幻影刺客",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/34/Phantom_Assassin_icon_dota2_gameasset.png/100px-Phantom_Assassin_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "phantom_lancer",
+      "name": "Phantom Lancer",
+      "nameCn": "幻影长矛手",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/fd/Phantom_Lancer_icon_dota2_gameasset.png/100px-Phantom_Lancer_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "razor",
+      "name": "Razor",
+      "nameCn": "剃刀",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/bb/Razor_icon_dota2_gameasset.png/100px-Razor_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "riki",
+      "name": "Riki",
+      "nameCn": "力丸",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/bd/Riki_icon_dota2_gameasset.png/100px-Riki_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "shadow_fiend",
+      "name": "Shadow Fiend",
+      "nameCn": "影魔",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/55/Shadow_Fiend_icon_dota2_gameasset.png/100px-Shadow_Fiend_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "slark",
+      "name": "Slark",
+      "nameCn": "斯拉克",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/02/Slark_icon_dota2_gameasset.png/100px-Slark_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "sniper",
+      "name": "Sniper",
+      "nameCn": "狙击手",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/a/a4/Sniper_icon_dota2_gameasset.png/100px-Sniper_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "spectre",
+      "name": "Spectre",
+      "nameCn": "幽鬼",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/f8/Spectre_icon_dota2_gameasset.png/100px-Spectre_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "templar_assassin",
+      "name": "Templar Assassin",
+      "nameCn": "圣堂刺客",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/df/Templar_Assassin_icon_dota2_gameasset.png/100px-Templar_Assassin_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "terrorblade",
+      "name": "Terrorblade",
+      "nameCn": "恐怖利刃",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/2d/Terrorblade_icon_dota2_gameasset.png/100px-Terrorblade_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "troll_warlord",
+      "name": "Troll Warlord",
+      "nameCn": "巨魔战将",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/f2/Troll_Warlord_icon_dota2_gameasset.png/100px-Troll_Warlord_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "ursa",
+      "name": "Ursa",
+      "nameCn": "熊战士",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/33/Ursa_icon_dota2_gameasset.png/100px-Ursa_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "vengeful_spirit",
+      "name": "Vengeful Spirit",
+      "nameCn": "复仇之魂",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/c/c4/Vengeful_Spirit_icon_dota2_gameasset.png/100px-Vengeful_Spirit_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "viper",
+      "name": "Viper",
+      "nameCn": "冥界亚龙",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/71/Viper_icon_dota2_gameasset.png/100px-Viper_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "weaver",
+      "name": "Weaver",
+      "nameCn": "编织者",
+      "attribute": "Agility",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/8a/Weaver_icon_dota2_gameasset.png/100px-Weaver_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "ancient_apparition",
+      "name": "Ancient Apparition",
+      "nameCn": "远古冰魄",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/33/Ancient_Apparition_icon_dota2_gameasset.png/100px-Ancient_Apparition_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "chen",
+      "name": "Chen",
+      "nameCn": "陈",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/47/Chen_icon_dota2_gameasset.png/100px-Chen_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "crystal_maiden",
+      "name": "Crystal Maiden",
+      "nameCn": "水晶室女",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/54/Crystal_Maiden_icon_dota2_gameasset.png/100px-Crystal_Maiden_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "dark_seer",
+      "name": "Dark Seer",
+      "nameCn": "黑暗贤者",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/87/Dark_Seer_icon_dota2_gameasset.png/100px-Dark_Seer_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "dark_willow",
+      "name": "Dark Willow",
+      "nameCn": "邪影芳灵",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/a/a8/Dark_Willow_icon_dota2_gameasset.png/100px-Dark_Willow_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "disruptor",
+      "name": "Disruptor",
+      "nameCn": "干扰者",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/84/Disruptor_icon_dota2_gameasset.png/100px-Disruptor_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "enchantress",
+      "name": "Enchantress",
+      "nameCn": "魅惑魔女",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/4a/Enchantress_icon_dota2_gameasset.png/100px-Enchantress_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "grimstroke",
+      "name": "Grimstroke",
+      "nameCn": "天涯墨客",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/9b/Grimstroke_icon_dota2_gameasset.png/100px-Grimstroke_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "invoker",
+      "name": "Invoker",
+      "nameCn": "祈求者",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/0f/Invoker_icon_dota2_gameasset.png/100px-Invoker_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "jakiro",
+      "name": "Jakiro",
+      "nameCn": "杰奇洛",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/45/Jakiro_icon_dota2_gameasset.png/100px-Jakiro_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "keeper_of_the_light",
+      "name": "Keeper of the Light",
+      "nameCn": "光之守卫",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d0/Keeper_of_the_Light_icon_dota2_gameasset.png/100px-Keeper_of_the_Light_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "leshrac",
+      "name": "Leshrac",
+      "nameCn": "拉席克",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d1/Leshrac_icon_dota2_gameasset.png/100px-Leshrac_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "lich",
+      "name": "Lich",
+      "nameCn": "巫妖",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/32/Lich_icon_dota2_gameasset.png/100px-Lich_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "lina",
+      "name": "Lina",
+      "nameCn": "莉娜",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/6c/Lina_icon_dota2_gameasset.png/100px-Lina_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "lion",
+      "name": "Lion",
+      "nameCn": "莱恩",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/3f/Lion_icon_dota2_gameasset.png/100px-Lion_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "muerta",
+      "name": "Muerta",
+      "nameCn": "穆尔塔",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d8/Muerta_icon_dota2_gameasset.png/100px-Muerta_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "necrophos",
+      "name": "Necrophos",
+      "nameCn": "瘟疫法师",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/e/eb/Necrophos_icon_dota2_gameasset.png/100px-Necrophos_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "oracle",
+      "name": "Oracle",
+      "nameCn": "神谕者",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/b9/Oracle_icon_dota2_gameasset.png/100px-Oracle_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "outworld_destroyer",
+      "name": "Outworld Destroyer",
+      "nameCn": "殁境神蚀者",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/45/Outworld_Destroyer_icon_dota2_gameasset.png/100px-Outworld_Destroyer_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "puck",
+      "name": "Puck",
+      "nameCn": "帕克",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/9f/Puck_icon_dota2_gameasset.png/100px-Puck_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "pugna",
+      "name": "Pugna",
+      "nameCn": "帕格纳",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/38/Pugna_icon_dota2_gameasset.png/100px-Pugna_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "queen_of_pain",
+      "name": "Queen of Pain",
+      "nameCn": "痛苦女王",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/7d/Queen_of_Pain_icon_dota2_gameasset.png/100px-Queen_of_Pain_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "ringmaster",
+      "name": "Ringmaster",
+      "nameCn": "马戏团大师",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/73/Ringmaster_icon_dota2_gameasset.png/100px-Ringmaster_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "rubick",
+      "name": "Rubick",
+      "nameCn": "拉比克",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/fe/Rubick_icon_dota2_gameasset.png/100px-Rubick_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "shadow_demon",
+      "name": "Shadow Demon",
+      "nameCn": "暗影恶魔",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/9f/Shadow_Demon_icon_dota2_gameasset.png/100px-Shadow_Demon_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "shadow_shaman",
+      "name": "Shadow Shaman",
+      "nameCn": "暗影萨满",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/4a/Shadow_Shaman_icon_dota2_gameasset.png/100px-Shadow_Shaman_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "silencer",
+      "name": "Silencer",
+      "nameCn": "沉默术士",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/43/Silencer_icon_dota2_gameasset.png/100px-Silencer_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "skywrath_mage",
+      "name": "Skywrath Mage",
+      "nameCn": "天怒法师",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/57/Skywrath_Mage_icon_dota2_gameasset.png/100px-Skywrath_Mage_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "storm_spirit",
+      "name": "Storm Spirit",
+      "nameCn": "风暴之灵",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/78/Storm_Spirit_icon_dota2_gameasset.png/100px-Storm_Spirit_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "tinker",
+      "name": "Tinker",
+      "nameCn": "修补匠",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/23/Tinker_icon_dota2_gameasset.png/100px-Tinker_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "warlock",
+      "name": "Warlock",
+      "nameCn": "术士",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/1f/Warlock_icon_dota2_gameasset.png/100px-Warlock_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "winter_wyvern",
+      "name": "Winter Wyvern",
+      "nameCn": "寒冬飞龙",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/79/Winter_Wyvern_icon_dota2_gameasset.png/100px-Winter_Wyvern_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "witch_doctor",
+      "name": "Witch Doctor",
+      "nameCn": "巫医",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/81/Witch_Doctor_icon_dota2_gameasset.png/100px-Witch_Doctor_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "zeus",
+      "name": "Zeus",
+      "nameCn": "宙斯",
+      "attribute": "Intelligence",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d0/Zeus_icon_dota2_gameasset.png/100px-Zeus_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "abaddon",
+      "name": "Abaddon",
+      "nameCn": "亚巴顿",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/5f/Abaddon_icon_dota2_gameasset.png/100px-Abaddon_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "arc_warden",
+      "name": "Arc Warden",
+      "nameCn": "天穹守望者",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/8f/Arc_Warden_icon_dota2_gameasset.png/100px-Arc_Warden_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "bane",
+      "name": "Bane",
+      "nameCn": "祸乱之源",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/1c/Bane_icon_dota2_gameasset.png/100px-Bane_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "batrider",
+      "name": "Batrider",
+      "nameCn": "蝙蝠骑士",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/71/Batrider_icon_dota2_gameasset.png/100px-Batrider_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "beastmaster",
+      "name": "Beastmaster",
+      "nameCn": "兽王",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/c/c3/Beastmaster_icon_dota2_gameasset.png/100px-Beastmaster_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "brewmaster",
+      "name": "Brewmaster",
+      "nameCn": "酒仙",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/76/Brewmaster_icon_dota2_gameasset.png/100px-Brewmaster_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "dazzle",
+      "name": "Dazzle",
+      "nameCn": "戴泽",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/81/Dazzle_icon_dota2_gameasset.png/100px-Dazzle_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "death_prophet",
+      "name": "Death Prophet",
+      "nameCn": "死亡先知",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/6a/Death_Prophet_icon_dota2_gameasset.png/100px-Death_Prophet_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "enigma",
+      "name": "Enigma",
+      "nameCn": "谜团",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/65/Enigma_icon_dota2_gameasset.png/100px-Enigma_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "io",
+      "name": "Io",
+      "nameCn": "艾欧",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/4b/Io_icon_dota2_gameasset.png/100px-Io_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "magnus",
+      "name": "Magnus",
+      "nameCn": "马格纳斯",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/8c/Magnus_icon_dota2_gameasset.png/100px-Magnus_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "marci",
+      "name": "Marci",
+      "nameCn": "玛西",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/f4/Marci_icon_dota2_gameasset.png/100px-Marci_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "natures_prophet",
+      "name": "Nature's Prophet",
+      "nameCn": "先知",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/69/Nature%27s_Prophet_icon_dota2_gameasset.png/100px-Nature%27s_Prophet_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "nyx_assassin",
+      "name": "Nyx Assassin",
+      "nameCn": "司夜刺客",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/a/ae/Nyx_Assassin_icon_dota2_gameasset.png/100px-Nyx_Assassin_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "pangolier",
+      "name": "Pangolier",
+      "nameCn": "石鳞剑士",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/2f/Pangolier_icon_dota2_gameasset.png/100px-Pangolier_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "sand_king",
+      "name": "Sand King",
+      "nameCn": "沙王",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/df/Sand_King_icon_dota2_gameasset.png/100px-Sand_King_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "snapfire",
+      "name": "Snapfire",
+      "nameCn": "电炎绝手",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/2a/Snapfire_icon_dota2_gameasset.png/100px-Snapfire_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "spirit_bear",
+      "name": "Spirit Bear",
+      "nameCn": "熊灵",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/c/cd/Lone_Druid_Spirit_Bear_icon_dota2_gameasset.png/100px-Lone_Druid_Spirit_Bear_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "techies",
+      "name": "Techies",
+      "nameCn": "工程师",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/0b/Techies_icon_dota2_gameasset.png/100px-Techies_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "venomancer",
+      "name": "Venomancer",
+      "nameCn": "剧毒术士",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/a/a6/Venomancer_icon_dota2_gameasset.png/100px-Venomancer_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "visage",
+      "name": "Visage",
+      "nameCn": "维萨吉",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/3d/Visage_icon_dota2_gameasset.png/100px-Visage_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "void_spirit",
+      "name": "Void Spirit",
+      "nameCn": "虚无之灵",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/3e/Void_Spirit_icon_dota2_gameasset.png/100px-Void_Spirit_icon_dota2_gameasset.png"
+    },
+    {
+      "id": "windranger",
+      "name": "Windranger",
+      "nameCn": "风行者",
+      "attribute": "Universal",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/c/c5/Windranger_icon_dota2_gameasset.png/100px-Windranger_icon_dota2_gameasset.png"
+    }
+  ]
+}
