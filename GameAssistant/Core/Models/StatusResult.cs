@@ -39,9 +39,19 @@ namespace GameAssistant.Core.Models
         public string SkillId { get; set; } = string.Empty;
 
         /// <summary>
-        /// 技能名称
+        /// 技能名称（英文/ID）
         /// </summary>
         public string SkillName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 技能中文名，用于界面显示
+        /// </summary>
+        public string SkillNameCn { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 显示名：有中文则显示中文，否则显示英文
+        /// </summary>
+        public string DisplayName => !string.IsNullOrEmpty(SkillNameCn) ? SkillNameCn : SkillName;
 
         /// <summary>
         /// 是否可用

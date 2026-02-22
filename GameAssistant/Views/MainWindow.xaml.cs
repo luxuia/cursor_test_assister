@@ -29,6 +29,17 @@ namespace GameAssistant.Views
             DataContext = _viewModel;
             
             Loaded += MainWindow_Loaded;
+            Closing += MainWindow_Closing;
+        }
+
+        private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _updateTimer?.Stop();
+            _updateTimer = null;
+            _viewModel.StopRecognition();
+            _overlayWindow?.Close();
+            _overlayWindow = null;
+            Application.Current.Shutdown();
         }
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -158,7 +169,8 @@ namespace GameAssistant.Views
 
         private void ShowRegionSelector(string regionName, Action<Rectangle> onSelected)
         {
-            var selector = new RegionSelectorWindow(regionName);
+            IntPtr windowHandle = _viewModel.ConfigurationService.GetGameWindowConfig().WindowHandle;
+            var selector = new RegionSelectorWindow(regionName, windowHandle);
             if (selector.ShowDialog() == true)
             {
                 var selectedRect = selector.SelectedRegion;

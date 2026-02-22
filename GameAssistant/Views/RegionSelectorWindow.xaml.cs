@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,12 +13,17 @@ namespace GameAssistant.Views
     {
         private bool _isSelecting = false;
         private System.Windows.Point _startPoint;
+        private readonly IntPtr _targetWindowHandle;
+
         public System.Drawing.Rectangle SelectedRegion { get; private set; } = new System.Drawing.Rectangle(0, 0, 0, 0);
 
-        public RegionSelectorWindow(string regionName)
+        /// <param name="regionName">区域名称</param>
+        /// <param name="targetWindowHandle">游戏窗口句柄；非零时选中的区域将转换为相对该窗口的坐标</param>
+        public RegionSelectorWindow(string regionName, IntPtr targetWindowHandle = default)
         {
             InitializeComponent();
             Title = $"选择{regionName}";
+            _targetWindowHandle = targetWindowHandle;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -55,19 +61,36 @@ namespace GameAssistant.Views
             {
                 _isSelecting = false;
                 ReleaseMouseCapture();
-                
-                // 转换为屏幕坐标
+
                 var screenStart = PointToScreen(_startPoint);
                 var screenEnd = PointToScreen(e.GetPosition(SelectionCanvas));
-                
-                SelectedRegion = new System.Drawing.Rectangle(
-                    (int)Math.Min(screenStart.X, screenEnd.X),
-                    (int)Math.Min(screenStart.Y, screenEnd.Y),
-                    (int)Math.Abs(screenEnd.X - screenStart.X),
-                    (int)Math.Abs(screenEnd.Y - screenStart.Y)
-                );
+                int x = (int)Math.Min(screenStart.X, screenEnd.X);
+                int y = (int)Math.Min(screenStart.Y, screenEnd.Y);
+                int w = (int)Math.Abs(screenEnd.X - screenStart.X);
+                int h = (int)Math.Abs(screenEnd.Y - screenStart.Y);
+
+                // 若指定了游戏窗口句柄，将屏幕坐标转换为相对该窗口的坐标
+                if (_targetWindowHandle != IntPtr.Zero && GetWindowRect(_targetWindowHandle, out RECT winRect))
+                {
+                    x -= winRect.Left;
+                    y -= winRect.Top;
+                }
+
+                SelectedRegion = new System.Drawing.Rectangle(x, y, w, h);
             }
         }
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct RECT
+        {
+            public int Left;
+            public int Top;
+            public int Right;
+            public int Bottom;
+        }
+
+        [DllImport("user32.dll")]
+        private static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {

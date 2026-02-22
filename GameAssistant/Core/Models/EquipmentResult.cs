@@ -34,9 +34,19 @@ namespace GameAssistant.Core.Models
         public string EquipmentId { get; set; } = string.Empty;
 
         /// <summary>
-        /// 装备名称
+        /// 装备名称（英文/ID）
         /// </summary>
         public string EquipmentName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 装备中文名，用于界面显示
+        /// </summary>
+        public string EquipmentNameCn { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 显示名：有中文则显示中文，否则显示英文
+        /// </summary>
+        public string DisplayName => !string.IsNullOrEmpty(EquipmentNameCn) ? EquipmentNameCn : EquipmentName;
 
         /// <summary>
         /// 装备槽位

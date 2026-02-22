@@ -149,6 +149,19 @@ namespace GameAssistant.Services.Database
             });
         }
 
+        public async Task ImportRulesAsync(List<AdviceRule> rules)
+        {
+            await Task.Run(() =>
+            {
+                lock (_lockObject)
+                {
+                    _rules = new List<AdviceRule>(rules);
+                    _nextId = _rules.Count > 0 ? _rules.Max(r => r.Id) + 1 : 1;
+                    SaveRulesToFile();
+                }
+            });
+        }
+
         private bool MatchesCondition(AdviceCondition ruleCondition, AdviceCondition gameCondition)
         {
             // 简单的匹配逻辑，实际应该更复杂

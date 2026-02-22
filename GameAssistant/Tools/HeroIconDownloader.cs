@@ -19,7 +19,8 @@ namespace GameAssistant.Tools
         public HeroIconDownloader(string downloadDirectory = "Templates/Heroes")
         {
             _httpClient = new HttpClient();
-            _httpClient.DefaultRequestHeaders.Add("User-Agent", "GameAssistant/1.0");
+            // Liquipedia 要求带联系方式的 User-Agent，并需控制请求频率
+            _httpClient.DefaultRequestHeaders.Add("User-Agent", "GameAssistant/1.0 (https://github.com/luxuia/cursor_test_assister; Dota2 icon download)");
             _downloadDirectory = downloadDirectory;
             
             if (!Directory.Exists(_downloadDirectory))
@@ -67,12 +68,15 @@ namespace GameAssistant.Tools
                 try
                 {
                     progress?.Report($"正在下载: {icon.Name} ({completed + 1}/{total})");
-                    
+
+                    // Liquipedia 建议：每 2 秒不超过 1 次请求，避免 403
+                    await Task.Delay(2100);
+
                     // 尝试多个可能的URL
-                    string[] iconUrls = icon.IconUrl != null 
-                        ? new[] { icon.IconUrl } 
+                    string[] iconUrls = icon.IconUrl != null
+                        ? new[] { icon.IconUrl }
                         : BuildLiquipediaIconUrls(icon.Id, icon.Name);
-                    
+
                     bool downloaded = false;
                     foreach (var iconUrl in iconUrls)
                     {
@@ -84,11 +88,11 @@ namespace GameAssistant.Tools
                         }
                         catch
                         {
-                            // 尝试下一个URL
+                            await Task.Delay(500);
                             continue;
                         }
                     }
-                    
+
                     if (downloaded)
                     {
                         completed++;
@@ -130,64 +134,70 @@ namespace GameAssistant.Tools
         }
 
         /// <summary>
-        /// 构建Liquipedia图标URL（尝试多个可能的URL）
+        /// 构建Liquipedia图标URL（尝试多个可能的 hash 路径）
         /// </summary>
         private string[] BuildLiquipediaIconUrls(string itemId, string itemName)
         {
-            // Liquipedia图标可能有不同的hash值，尝试多个可能的URL
-            var urls = new List<string>();
-            
-            // 方法1：使用itemId
             string formattedId = FormatHeroIdForUrl(itemId);
-            urls.Add($"https://liquipedia.net/commons/images/thumb/0/0b/{formattedId}_icon.png/64px-{formattedId}_icon.png");
-            
-            // 方法2：使用itemName（处理特殊字符）
             string formattedName = itemName
                 .Replace(" ", "_")
                 .Replace("'", "%27")
-                .Replace("-", "_")
-                .Replace("'s", "s");
-            urls.Add($"https://liquipedia.net/commons/images/thumb/0/0b/{formattedName}_icon.png/64px-{formattedName}_icon.png");
-            
-            // 方法3：尝试不同的hash值
-            string[] hashPrefixes = { "0/0b", "8/8a", "8/8c", "2/2a", "2/2c", "4/4a", "4/4c", "1/1c", "3/3c" };
+                .Replace("-", "_");
+
+            var urls = new List<string>();
+            string[] hashPrefixes = { "0/0b", "8/8a", "9/9c", "8/8c", "2/2a", "2/2c", "4/4a", "4/4c", "1/1c", "3/3c", "7/7c", "5/5a" };
             foreach (var hash in hashPrefixes)
             {
-                urls.Add($"https://liquipedia.net/commons/images/thumb/{hash}/{formattedName}_icon.png/64px-{formattedName}_icon.png");
                 urls.Add($"https://liquipedia.net/commons/images/thumb/{hash}/{formattedId}_icon.png/64px-{formattedId}_icon.png");
+                if (string.Equals(formattedId, formattedName, StringComparison.OrdinalIgnoreCase) == false)
+                    urls.Add($"https://liquipedia.net/commons/images/thumb/{hash}/{formattedName}_icon.png/64px-{formattedName}_icon.png");
             }
-            
             return urls.ToArray();
         }
 
         /// <summary>
-        /// 格式化英雄ID为URL格式
+        /// 格式化英雄ID为URL格式（保留下划线，如 Centaur_Warrunner）
         /// </summary>
-        private string FormatHeroIdForUrl(string heroId)
+        private static string FormatHeroIdForUrl(string heroId)
         {
-            // 将下划线替换，首字母大写
             var parts = heroId.Split('_');
-            var formatted = "";
-            foreach (var part in parts)
+            for (int i = 0; i < parts.Length; i++)
             {
-                if (part.Length > 0)
-                {
-                    formatted += char.ToUpper(part[0]) + part.Substring(1);
-                }
+                if (parts[i].Length > 0)
+                    parts[i] = char.ToUpperInvariant(parts[i][0]) + parts[i].Substring(1);
             }
-            return formatted;
+            return string.Join("_", parts);
         }
 
         /// <summary>
-        /// 从JSON文件加载英雄列表
+        /// 从JSON文件加载英雄列表（支持小写 key：game/heroes/iconUrl）
         /// </summary>
         public static List<HeroInfo> LoadHeroesFromJson(string jsonFilePath)
         {
             string actualPath = FindFile(jsonFilePath);
             string json = File.ReadAllText(actualPath);
             var data = JsonConvert.DeserializeObject<HeroData>(json);
-            
             return data?.Heroes ?? new List<HeroInfo>();
+        }
+
+        /// <summary>
+        /// 加载 DOTA2 完整英雄列表（128），并合并带 iconUrl 的条目以提升下载成功率
+        /// </summary>
+        public static List<HeroInfo> LoadDota2HeroesFull()
+        {
+            var full = LoadHeroesFromJson("Data/Dota2Heroes_Complete.json");
+            try
+            {
+                var withUrls = LoadHeroesFromJson("Data/Dota2Heroes.json");
+                var urlById = withUrls.Where(h => !string.IsNullOrEmpty(h.IconUrl)).ToDictionary(h => h.Id, h => h.IconUrl!);
+                foreach (var h in full)
+                {
+                    if (urlById.TryGetValue(h.Id, out var url))
+                        h.IconUrl = url;
+                }
+            }
+            catch (FileNotFoundException) { /* 无带 URL 的补充文件则仅用完整列表 */ }
+            return full;
         }
 
         /// <summary>
@@ -240,10 +250,15 @@ namespace GameAssistant.Tools
     /// </summary>
     public class HeroInfo
     {
+        [JsonProperty("id")]
         public string Id { get; set; } = string.Empty;
+        [JsonProperty("name")]
         public string Name { get; set; } = string.Empty;
+        [JsonProperty("nameCn")]
         public string NameCn { get; set; } = string.Empty;
+        [JsonProperty("attribute")]
         public string Attribute { get; set; } = string.Empty;
+        [JsonProperty("iconUrl")]
         public string? IconUrl { get; set; }
     }
 
@@ -252,9 +267,13 @@ namespace GameAssistant.Tools
     /// </summary>
     public class HeroData
     {
+        [JsonProperty("game")]
         public string Game { get; set; } = string.Empty;
+        [JsonProperty("version")]
         public string Version { get; set; } = string.Empty;
+        [JsonProperty("totalHeroes")]
         public int TotalHeroes { get; set; }
+        [JsonProperty("heroes")]
         public List<HeroInfo> Heroes { get; set; } = new List<HeroInfo>();
     }
 
@@ -277,6 +296,7 @@ namespace GameAssistant.Tools
     {
         public string Game { get; set; } = string.Empty;
         public string Version { get; set; } = string.Empty;
+        public int TotalItems { get; set; }
         public Dictionary<string, Dictionary<string, List<ItemInfo>>>? Categories { get; set; }
     }
 

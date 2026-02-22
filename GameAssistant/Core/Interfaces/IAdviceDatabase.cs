@@ -33,5 +33,10 @@ namespace GameAssistant.Core.Interfaces
         /// 获取所有规则
         /// </summary>
         Task<List<AdviceRule>> GetAllRulesAsync();
+
+        /// <summary>
+        /// 导入规则列表（替换当前所有规则）
+        /// </summary>
+        Task ImportRulesAsync(List<AdviceRule> rules);
     }
 }

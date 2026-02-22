@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -8,6 +9,7 @@ using Microsoft.Win32;
 using GameAssistant.Core.Interfaces;
 using GameAssistant.Core.Models;
 using GameAssistant.Services.Database;
+using Newtonsoft.Json;
 
 namespace GameAssistant.Views
 {
@@ -265,7 +267,7 @@ namespace GameAssistant.Views
             }
         }
 
-        private void ImportButton_Click(object sender, RoutedEventArgs e)
+        private async void ImportButton_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog
             {
@@ -277,19 +279,28 @@ namespace GameAssistant.Views
             {
                 try
                 {
-                    // TODO: 实现导入功能
-                    MessageBox.Show("导入功能待实现", "提示", 
+                    string json = File.ReadAllText(dialog.FileName);
+                    var list = JsonConvert.DeserializeObject<List<AdviceRule>>(json);
+                    if (list == null || list.Count == 0)
+                    {
+                        MessageBox.Show("文件中没有有效规则", "提示",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
+                    await _database.ImportRulesAsync(list);
+                    await LoadRules();
+                    MessageBox.Show($"已导入 {list.Count} 条规则", "成功",
                         MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"导入失败: {ex.Message}", "错误", 
+                    MessageBox.Show($"导入失败: {ex.Message}", "错误",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
 
-        private void ExportButton_Click(object sender, RoutedEventArgs e)
+        private async void ExportButton_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new SaveFileDialog
             {
@@ -302,13 +313,15 @@ namespace GameAssistant.Views
             {
                 try
                 {
-                    // TODO: 实现导出功能
-                    MessageBox.Show("导出功能待实现", "提示", 
+                    _rules = await _database.GetAllRulesAsync();
+                    string json = JsonConvert.SerializeObject(_rules, Formatting.Indented);
+                    File.WriteAllText(dialog.FileName, json);
+                    MessageBox.Show($"已导出 {_rules.Count} 条规则", "成功",
                         MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"导出失败: {ex.Message}", "错误", 
+                    MessageBox.Show($"导出失败: {ex.Message}", "错误",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }

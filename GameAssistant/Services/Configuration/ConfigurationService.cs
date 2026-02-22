@@ -127,7 +127,44 @@ namespace GameAssistant.Services.Configuration
                 OCRConfidenceThreshold = 0.7,
                 ColorTolerance = 10,
                 RecognitionInterval = 2,
-                EnableIncrementalRecognition = true
+                EnableIncrementalRecognition = true,
+                HeroRecognition = new HeroRecognitionParameters
+                {
+                    HeroMatchThreshold = 0.75,
+                    HeroAliveThreshold = 0.6,
+                    HeroPositionTolerance = 20,
+                    MaxHeroCount = 10
+                },
+                EquipmentRecognition = new EquipmentRecognitionParameters
+                {
+                    EquipmentMatchThreshold = 0.7,
+                    SlotDetectionThreshold = 0.5,
+                    SlotSizeTolerance = 5,
+                    MaxEquipmentSlots = 6
+                },
+                SkillRecognition = new SkillRecognitionParameters
+                {
+                    SkillMatchThreshold = 0.65,
+                    SkillAvailabilityThreshold = 100,
+                    SkillCooldownThreshold = 0.7,
+                    MaxSkillCount = 4
+                },
+                HealthRecognition = new HealthRecognitionParameters
+                {
+                    RecognitionMethod = HealthRecognitionMethod.PixelCount,
+                    LowHealthColor = new ColorRange { H = 0, S = 50, V = 50, Tolerance = 10 },
+                    HighHealthColor = new ColorRange { H = 50, S = 50, V = 50, Tolerance = 10 },
+                    MaxHealthBarWidthRatio = 0.8,
+                    MinHealthBarArea = 50
+                },
+                MinimapRecognition = new MinimapRecognitionParameters
+                {
+                    MinMarkerArea = 10,
+                    MaxMarkerArea = 500,
+                    AllyMarkerColor = new ColorRange { H = 110, S = 50, V = 50, Tolerance = 15 },
+                    EnemyMarkerColor = new ColorRange { H = 0, S = 50, V = 50, Tolerance = 15 },
+                    MapBoundaryThreshold = 0.1
+                }
             };
         }
     }

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using GameAssistant.Core.Interfaces;
 using GameAssistant.Core.Models;
@@ -31,10 +32,29 @@ namespace GameAssistant.Services.ImageRecognition
             _templateMatcher.PreloadAllTemplates();
         }
 
+        /// <summary>
+        /// 确保 Mat 为 CV_8U 深度，满足 CvtColor/MatchTemplate 等要求，避免 "depth == CV_8U" 断言失败。
+        /// 始终 ConvertTo 到 8U，不依赖 Type()/Depth() 判断。
+        /// </summary>
+        private static Mat EnsureMat8U(Mat mat)
+        {
+            if (mat.Empty()) return mat;
+            int c = mat.Channels();
+            var targetType = c == 1 ? MatType.CV_8UC1 : (c == 3 ? MatType.CV_8UC3 : MatType.CV_8UC4);
+            Mat dst = new Mat();
+            var depth = mat.Depth();
+            double scale = depth == MatType.CV_32F ? 255.0 : (depth == MatType.CV_16U ? (1.0 / 256.0) : 1.0);
+            mat.ConvertTo(dst, targetType, scale, 0);
+            return dst;
+        }
+
         public async Task<HeroRosterResult> RecognizeHeroRosterAsync(Bitmap frame)
         {
             return await Task.Run(() =>
             {
+                // #region agent log
+                try { var logPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "debug-222291.log")); File.AppendAllText(logPath, JsonSerializer.Serialize(new { sessionId = "222291", hypothesisId = "H3", location = "ImageRecognizer.RecognizeHeroRosterAsync", message = "start use frame", data = new { frameHash = frame.GetHashCode(), w = frame.Width, h = frame.Height }, timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() }) + "\n"); } catch { }
+                // #endregion
                 var result = new HeroRosterResult();
                 
                 // 裁剪英雄阵容区域
@@ -44,7 +64,8 @@ namespace GameAssistant.Services.ImageRecognition
                     region.Y + region.Height <= frame.Height)
                 {
                     using var cropped = frame.Clone(region, frame.PixelFormat);
-                    using var mat = BitmapConverter.ToMat(cropped);
+                    using var matRaw = BitmapConverter.ToMat(cropped);
+                    using var mat = EnsureMat8U(matRaw);
                     
                     // 1. 模板匹配识别英雄头像
                     result = RecognizeHeroesByTemplate(mat, region);
@@ -79,7 +100,7 @@ namespace GameAssistant.Services.ImageRecognition
                 string heroId = Path.GetFileNameWithoutExtension(templateFile);
                 _templateMatcher.LoadTemplate($"Heroes/{heroId}", templateFile);
                 
-                var matchResults = _templateMatcher.Match(regionMat, $"Heroes/{heroId}", _parameters.TemplateMatchThreshold);
+                var matchResults = _templateMatcher.Match(regionMat, $"Heroes/{heroId}", _parameters.HeroRecognition.HeroMatchThreshold);
                 foreach (var match in matchResults)
                 {
                     matches.Add((match, heroId));
@@ -98,18 +119,20 @@ namespace GameAssistant.Services.ImageRecognition
                 int centerX = match.Location.X + match.TemplateSize.Width / 2;
                 int centerY = match.Location.Y + match.TemplateSize.Height / 2;
                 
-                // 检查是否与已有英雄位置重叠（容差20像素）
+                // 检查是否与已有英雄位置重叠
                 bool isDuplicate = false;
                 foreach (var (x, y) in usedPositions)
                 {
-                    if (Math.Abs(centerX - x) < 20 && Math.Abs(centerY - y) < 20)
+                    if (Math.Abs(centerX - x) < _parameters.HeroRecognition.HeroPositionTolerance &&
+                        Math.Abs(centerY - y) < _parameters.HeroRecognition.HeroPositionTolerance)
                     {
                         isDuplicate = true;
                         break;
                     }
                 }
 
-                if (!isDuplicate && match.Confidence >= _parameters.TemplateMatchThreshold)
+                if (!isDuplicate && match.Confidence >= _parameters.HeroRecognition.HeroMatchThreshold &&
+                    result.Heroes.Count < _parameters.HeroRecognition.MaxHeroCount)
                 {
                     usedPositions.Add((centerX, centerY));
                     result.Heroes.Add(new HeroInfo
@@ -164,7 +187,8 @@ namespace GameAssistant.Services.ImageRecognition
                     region.Y + region.Height <= frame.Height)
                 {
                     using var cropped = frame.Clone(region, frame.PixelFormat);
-                    using var mat = BitmapConverter.ToMat(cropped);
+                    using var matRaw = BitmapConverter.ToMat(cropped);
+                    using var mat = EnsureMat8U(matRaw);
                     
                     // 1. 颜色阈值识别英雄标记点
                     result = RecognizeMinimapMarkers(mat, region);
@@ -184,25 +208,38 @@ namespace GameAssistant.Services.ImageRecognition
                 Mat hsv = new Mat();
                 Cv2.CvtColor(minimapMat, hsv, ColorConversionCodes.BGR2HSV);
 
-                // 定义英雄标记点的颜色范围（通常是蓝色、绿色、红色等）
-                // 己方英雄通常是蓝色或绿色
-                Scalar lowerBlue = new Scalar(100, 50, 50);
-                Scalar upperBlue = new Scalar(130, 255, 255);
-                
-                Scalar lowerGreen = new Scalar(50, 50, 50);
-                Scalar upperGreen = new Scalar(80, 255, 255);
+                // 定义英雄标记点的颜色范围（从配置读取）
+                // 己方英雄标记颜色
+                Scalar lowerAlly = new Scalar(
+                    _parameters.MinimapRecognition.AllyMarkerColor.H - _parameters.MinimapRecognition.AllyMarkerColor.Tolerance,
+                    _parameters.MinimapRecognition.AllyMarkerColor.S,
+                    _parameters.MinimapRecognition.AllyMarkerColor.V);
+                Scalar upperAlly = new Scalar(
+                    _parameters.MinimapRecognition.AllyMarkerColor.H + _parameters.MinimapRecognition.AllyMarkerColor.Tolerance,
+                    255,
+                    255);
 
-                // 检测蓝色标记（己方英雄）
-                Mat blueMask = new Mat();
-                Cv2.InRange(hsv, lowerBlue, upperBlue, blueMask);
-                
-                // 检测绿色标记（己方英雄）
-                Mat greenMask = new Mat();
-                Cv2.InRange(hsv, lowerGreen, upperGreen, greenMask);
-                
+                // 敌方英雄标记颜色
+                Scalar lowerEnemy = new Scalar(
+                    _parameters.MinimapRecognition.EnemyMarkerColor.H - _parameters.MinimapRecognition.EnemyMarkerColor.Tolerance,
+                    _parameters.MinimapRecognition.EnemyMarkerColor.S,
+                    _parameters.MinimapRecognition.EnemyMarkerColor.V);
+                Scalar upperEnemy = new Scalar(
+                    _parameters.MinimapRecognition.EnemyMarkerColor.H + _parameters.MinimapRecognition.EnemyMarkerColor.Tolerance,
+                    255,
+                    255);
+
+                // 检测己方英雄标记
+                Mat allyMask = new Mat();
+                Cv2.InRange(hsv, lowerAlly, upperAlly, allyMask);
+
+                // 检测敌方英雄标记
+                Mat enemyMask = new Mat();
+                Cv2.InRange(hsv, lowerEnemy, upperEnemy, enemyMask);
+
                 // 合并掩码
                 Mat combinedMask = new Mat();
-                Cv2.BitwiseOr(blueMask, greenMask, combinedMask);
+                Cv2.BitwiseOr(allyMask, enemyMask, combinedMask);
 
                 // 查找轮廓
                 OpenCvSharp.Point[][] contours;
@@ -216,7 +253,7 @@ namespace GameAssistant.Services.ImageRecognition
 
                     // 计算轮廓面积
                     double area = Cv2.ContourArea(contour);
-                    if (area < 10 || area > 500) continue; // 过滤太小或太大的区域
+                    if (area < _parameters.MinimapRecognition.MinMarkerArea || area > _parameters.MinimapRecognition.MaxMarkerArea) continue; // 过滤太小或太大的区域
 
                     // 拟合椭圆获取中心点
                     RotatedRect ellipse = Cv2.FitEllipse(contour);
@@ -235,8 +272,8 @@ namespace GameAssistant.Services.ImageRecognition
                     });
                 }
 
-                blueMask.Dispose();
-                greenMask.Dispose();
+                allyMask.Dispose();
+                enemyMask.Dispose();
                 combinedMask.Dispose();
                 hsv.Dispose();
 
@@ -263,7 +300,8 @@ namespace GameAssistant.Services.ImageRecognition
                     region.Y + region.Height <= frame.Height)
                 {
                     using var cropped = frame.Clone(region, frame.PixelFormat);
-                    using var mat = BitmapConverter.ToMat(cropped);
+                    using var matRaw = BitmapConverter.ToMat(cropped);
+                    using var mat = EnsureMat8U(matRaw);
                     
                     // 1. 模板匹配识别装备图标
                     result = RecognizeEquipmentByTemplate(mat, region);
@@ -301,7 +339,7 @@ namespace GameAssistant.Services.ImageRecognition
                 string equipmentId = Path.GetFileNameWithoutExtension(templateFile);
                 _templateMatcher.LoadTemplate($"Equipment/{equipmentId}", templateFile);
                 
-                var matchResults = _templateMatcher.Match(regionMat, $"Equipment/{equipmentId}", _parameters.TemplateMatchThreshold);
+                var matchResults = _templateMatcher.Match(regionMat, $"Equipment/{equipmentId}", _parameters.EquipmentRecognition.EquipmentMatchThreshold);
                 
                 foreach (var match in matchResults)
                 {
@@ -317,6 +355,12 @@ namespace GameAssistant.Services.ImageRecognition
                     });
                 }
             }
+
+            // 按 (EquipmentId, Slot) 去重，每组只保留一条
+            result.EquipmentList = result.EquipmentList
+                .GroupBy(e => (e.EquipmentId, e.Slot))
+                .Select(g => g.First())
+                .ToList();
 
             result.Confidence = result.EquipmentList.Count > 0 ? 0.75 : 0.0;
             return result;
@@ -358,7 +402,8 @@ namespace GameAssistant.Services.ImageRecognition
                     region.Y + region.Height <= frame.Height)
                 {
                     using var cropped = frame.Clone(region, frame.PixelFormat);
-                    using var mat = BitmapConverter.ToMat(cropped);
+                    using var matRaw = BitmapConverter.ToMat(cropped);
+                    using var mat = EnsureMat8U(matRaw);
                     
                     // 识别血量百分比
                     result.HealthPercentage = RecognizeHealthPercentage(mat);
@@ -384,44 +429,68 @@ namespace GameAssistant.Services.ImageRecognition
                 Mat hsv = new Mat();
                 Cv2.CvtColor(statusMat, hsv, ColorConversionCodes.BGR2HSV);
                 
-                // 定义红色范围（血条通常是红色/绿色）
-                // 红色血条（低血量）
-                Scalar lowerRed1 = new Scalar(0, 50, 50);
-                Scalar upperRed1 = new Scalar(10, 255, 255);
-                
-                // 红色血条（高血量，偏橙）
-                Scalar lowerRed2 = new Scalar(170, 50, 50);
-                Scalar upperRed2 = new Scalar(180, 255, 255);
-                
-                // 绿色血条（满血或高血量）
-                Scalar lowerGreen = new Scalar(50, 50, 50);
-                Scalar upperGreen = new Scalar(80, 255, 255);
+                // 定义血量颜色范围
+                // 低血量颜色（红色/橙色）
+                Scalar lowerLowHealth = new Scalar(
+                    _parameters.HealthRecognition.LowHealthColor.H - _parameters.HealthRecognition.LowHealthColor.Tolerance,
+                    _parameters.HealthRecognition.LowHealthColor.S,
+                    _parameters.HealthRecognition.LowHealthColor.V);
+                Scalar upperLowHealth = new Scalar(
+                    _parameters.HealthRecognition.LowHealthColor.H + _parameters.HealthRecognition.LowHealthColor.Tolerance,
+                    255,
+                    255);
+
+                // 高血量颜色（绿色）
+                Scalar lowerHighHealth = new Scalar(
+                    _parameters.HealthRecognition.HighHealthColor.H - _parameters.HealthRecognition.HighHealthColor.Tolerance,
+                    _parameters.HealthRecognition.HighHealthColor.S,
+                    _parameters.HealthRecognition.HighHealthColor.V);
+                Scalar upperHighHealth = new Scalar(
+                    _parameters.HealthRecognition.HighHealthColor.H + _parameters.HealthRecognition.HighHealthColor.Tolerance,
+                    255,
+                    255);
                 
                 Mat redMask1 = new Mat();
                 Mat redMask2 = new Mat();
                 Mat greenMask = new Mat();
                 
-                Cv2.InRange(hsv, lowerRed1, upperRed1, redMask1);
-                Cv2.InRange(hsv, lowerRed2, upperRed2, redMask2);
-                Cv2.InRange(hsv, lowerGreen, upperGreen, greenMask);
-                
+                // 检测血量颜色
+                Mat lowHealthMask = new Mat();
+                Mat highHealthMask = new Mat();
+
+                Cv2.InRange(hsv, lowerLowHealth, upperLowHealth, lowHealthMask);
+                Cv2.InRange(hsv, lowerHighHealth, upperHighHealth, highHealthMask);
+
                 // 合并所有血条颜色掩码
                 Mat healthMask = new Mat();
-                Cv2.BitwiseOr(redMask1, redMask2, healthMask);
-                Mat tempMask = new Mat();
-                Cv2.BitwiseOr(healthMask, greenMask, tempMask);
-                healthMask = tempMask;
+                Cv2.BitwiseOr(lowHealthMask, highHealthMask, healthMask);
                 
-                // 方法1：计算血条像素占比（简单但可能不准确）
-                int totalPixels = statusMat.Rows * statusMat.Cols;
-                int healthPixels = Cv2.CountNonZero(healthMask);
-                double healthPercentageByArea = (double)healthPixels / totalPixels * 100.0;
-                
-                // 方法2：查找血条轮廓，计算长度（更准确）
-                double healthPercentageByLength = CalculateHealthByLength(healthMask, statusMat);
-                
-                // 使用两种方法的平均值，或选择更准确的方法
-                double healthPercentage = healthPercentageByLength > 0 ? healthPercentageByLength : healthPercentageByArea;
+                double healthPercentage = 0;
+
+                switch (_parameters.HealthRecognition.RecognitionMethod)
+                {
+                    case HealthRecognitionMethod.PixelCount:
+                        // 方法1：计算血条像素占比
+                        int totalPixels = statusMat.Rows * statusMat.Cols;
+                        int healthPixels = Cv2.CountNonZero(healthMask);
+                        healthPercentage = (double)healthPixels / totalPixels * 100.0;
+                        break;
+
+                    case HealthRecognitionMethod.LengthMeasurement:
+                        // 方法2：查找血条轮廓，计算长度（更准确）
+                        healthPercentage = CalculateHealthByLength(healthMask, statusMat);
+                        break;
+
+                    case HealthRecognitionMethod.Combined:
+                        // 方法3：综合使用两种方法
+                        int totalPixelsCombined = statusMat.Rows * statusMat.Cols;
+                        int healthPixelsCombined = Cv2.CountNonZero(healthMask);
+                        double pixelPercentage = (double)healthPixelsCombined / totalPixelsCombined * 100.0;
+
+                        double lengthPercentage = CalculateHealthByLength(healthMask, statusMat);
+                        healthPercentage = (pixelPercentage + lengthPercentage) / 2;
+                        break;
+                }
                 
                 redMask1.Dispose();
                 redMask2.Dispose();
@@ -460,7 +529,7 @@ namespace GameAssistant.Services.ImageRecognition
                 
                 // 假设血条是水平的，计算长度占比
                 // 需要知道血条的最大长度（可以从配置或模板获取）
-                double maxHealthBarWidth = originalMat.Width * 0.8; // 假设血条最大宽度为图像宽度的80%
+                double maxHealthBarWidth = originalMat.Width * _parameters.HealthRecognition.MaxHealthBarWidthRatio;
                 double currentHealthBarWidth = boundingRect.Width;
                 
                 double healthPercentage = (currentHealthBarWidth / maxHealthBarWidth) * 100.0;
@@ -496,7 +565,7 @@ namespace GameAssistant.Services.ImageRecognition
                     string skillId = Path.GetFileNameWithoutExtension(templateFile);
                     _templateMatcher.LoadTemplate($"Skills/{skillId}", templateFile);
                     
-                    var matchResults = _templateMatcher.Match(statusMat, $"Skills/{skillId}", _parameters.TemplateMatchThreshold);
+                    var matchResults = _templateMatcher.Match(statusMat, $"Skills/{skillId}", _parameters.SkillRecognition.SkillMatchThreshold);
                     
                     foreach (var match in matchResults)
                     {
@@ -522,7 +591,9 @@ namespace GameAssistant.Services.ImageRecognition
                 // 忽略错误，返回空列表
             }
 
-            return skills;
+            // 按 SkillId 去重，每个技能只保留一条（同一图标可能被多次匹配）
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            return skills.Where(s => seen.Add(s.SkillId)).ToList();
         }
 
         /// <summary>
@@ -552,8 +623,7 @@ namespace GameAssistant.Services.ImageRecognition
                 double avgBrightness = mean.Val0;
                 
                 // 如果平均亮度很低，说明技能在冷却中（变灰）
-                // 阈值可以根据实际游戏调整
-                bool isAvailable = avgBrightness > 100; // 阈值可调
+                bool isAvailable = avgBrightness > _parameters.SkillRecognition.SkillAvailabilityThreshold;
                 
                 skillRoi.Dispose();
                 gray.Dispose();

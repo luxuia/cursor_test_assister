@@ -17,6 +17,18 @@
                 <Button x:Name="RefreshButton" Content="刷新识别" Width="120" Height="30" 
                         Margin="5,0" Click="RefreshButton_Click"/>
                 <Separator Margin="10,0"/>
+                <Button x:Name="UploadImageButton" Content="上传图片" Width="100" Height="30" 
+                        Margin="5,0" Click="UploadImageButton_Click"/>
+                <Button x:Name="UploadVideoButton" Content="上传视频" Width="100" Height="30" 
+                        Margin="5,0" Click="UploadVideoButton_Click"/>
+                <Separator Margin="10,0" x:Name="VideoSeparator"/>
+                <Button x:Name="PrevFrameButton" Content="上一帧" Width="80" Height="30" 
+                        Margin="5,0" Click="PrevFrameButton_Click" Visibility="Collapsed"/>
+                <Button x:Name="NextFrameButton" Content="下一帧" Width="80" Height="30" 
+                        Margin="5,0" Click="NextFrameButton_Click" Visibility="Collapsed"/>
+                <TextBlock x:Name="VideoFrameLabel" Text="" VerticalAlignment="Center" Margin="5,0" 
+                           Visibility="Collapsed" Foreground="White"/>
+                <Separator Margin="10,0"/>
                 <CheckBox x:Name="AutoRefreshCheckBox" Content="自动刷新" 
                           VerticalAlignment="Center" Margin="10,0"/>
                 <TextBlock Text="刷新间隔(ms):" VerticalAlignment="Center" Margin="10,0"/>
@@ -40,18 +52,19 @@
                     </GroupBox>
                     
                     <GroupBox Header="识别区域预览" Margin="5">
-                        <Canvas x:Name="RegionCanvas" Width="800" Height="600" Background="#FF1E1E1E">
-                            <Image x:Name="RegionImage" Stretch="None"/>
-                            <!-- 识别区域标记 -->
-                            <Rectangle x:Name="HeroRegionRect" Stroke="Red" StrokeThickness="2" 
-                                      Fill="#20FF0000" Visibility="Collapsed"/>
-                            <Rectangle x:Name="MinimapRegionRect" Stroke="Blue" StrokeThickness="2" 
-                                      Fill="#200000FF" Visibility="Collapsed"/>
-                            <Rectangle x:Name="EquipmentRegionRect" Stroke="Green" StrokeThickness="2" 
-                                      Fill="#2000FF00" Visibility="Collapsed"/>
-                            <Rectangle x:Name="StatusRegionRect" Stroke="Yellow" StrokeThickness="2" 
-                                      Fill="#20FFFF00" Visibility="Collapsed"/>
-                        </Canvas>
+                        <Viewbox Stretch="Uniform" MaxHeight="500">
+                            <Canvas x:Name="RegionCanvas" Background="#FF1E1E1E">
+                                <Image x:Name="RegionImage" Stretch="None"/>
+                                <Rectangle x:Name="HeroRegionRect" Stroke="Red" StrokeThickness="2" 
+                                          Fill="#20FF0000" Visibility="Collapsed"/>
+                                <Rectangle x:Name="MinimapRegionRect" Stroke="Blue" StrokeThickness="2" 
+                                          Fill="#200000FF" Visibility="Collapsed"/>
+                                <Rectangle x:Name="EquipmentRegionRect" Stroke="Green" StrokeThickness="2" 
+                                          Fill="#2000FF00" Visibility="Collapsed"/>
+                                <Rectangle x:Name="StatusRegionRect" Stroke="Yellow" StrokeThickness="2" 
+                                          Fill="#20FFFF00" Visibility="Collapsed"/>
+                            </Canvas>
+                        </Viewbox>
                     </GroupBox>
                 </StackPanel>
             </ScrollViewer>
@@ -95,7 +108,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Border Background="#AA333333" CornerRadius="3" Margin="0,2" Padding="5">
-                                            <TextBlock Text="{Binding EquipmentName}" Foreground="White" FontSize="11"/>
+                                            <TextBlock Text="{Binding DisplayName}" Foreground="White" FontSize="11"/>
                                         </Border>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
@@ -111,7 +124,7 @@
                                         <DataTemplate>
                                             <Border Background="#AA333333" CornerRadius="3" Margin="0,2" Padding="5">
                                                 <StackPanel>
-                                                    <TextBlock Text="{Binding SkillName}" Foreground="White" FontSize="11"/>
+                                                    <TextBlock Text="{Binding DisplayName}" Foreground="White" FontSize="11"/>
                                                     <TextBlock>
                                                         <Run Text="可用: "/>
                                                         <Run Text="{Binding IsAvailable}"/>
