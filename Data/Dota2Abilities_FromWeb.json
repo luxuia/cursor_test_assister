@@ -1,0 +1,1419 @@
+{
+  "sourceUrl": "https://liquipedia.net/dota2/Portal:Abilities",
+  "fetchedAt": "2026-02-22T08:20:58.3117559Z",
+  "game": "Dota2",
+  "count": 235,
+  "description": "技能 id/name/nameCn/iconUrl 中英双版对应关系，从网页拉取",
+  "abilities": [
+    {
+      "id": "jakiro_dual_breath",
+      "name": "Jakiro Dual Breath",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/6/6a/Jakiro_Dual_Breath_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "earthshaker_fissure",
+      "name": "Earthshaker Fissure",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/3d/Earthshaker_Fissure_abilityicon_dota2_gameasset.png/21px-Earthshaker_Fissure_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "ogre_magi_multicast",
+      "name": "Ogre Magi Multicast",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/e/ed/Ogre_Magi_Multicast_abilityicon_dota2_gameasset.png/21px-Ogre_Magi_Multicast_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "meepo_divided_we_stand",
+      "name": "Meepo Divided We Stand",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/66/Meepo_Divided_We_Stand_abilityicon_dota2_gameasset.png/21px-Meepo_Divided_We_Stand_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "silencer_arcane_curse",
+      "name": "Silencer Arcane Curse",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/f5/Silencer_Arcane_Curse_abilityicon_dota2_gameasset.png/21px-Silencer_Arcane_Curse_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "rubick_spell_steal",
+      "name": "Rubick Spell Steal",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d9/Rubick_Spell_Steal_abilityicon_dota2_gameasset.png/21px-Rubick_Spell_Steal_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "morphling_morph",
+      "name": "Morphling Morph",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/3a/Morphling_Morph_abilityicon_dota2_gameasset.png/21px-Morphling_Morph_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "alchemist_unstable_concoction_throw",
+      "name": "Alchemist Unstable Concoction Throw",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/fa/Alchemist_Unstable_Concoction_Throw_abilityicon_dota2_gameasset.png/24px-Alchemist_Unstable_Concoction_Throw_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "ancient_apparition_ice_blast",
+      "name": "Ancient Apparition Ice Blast",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/44/Ancient_Apparition_Ice_Blast_abilityicon_dota2_gameasset.png/24px-Ancient_Apparition_Ice_Blast_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "dawnbreaker_converge",
+      "name": "Dawnbreaker Converge",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/61/Dawnbreaker_Converge_abilityicon_dota2_gameasset.png/24px-Dawnbreaker_Converge_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "faceless_void_reverse_time_walk",
+      "name": "Faceless Void Reverse Time Walk",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/9a/Faceless_Void_Reverse_Time_Walk_abilityicon_dota2_gameasset.png/24px-Faceless_Void_Reverse_Time_Walk_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "grimstroke_ink_explosion",
+      "name": "Grimstroke Ink Explosion",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/a/a5/Grimstroke_Ink_Explosion_abilityicon_dota2_gameasset.png/24px-Grimstroke_Ink_Explosion_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "jakiro_destroy_ice_path",
+      "name": "Jakiro Destroy Ice Path",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/b5/Jakiro_Destroy_Ice_Path_abilityicon_dota2_gameasset.png/24px-Jakiro_Destroy_Ice_Path_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "keeper_of_the_light_release_illuminate",
+      "name": "Keeper of the Light Release Illuminate",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/b8/Keeper_of_the_Light_Release_Illuminate_abilityicon_dota2_gameasset.png/24px-Keeper_of_the_Light_Release_Illuminate_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "kunkka_x_marks_the_spot",
+      "name": "Kunkka X Marks the Spot",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/a/a8/Kunkka_X_Marks_the_Spot_abilityicon_dota2_gameasset.png/24px-Kunkka_X_Marks_the_Spot_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "monkey_king_revert_form",
+      "name": "Monkey King Revert Form",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/c/c1/Monkey_King_Revert_Form_abilityicon_dota2_gameasset.png/24px-Monkey_King_Revert_Form_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "naga_siren_song_of_the_siren_end",
+      "name": "Naga Siren Song of the Siren End",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/c/c6/Naga_Siren_Song_of_the_Siren_End_abilityicon_dota2_gameasset.png/24px-Naga_Siren_Song_of_the_Siren_End_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "nyx_assassin_unburrow",
+      "name": "Nyx Assassin Unburrow",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/de/Nyx_Assassin_Unburrow_abilityicon_dota2_gameasset.png/24px-Nyx_Assassin_Unburrow_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "pangolier_stop_rolling",
+      "name": "Pangolier Stop Rolling",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/97/Pangolier_Stop_Rolling_abilityicon_dota2_gameasset.png/24px-Pangolier_Stop_Rolling_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "puck_ethereal_jaunt",
+      "name": "Puck Ethereal Jaunt",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/5d/Puck_Ethereal_Jaunt_abilityicon_dota2_gameasset.png/24px-Puck_Ethereal_Jaunt_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "phoenix_launch_fire_spirit",
+      "name": "Phoenix Launch Fire Spirit",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/90/Phoenix_Launch_Fire_Spirit_abilityicon_dota2_gameasset.png/24px-Phoenix_Launch_Fire_Spirit_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "shadow_demon_shadow_poison_release",
+      "name": "Shadow Demon Shadow Poison Release",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/38/Shadow_Demon_Shadow_Poison_Release_abilityicon_dota2_gameasset.png/24px-Shadow_Demon_Shadow_Poison_Release_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "spectre_reality",
+      "name": "Spectre Reality",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/1b/Spectre_Reality_abilityicon_dota2_gameasset.png/24px-Spectre_Reality_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "tiny_tree_throw",
+      "name": "Tiny Tree Throw",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/f3/Tiny_Tree_Throw_abilityicon_dota2_gameasset.png/24px-Tiny_Tree_Throw_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "elder_titan_return_astral_spirit",
+      "name": "Elder Titan Return Astral Spirit",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/a/a7/Elder_Titan_Return_Astral_Spirit_abilityicon_dota2_gameasset.png/24px-Elder_Titan_Return_Astral_Spirit_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "bane_nightmare_end",
+      "name": "Bane Nightmare End",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/61/Bane_Nightmare_End_abilityicon_dota2_gameasset.png/24px-Bane_Nightmare_End_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "crystal_maiden_stop_freezing_field",
+      "name": "Crystal Maiden Stop Freezing Field",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/6f/Crystal_Maiden_Stop_Freezing_Field_abilityicon_dota2_gameasset.png/24px-Crystal_Maiden_Stop_Freezing_Field_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "brewmaster_primal_split_cancel",
+      "name": "Brewmaster Primal Split Cancel",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/04/Brewmaster_Primal_Split_Cancel_abilityicon_dota2_gameasset.png/24px-Brewmaster_Primal_Split_Cancel_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "elder_titan_move_astral_spirit",
+      "name": "Elder Titan Move Astral Spirit",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/46/Elder_Titan_Move_Astral_Spirit_abilityicon_dota2_gameasset.png/24px-Elder_Titan_Move_Astral_Spirit_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "hoodwink_end_sharpshooter",
+      "name": "Hoodwink End Sharpshooter",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/58/Hoodwink_End_Sharpshooter_abilityicon_dota2_gameasset.png/24px-Hoodwink_End_Sharpshooter_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "io_spirits_in",
+      "name": "Io Spirits In",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d1/Io_Spirits_In_abilityicon_dota2_gameasset.png/24px-Io_Spirits_In_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "io_spirits_out",
+      "name": "Io Spirits Out",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/1b/Io_Spirits_Out_abilityicon_dota2_gameasset.png/24px-Io_Spirits_Out_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "kez_cancel",
+      "name": "Kez Cancel",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d8/Kez_Cancel_abilityicon_dota2_gameasset.png/24px-Kez_Cancel_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "lifestealer_consume",
+      "name": "Lifestealer Consume",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/ff/Lifestealer_Consume_abilityicon_dota2_gameasset.png/24px-Lifestealer_Consume_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "monkey_king_primal_spring",
+      "name": "Monkey King Primal Spring",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/2e/Monkey_King_Primal_Spring_abilityicon_dota2_gameasset.png/24px-Monkey_King_Primal_Spring_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "morphling_morph_replicate",
+      "name": "Morphling Morph Replicate",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/a/ae/Morphling_Morph_Replicate_abilityicon_dota2_gameasset.png/24px-Morphling_Morph_Replicate_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "phoenix_stop_icarus_dive",
+      "name": "Phoenix Stop Icarus Dive",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/09/Phoenix_Stop_Icarus_Dive_abilityicon_dota2_gameasset.png/24px-Phoenix_Stop_Icarus_Dive_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "phoenix_stop_sun_ray",
+      "name": "Phoenix Stop Sun Ray",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/65/Phoenix_Stop_Sun_Ray_abilityicon_dota2_gameasset.png/24px-Phoenix_Stop_Sun_Ray_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "phoenix_toggle_movement",
+      "name": "Phoenix Toggle Movement",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/8a/Phoenix_Toggle_Movement_abilityicon_dota2_gameasset.png/24px-Phoenix_Toggle_Movement_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "primal_beast_begin_onslaught",
+      "name": "Primal Beast Begin Onslaught",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/91/Primal_Beast_Begin_Onslaught_abilityicon_dota2_gameasset.png/24px-Primal_Beast_Begin_Onslaught_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "ringmaster_crack",
+      "name": "Ringmaster Crack",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/fd/Ringmaster_Crack_abilityicon_dota2_gameasset.png/24px-Ringmaster_Crack_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "rubick_telekinesis_land",
+      "name": "Rubick Telekinesis Land",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/52/Rubick_Telekinesis_Land_abilityicon_dota2_gameasset.png/24px-Rubick_Telekinesis_Land_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "techies_reactive_tazer",
+      "name": "Techies Reactive Tazer",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/24/Techies_Reactive_Tazer_abilityicon_dota2_gameasset.png/24px-Techies_Reactive_Tazer_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "templar_assassin_trap",
+      "name": "Templar Assassin Trap",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/f0/Templar_Assassin_Trap_abilityicon_dota2_gameasset.png/24px-Templar_Assassin_Trap_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "timbersaw_return_chakram",
+      "name": "Timbersaw Return Chakram",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/40/Timbersaw_Return_Chakram_abilityicon_dota2_gameasset.png/24px-Timbersaw_Return_Chakram_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "tusk_snowball",
+      "name": "Tusk Snowball",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d8/Tusk_Snowball_abilityicon_dota2_gameasset.png/24px-Tusk_Snowball_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "dawnbreaker_solar_guardian_land",
+      "name": "Dawnbreaker Solar Guardian Land",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/de/Dawnbreaker_Solar_Guardian_Land_abilityicon_dota2_gameasset.png/24px-Dawnbreaker_Solar_Guardian_Land_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "pudge_eject",
+      "name": "Pudge Eject",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/b6/Pudge_Eject_abilityicon_dota2_gameasset.png/24px-Pudge_Eject_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "timbersaw_return_second_chakram",
+      "name": "Timbersaw Return Second Chakram",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/44/Timbersaw_Return_Second_Chakram_abilityicon_dota2_gameasset.png/24px-Timbersaw_Return_Second_Chakram_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "twin_gate_warp",
+      "name": "Twin Gate Warp",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/3d/Twin_Gate_Warp_abilityicon_dota2_gameasset.png/21px-Twin_Gate_Warp_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "outpost_watch_tower",
+      "name": "Outpost Watch Tower",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/a/a9/Outpost_Watch_Tower_abilityicon_dota2_gameasset.png/21px-Outpost_Watch_Tower_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "troll_warlord_berserker%27s_rage",
+      "name": "Troll Warlord Berserker%27s Rage",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/bc/Troll_Warlord_Berserker%27s_Rage_abilityicon_dota2_gameasset.png/21px-Troll_Warlord_Berserker%27s_Rage_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "batrider_flamebreak",
+      "name": "Batrider Flamebreak",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d7/Batrider_Flamebreak_abilityicon_dota2_gameasset.png/24px-Batrider_Flamebreak_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "bloodseeker_rupture",
+      "name": "Bloodseeker Rupture",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/21/Bloodseeker_Rupture_abilityicon_dota2_gameasset.png/24px-Bloodseeker_Rupture_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "broodmother_spin_web",
+      "name": "Broodmother Spin Web",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/c/cf/Broodmother_Spin_Web_abilityicon_dota2_gameasset.png/24px-Broodmother_Spin_Web_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "broodmother_spinner%27s_snare",
+      "name": "Broodmother Spinner%27s Snare",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/65/Broodmother_Spinner%27s_Snare_abilityicon_dota2_gameasset.png/24px-Broodmother_Spinner%27s_Snare_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "clinkz_death_pact",
+      "name": "Clinkz Death Pact",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/30/Clinkz_Death_Pact_abilityicon_dota2_gameasset.png/24px-Clinkz_Death_Pact_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "dark_seer_ion_shell",
+      "name": "Dark Seer Ion Shell",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/37/Dark_Seer_Ion_Shell_abilityicon_dota2_gameasset.png/24px-Dark_Seer_Ion_Shell_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "death_prophet_spirit_siphon",
+      "name": "Death Prophet Spirit Siphon",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d0/Death_Prophet_Spirit_Siphon_abilityicon_dota2_gameasset.png/24px-Death_Prophet_Spirit_Siphon_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "disruptor_kinetic_fence",
+      "name": "Disruptor Kinetic Fence",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/2f/Disruptor_Kinetic_Fence_abilityicon_dota2_gameasset.png/24px-Disruptor_Kinetic_Fence_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "doom_devour",
+      "name": "Doom Devour",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/19/Doom_Devour_abilityicon_dota2_gameasset.png/24px-Doom_Devour_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "earth_spirit_stone_remnant",
+      "name": "Earth Spirit Stone Remnant",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/58/Earth_Spirit_Stone_Remnant_abilityicon_dota2_gameasset.png/24px-Earth_Spirit_Stone_Remnant_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "ember_spirit_fire_remnant",
+      "name": "Ember Spirit Fire Remnant",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/81/Ember_Spirit_Fire_Remnant_abilityicon_dota2_gameasset.png/24px-Ember_Spirit_Fire_Remnant_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "ember_spirit_sleight_of_fist",
+      "name": "Ember Spirit Sleight of Fist",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/62/Ember_Spirit_Sleight_of_Fist_abilityicon_dota2_gameasset.png/24px-Ember_Spirit_Sleight_of_Fist_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "hoodwink_acorn_shot",
+      "name": "Hoodwink Acorn Shot",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/32/Hoodwink_Acorn_Shot_abilityicon_dota2_gameasset.png/24px-Hoodwink_Acorn_Shot_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "hoodwink_scurry",
+      "name": "Hoodwink Scurry",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/3a/Hoodwink_Scurry_abilityicon_dota2_gameasset.png/24px-Hoodwink_Scurry_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "keeper_of_the_light_recall",
+      "name": "Keeper of the Light Recall",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/50/Keeper_of_the_Light_Recall_abilityicon_dota2_gameasset.png/24px-Keeper_of_the_Light_Recall_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "keeper_of_the_light_solar_bind",
+      "name": "Keeper of the Light Solar Bind",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/85/Keeper_of_the_Light_Solar_Bind_abilityicon_dota2_gameasset.png/24px-Keeper_of_the_Light_Solar_Bind_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "largo_catchy_lick",
+      "name": "Largo Catchy Lick",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/8e/Largo_Catchy_Lick_abilityicon_dota2_gameasset.png/24px-Largo_Catchy_Lick_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "mirana_leap",
+      "name": "Mirana Leap",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/17/Mirana_Leap_abilityicon_dota2_gameasset.png/24px-Mirana_Leap_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "muerta_dead_shot",
+      "name": "Muerta Dead Shot",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/1f/Muerta_Dead_Shot_abilityicon_dota2_gameasset.png/24px-Muerta_Dead_Shot_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "riki_blink_strike",
+      "name": "Riki Blink Strike",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/5b/Riki_Blink_Strike_abilityicon_dota2_gameasset.png/24px-Riki_Blink_Strike_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "ringmaster_escape_act",
+      "name": "Ringmaster Escape Act",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/14/Ringmaster_Escape_Act_abilityicon_dota2_gameasset.png/24px-Ringmaster_Escape_Act_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "ringmaster_impalement_arts",
+      "name": "Ringmaster Impalement Arts",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/58/Ringmaster_Impalement_Arts_abilityicon_dota2_gameasset.png/24px-Ringmaster_Impalement_Arts_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "shadow_demon_demonic_purge",
+      "name": "Shadow Demon Demonic Purge",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/25/Shadow_Demon_Demonic_Purge_abilityicon_dota2_gameasset.png/24px-Shadow_Demon_Demonic_Purge_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "shadow_demon_disruption",
+      "name": "Shadow Demon Disruption",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/f4/Shadow_Demon_Disruption_abilityicon_dota2_gameasset.png/24px-Shadow_Demon_Disruption_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "slark_pounce",
+      "name": "Slark Pounce",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/5c/Slark_Pounce_abilityicon_dota2_gameasset.png/24px-Slark_Pounce_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "sniper_shrapnel",
+      "name": "Sniper Shrapnel",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/f0/Sniper_Shrapnel_abilityicon_dota2_gameasset.png/24px-Sniper_Shrapnel_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "techies_proximity_mines",
+      "name": "Techies Proximity Mines",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/22/Techies_Proximity_Mines_abilityicon_dota2_gameasset.png/24px-Techies_Proximity_Mines_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "tiny_toss",
+      "name": "Tiny Toss",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/3c/Tiny_Toss_abilityicon_dota2_gameasset.png/24px-Tiny_Toss_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "treant_protector_eyes_in_the_forest",
+      "name": "Treant Protector Eyes In The Forest",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/5f/Treant_Protector_Eyes_In_The_Forest_abilityicon_dota2_gameasset.png/24px-Treant_Protector_Eyes_In_The_Forest_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "ursa_earthshock",
+      "name": "Ursa Earthshock",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/a/a5/Ursa_Earthshock_abilityicon_dota2_gameasset.png/24px-Ursa_Earthshock_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "venomancer_plague_ward",
+      "name": "Venomancer Plague Ward",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/b3/Venomancer_Plague_Ward_abilityicon_dota2_gameasset.png/24px-Venomancer_Plague_Ward_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "void_spirit_astral_step",
+      "name": "Void Spirit Astral Step",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/28/Void_Spirit_Astral_Step_abilityicon_dota2_gameasset.png/24px-Void_Spirit_Astral_Step_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "void_spirit_resonant_pulse",
+      "name": "Void Spirit Resonant Pulse",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/c/cb/Void_Spirit_Resonant_Pulse_abilityicon_dota2_gameasset.png/24px-Void_Spirit_Resonant_Pulse_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "phantom_assassin_coup_de_grace",
+      "name": "Phantom Assassin Coup de Grace",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/0b/Phantom_Assassin_Coup_de_Grace_abilityicon_dota2_gameasset.png/24px-Phantom_Assassin_Coup_de_Grace_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "naga_siren_rip_tide",
+      "name": "Naga Siren Rip Tide",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/94/Naga_Siren_Rip_Tide_abilityicon_dota2_gameasset.png/24px-Naga_Siren_Rip_Tide_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "monkey_king_jingu_mastery",
+      "name": "Monkey King Jingu Mastery",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/1a/Monkey_King_Jingu_Mastery_abilityicon_dota2_gameasset.png/24px-Monkey_King_Jingu_Mastery_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "dawnbreaker_luminosity",
+      "name": "Dawnbreaker Luminosity",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/05/Dawnbreaker_Luminosity_abilityicon_dota2_gameasset.png/24px-Dawnbreaker_Luminosity_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "dazzle_poison_touch",
+      "name": "Dazzle Poison Touch",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/9a/Dazzle_Poison_Touch_abilityicon_dota2_gameasset.png/24px-Dazzle_Poison_Touch_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "slardar_bash_of_the_deep",
+      "name": "Slardar Bash of the Deep",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/16/Slardar_Bash_of_the_Deep_abilityicon_dota2_gameasset.png/24px-Slardar_Bash_of_the_Deep_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "lycan_shapeshift",
+      "name": "Lycan Shapeshift",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/48/Lycan_Shapeshift_abilityicon_dota2_gameasset.png/21px-Lycan_Shapeshift_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "alchemist_chemical_rage",
+      "name": "Alchemist Chemical Rage",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/7b/Alchemist_Chemical_Rage_abilityicon_dota2_gameasset.png/24px-Alchemist_Chemical_Rage_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "brewmaster_primal_split",
+      "name": "Brewmaster Primal Split",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/0a/Brewmaster_Primal_Split_abilityicon_dota2_gameasset.png/24px-Brewmaster_Primal_Split_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "dragon_knight_elder_dragon_form",
+      "name": "Dragon Knight Elder Dragon Form",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/7e/Dragon_Knight_Elder_Dragon_Form_abilityicon_dota2_gameasset.png/24px-Dragon_Knight_Elder_Dragon_Form_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "lone_druid_true_form",
+      "name": "Lone Druid True Form",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/f4/Lone_Druid_True_Form_abilityicon_dota2_gameasset.png/24px-Lone_Druid_True_Form_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "lycan_wolf_bite",
+      "name": "Lycan Wolf Bite",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/9c/Lycan_Wolf_Bite_abilityicon_dota2_gameasset.png/24px-Lycan_Wolf_Bite_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "muerta_pierce_the_veil",
+      "name": "Muerta Pierce the Veil",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/65/Muerta_Pierce_the_Veil_abilityicon_dota2_gameasset.png/24px-Muerta_Pierce_the_Veil_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "terrorblade_metamorphosis",
+      "name": "Terrorblade Metamorphosis",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/67/Terrorblade_Metamorphosis_abilityicon_dota2_gameasset.png/24px-Terrorblade_Metamorphosis_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "terrorblade_terror_wave",
+      "name": "Terrorblade Terror Wave",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/2e/Terrorblade_Terror_Wave_abilityicon_dota2_gameasset.png/24px-Terrorblade_Terror_Wave_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "undying_flesh_golem",
+      "name": "Undying Flesh Golem",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/26/Undying_Flesh_Golem_abilityicon_dota2_gameasset.png/24px-Undying_Flesh_Golem_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "weaver_shukuchi",
+      "name": "Weaver Shukuchi",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/9e/Weaver_Shukuchi_abilityicon_dota2_gameasset.png/21px-Weaver_Shukuchi_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "ursa_overpower",
+      "name": "Ursa Overpower",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/36/Ursa_Overpower_abilityicon_dota2_gameasset.png/21px-Ursa_Overpower_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "necrophos_reaper%27s_scythe",
+      "name": "Necrophos Reaper%27s Scythe",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/26/Necrophos_Reaper%27s_Scythe_abilityicon_dota2_gameasset.png/21px-Necrophos_Reaper%27s_Scythe_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "wraith_king_reincarnation",
+      "name": "Wraith King Reincarnation",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/5a/Wraith_King_Reincarnation_abilityicon_dota2_gameasset.png/21px-Wraith_King_Reincarnation_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "crystal_maiden_arcane_aura",
+      "name": "Crystal Maiden Arcane Aura",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/30/Crystal_Maiden_Arcane_Aura_abilityicon_dota2_gameasset.png/21px-Crystal_Maiden_Arcane_Aura_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "drow_ranger_marksmanship",
+      "name": "Drow Ranger Marksmanship",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/fa/Drow_Ranger_Marksmanship_abilityicon_dota2_gameasset.png/21px-Drow_Ranger_Marksmanship_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "drow_ranger_frost_arrows",
+      "name": "Drow Ranger Frost Arrows",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/5d/Drow_Ranger_Frost_Arrows_abilityicon_dota2_gameasset.png/21px-Drow_Ranger_Frost_Arrows_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "ogre_magi_bloodlust",
+      "name": "Ogre Magi Bloodlust",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/07/Ogre_Magi_Bloodlust_abilityicon_dota2_gameasset.png/21px-Ogre_Magi_Bloodlust_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "ancient_apparition_chilling_touch",
+      "name": "Ancient Apparition Chilling Touch",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/e/e4/Ancient_Apparition_Chilling_Touch_abilityicon_dota2_gameasset.png/24px-Ancient_Apparition_Chilling_Touch_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "bounty_hunter_jinada",
+      "name": "Bounty Hunter Jinada",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/5c/Bounty_Hunter_Jinada_abilityicon_dota2_gameasset.png/24px-Bounty_Hunter_Jinada_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "clinkz_searing_arrows",
+      "name": "Clinkz Searing Arrows",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/8e/Clinkz_Searing_Arrows_abilityicon_dota2_gameasset.png/24px-Clinkz_Searing_Arrows_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "doom_infernal_blade",
+      "name": "Doom Infernal Blade",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/77/Doom_Infernal_Blade_abilityicon_dota2_gameasset.png/24px-Doom_Infernal_Blade_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "enchantress_impetus",
+      "name": "Enchantress Impetus",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/22/Enchantress_Impetus_abilityicon_dota2_gameasset.png/24px-Enchantress_Impetus_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "huskar_burning_spear",
+      "name": "Huskar Burning Spear",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/42/Huskar_Burning_Spear_abilityicon_dota2_gameasset.png/24px-Huskar_Burning_Spear_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "jakiro_liquid_fire",
+      "name": "Jakiro Liquid Fire",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/5e/Jakiro_Liquid_Fire_abilityicon_dota2_gameasset.png/24px-Jakiro_Liquid_Fire_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "jakiro_liquid_frost",
+      "name": "Jakiro Liquid Frost",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/78/Jakiro_Liquid_Frost_abilityicon_dota2_gameasset.png/24px-Jakiro_Liquid_Frost_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "kunkka_tidebringer",
+      "name": "Kunkka Tidebringer",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/dc/Kunkka_Tidebringer_abilityicon_dota2_gameasset.png/24px-Kunkka_Tidebringer_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "omniknight_hammer_of_purity",
+      "name": "Omniknight Hammer of Purity",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/e/ed/Omniknight_Hammer_of_Purity_abilityicon_dota2_gameasset.png/24px-Omniknight_Hammer_of_Purity_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "outworld_destroyer_arcane_orb",
+      "name": "Outworld Destroyer Arcane Orb",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/17/Outworld_Destroyer_Arcane_Orb_abilityicon_dota2_gameasset.png/24px-Outworld_Destroyer_Arcane_Orb_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "silencer_glaives_of_wisdom",
+      "name": "Silencer Glaives of Wisdom",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/c/cf/Silencer_Glaives_of_Wisdom_abilityicon_dota2_gameasset.png/24px-Silencer_Glaives_of_Wisdom_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "slark_saltwater_shiv",
+      "name": "Slark Saltwater Shiv",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/52/Slark_Saltwater_Shiv_abilityicon_dota2_gameasset.png/24px-Slark_Saltwater_Shiv_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "tusk_walrus_punch%21",
+      "name": "Tusk Walrus PUNCH%21",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/77/Tusk_Walrus_PUNCH%21_abilityicon_dota2_gameasset.png/24px-Tusk_Walrus_PUNCH%21_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "treant_protector_leech_seed",
+      "name": "Treant Protector Leech Seed",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/1f/Treant_Protector_Leech_Seed_abilityicon_dota2_gameasset.png/24px-Treant_Protector_Leech_Seed_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "viper_poison_attack",
+      "name": "Viper Poison Attack",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/0c/Viper_Poison_Attack_abilityicon_dota2_gameasset.png/24px-Viper_Poison_Attack_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "weaver_geminate_attack",
+      "name": "Weaver Geminate Attack",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/21/Weaver_Geminate_Attack_abilityicon_dota2_gameasset.png/24px-Weaver_Geminate_Attack_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "dark_seer_surge_%28alt_cast%29",
+      "name": "Dark Seer Surge %28Alt-Cast%29",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/04/Dark_Seer_Surge_%28Alt-Cast%29_abilityicon_dota2_gameasset.png/24px-Dark_Seer_Surge_%28Alt-Cast%29_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "doom_devour_%28alt_cast%29",
+      "name": "Doom Devour %28Alt-Cast%29",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/6e/Doom_Devour_%28Alt-Cast%29_abilityicon_dota2_gameasset.png/24px-Doom_Devour_%28Alt-Cast%29_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "elder_titan_echo_stomp_%28alt_cast%29",
+      "name": "Elder Titan Echo Stomp %28Alt-Cast%29",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d9/Elder_Titan_Echo_Stomp_%28Alt-Cast%29_abilityicon_dota2_gameasset.png/24px-Elder_Titan_Echo_Stomp_%28Alt-Cast%29_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "hoodwink_acorn_shot_%28alt_cast%29",
+      "name": "Hoodwink Acorn Shot %28Alt-Cast%29",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/51/Hoodwink_Acorn_Shot_%28Alt-Cast%29_abilityicon_dota2_gameasset.png/24px-Hoodwink_Acorn_Shot_%28Alt-Cast%29_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "keeper_of_the_light_recall_%28alt_cast%29",
+      "name": "Keeper of the Light Recall %28Alt-Cast%29",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/68/Keeper_of_the_Light_Recall_%28Alt-Cast%29_abilityicon_dota2_gameasset.png/24px-Keeper_of_the_Light_Recall_%28Alt-Cast%29_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "marci_rebound_%28alt_cast%29",
+      "name": "Marci Rebound %28Alt-Cast%29",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/64/Marci_Rebound_%28Alt-Cast%29_abilityicon_dota2_gameasset.png/24px-Marci_Rebound_%28Alt-Cast%29_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "meepo_poof_%28alt_cast%29",
+      "name": "Meepo Poof %28Alt-Cast%29",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/81/Meepo_Poof_%28Alt-Cast%29_abilityicon_dota2_gameasset.png/24px-Meepo_Poof_%28Alt-Cast%29_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "monkey_king_boundless_strike_%28alt_cast%29",
+      "name": "Monkey King Boundless Strike %28Alt-Cast%29",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/24/Monkey_King_Boundless_Strike_%28Alt-Cast%29_abilityicon_dota2_gameasset.png/24px-Monkey_King_Boundless_Strike_%28Alt-Cast%29_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "morphling_morph_%28alt_cast%29",
+      "name": "Morphling Morph %28Alt-Cast%29",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/73/Morphling_Morph_%28Alt-Cast%29_abilityicon_dota2_gameasset.png/24px-Morphling_Morph_%28Alt-Cast%29_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "puck_waning_rift_%28alt_cast%29",
+      "name": "Puck Waning Rift %28Alt-Cast%29",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/dc/Puck_Waning_Rift_%28Alt-Cast%29_abilityicon_dota2_gameasset.png/24px-Puck_Waning_Rift_%28Alt-Cast%29_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "sand_king_burrowstrike",
+      "name": "Sand King Burrowstrike",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/e/ee/Sand_King_Burrowstrike_abilityicon_dota2_gameasset.png/24px-Sand_King_Burrowstrike_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "storm_spirit_static_remnant",
+      "name": "Storm Spirit Static Remnant",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/f3/Storm_Spirit_Static_Remnant_abilityicon_dota2_gameasset.png/24px-Storm_Spirit_Static_Remnant_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "sven_storm_hammer_%28alt_cast%29",
+      "name": "Sven Storm Hammer %28Alt-Cast%29",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/4a/Sven_Storm_Hammer_%28Alt-Cast%29_abilityicon_dota2_gameasset.png/24px-Sven_Storm_Hammer_%28Alt-Cast%29_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "templar_assassin_trap_%28alt_cast%29",
+      "name": "Templar Assassin Trap %28Alt-Cast%29",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/74/Templar_Assassin_Trap_%28Alt-Cast%29_abilityicon_dota2_gameasset.png/24px-Templar_Assassin_Trap_%28Alt-Cast%29_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "tusk_drinking_buddies",
+      "name": "Tusk Drinking Buddies",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/70/Tusk_Drinking_Buddies_abilityicon_dota2_gameasset.png/24px-Tusk_Drinking_Buddies_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "visage_familiar_stone_form",
+      "name": "Visage Familiar Stone Form",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/a/a5/Visage_Familiar_Stone_Form_abilityicon_dota2_gameasset.png/24px-Visage_Familiar_Stone_Form_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "visage_summon_familiars",
+      "name": "Visage Summon Familiars",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d4/Visage_Summon_Familiars_abilityicon_dota2_gameasset.png/24px-Visage_Summon_Familiars_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "slardar_slithereen_crush",
+      "name": "Slardar Slithereen Crush",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/1e/Slardar_Slithereen_Crush_abilityicon_dota2_gameasset.png/21px-Slardar_Slithereen_Crush_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "zeus_thundergod%27s_wrath",
+      "name": "Zeus Thundergod%27s Wrath",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/b3/Zeus_Thundergod%27s_Wrath_abilityicon_dota2_gameasset.png/21px-Zeus_Thundergod%27s_Wrath_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "clockwerk_jetpack",
+      "name": "Clockwerk Jetpack",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/79/Clockwerk_Jetpack_abilityicon_dota2_gameasset.png/24px-Clockwerk_Jetpack_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "night_stalker_crippling_fear",
+      "name": "Night Stalker Crippling Fear",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/63/Night_Stalker_Crippling_Fear_abilityicon_dota2_gameasset.png/24px-Night_Stalker_Crippling_Fear_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "leshrac_pulse_nova",
+      "name": "Leshrac Pulse Nova",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/ba/Leshrac_Pulse_Nova_abilityicon_dota2_gameasset.png/24px-Leshrac_Pulse_Nova_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "mars_bulwark",
+      "name": "Mars Bulwark",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/19/Mars_Bulwark_abilityicon_dota2_gameasset.png/24px-Mars_Bulwark_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "medusa_split_shot",
+      "name": "Medusa Split Shot",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/ba/Medusa_Split_Shot_abilityicon_dota2_gameasset.png/24px-Medusa_Split_Shot_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "pudge_rot",
+      "name": "Pudge Rot",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/1b/Pudge_Rot_abilityicon_dota2_gameasset.png/24px-Pudge_Rot_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "winter_wyvern_arctic_burn",
+      "name": "Winter Wyvern Arctic Burn",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/23/Winter_Wyvern_Arctic_Burn_abilityicon_dota2_gameasset.png/24px-Winter_Wyvern_Arctic_Burn_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "witch_doctor_voodoo_restoration",
+      "name": "Witch Doctor Voodoo Restoration",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/e/e0/Witch_Doctor_Voodoo_Restoration_abilityicon_dota2_gameasset.png/24px-Witch_Doctor_Voodoo_Restoration_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "harpy_scout_take_off",
+      "name": "Harpy Scout Take Off",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/c/cf/Harpy_Scout_Take_Off_abilityicon_dota2_gameasset.png/24px-Harpy_Scout_Take_Off_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "brewmaster_drunken_brawler",
+      "name": "Brewmaster Drunken Brawler",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/36/Brewmaster_Drunken_Brawler_abilityicon_dota2_gameasset.png/24px-Brewmaster_Drunken_Brawler_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "kez_switch_discipline",
+      "name": "Kez Switch Discipline",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/6f/Kez_Switch_Discipline_abilityicon_dota2_gameasset.png/24px-Kez_Switch_Discipline_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "largo_amphibian_rhapsody",
+      "name": "Largo Amphibian Rhapsody",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/6c/Largo_Amphibian_Rhapsody_abilityicon_dota2_gameasset.png/24px-Largo_Amphibian_Rhapsody_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "muerta_gunslinger",
+      "name": "Muerta Gunslinger",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/a/aa/Muerta_Gunslinger_abilityicon_dota2_gameasset.png/24px-Muerta_Gunslinger_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "phantom_lancer_phantom_rush",
+      "name": "Phantom Lancer Phantom Rush",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/1d/Phantom_Lancer_Phantom_Rush_abilityicon_dota2_gameasset.png/24px-Phantom_Lancer_Phantom_Rush_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "troll_warlord_battle_stance_%28ranged%29",
+      "name": "Troll Warlord Battle Stance %28Ranged%29",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/2a/Troll_Warlord_Battle_Stance_%28Ranged%29_abilityicon_dota2_gameasset.png/24px-Troll_Warlord_Battle_Stance_%28Ranged%29_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "techies_remote_mines",
+      "name": "Techies Remote Mines",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/95/Techies_Remote_Mines_abilityicon_dota2_gameasset.png/21px-Techies_Remote_Mines_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "spectre_spectral_dagger",
+      "name": "Spectre Spectral Dagger",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/22/Spectre_Spectral_Dagger_abilityicon_dota2_gameasset.png/21px-Spectre_Spectral_Dagger_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "morphling_waveform",
+      "name": "Morphling Waveform",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/8c/Morphling_Waveform_abilityicon_dota2_gameasset.png/21px-Morphling_Waveform_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "crystal_maiden_crystal_nova",
+      "name": "Crystal Maiden Crystal Nova",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/45/Crystal_Maiden_Crystal_Nova_abilityicon_dota2_gameasset.png/21px-Crystal_Maiden_Crystal_Nova_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "alchemist_acid_spray",
+      "name": "Alchemist Acid Spray",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/ff/Alchemist_Acid_Spray_abilityicon_dota2_gameasset.png/21px-Alchemist_Acid_Spray_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "faceless_void_chronosphere",
+      "name": "Faceless Void Chronosphere",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/a/a0/Faceless_Void_Chronosphere_abilityicon_dota2_gameasset.png/21px-Faceless_Void_Chronosphere_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "bane_nightmare",
+      "name": "Bane Nightmare",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/a/ae/Bane_Nightmare_abilityicon_dota2_gameasset.png/24px-Bane_Nightmare_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "clinkz_burning_army",
+      "name": "Clinkz Burning Army",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/6b/Clinkz_Burning_Army_abilityicon_dota2_gameasset.png/24px-Clinkz_Burning_Army_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "dark_seer_wall_of_replica",
+      "name": "Dark Seer Wall of Replica",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/f3/Dark_Seer_Wall_of_Replica_abilityicon_dota2_gameasset.png/24px-Dark_Seer_Wall_of_Replica_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "grimstroke_stroke_of_fate",
+      "name": "Grimstroke Stroke of Fate",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/16/Grimstroke_Stroke_of_Fate_abilityicon_dota2_gameasset.png/24px-Grimstroke_Stroke_of_Fate_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "gyrocopter_call_down",
+      "name": "Gyrocopter Call Down",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/da/Gyrocopter_Call_Down_abilityicon_dota2_gameasset.png/24px-Gyrocopter_Call_Down_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "marci_rebound",
+      "name": "Marci Rebound",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/14/Marci_Rebound_abilityicon_dota2_gameasset.png/24px-Marci_Rebound_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "pangolier_swashbuckle",
+      "name": "Pangolier Swashbuckle",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/8b/Pangolier_Swashbuckle_abilityicon_dota2_gameasset.png/24px-Pangolier_Swashbuckle_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "puck_illusory_orb",
+      "name": "Puck Illusory Orb",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/97/Puck_Illusory_Orb_abilityicon_dota2_gameasset.png/24px-Puck_Illusory_Orb_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "tusk_walrus_kick",
+      "name": "Tusk Walrus Kick",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/0e/Tusk_Walrus_Kick_abilityicon_dota2_gameasset.png/24px-Tusk_Walrus_Kick_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "brewmaster_void_astral_pull",
+      "name": "Brewmaster Void Astral Pull",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d6/Brewmaster_Void_Astral_Pull_abilityicon_dota2_gameasset.png/24px-Brewmaster_Void_Astral_Pull_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "void_spirit_aether_remnant",
+      "name": "Void Spirit Aether Remnant",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/56/Void_Spirit_Aether_Remnant_abilityicon_dota2_gameasset.png/24px-Void_Spirit_Aether_Remnant_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "wildwing_ripper_hurricane",
+      "name": "Wildwing Ripper Hurricane",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/48/Wildwing_Ripper_Hurricane_abilityicon_dota2_gameasset.png/24px-Wildwing_Ripper_Hurricane_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "windranger_gale_force",
+      "name": "Windranger Gale Force",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/77/Windranger_Gale_Force_abilityicon_dota2_gameasset.png/24px-Windranger_Gale_Force_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "lina_laguna_blade",
+      "name": "Lina Laguna Blade",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/15/Lina_Laguna_Blade_abilityicon_dota2_gameasset.png/21px-Lina_Laguna_Blade_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "vengeful_spirit_magic_missile",
+      "name": "Vengeful Spirit Magic Missile",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/df/Vengeful_Spirit_Magic_Missile_abilityicon_dota2_gameasset.png/21px-Vengeful_Spirit_Magic_Missile_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "omniknight_repel",
+      "name": "Omniknight Repel",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/42/Omniknight_Repel_abilityicon_dota2_gameasset.png/21px-Omniknight_Repel_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "anti_mage_counterspell_ally",
+      "name": "Anti-Mage Counterspell Ally",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/a/af/Anti-Mage_Counterspell_Ally_abilityicon_dota2_gameasset.png/24px-Anti-Mage_Counterspell_Ally_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "pugna_decrepify",
+      "name": "Pugna Decrepify",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/40/Pugna_Decrepify_abilityicon_dota2_gameasset.png/24px-Pugna_Decrepify_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "pugna_nether_blast",
+      "name": "Pugna Nether Blast",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/91/Pugna_Nether_Blast_abilityicon_dota2_gameasset.png/24px-Pugna_Nether_Blast_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "pugna_nether_ward",
+      "name": "Pugna Nether Ward",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/c/cd/Pugna_Nether_Ward_abilityicon_dota2_gameasset.png/24px-Pugna_Nether_Ward_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "bounty_hunter_friendly_shadow",
+      "name": "Bounty Hunter Friendly Shadow",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/e/ed/Bounty_Hunter_Friendly_Shadow_abilityicon_dota2_gameasset.png/24px-Bounty_Hunter_Friendly_Shadow_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "lich_frost_blast",
+      "name": "Lich Frost Blast",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/9b/Lich_Frost_Blast_abilityicon_dota2_gameasset.png/24px-Lich_Frost_Blast_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "lich_frost_shield",
+      "name": "Lich Frost Shield",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/db/Lich_Frost_Shield_abilityicon_dota2_gameasset.png/24px-Lich_Frost_Shield_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "lich_chain_frost",
+      "name": "Lich Chain Frost",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/0f/Lich_Chain_Frost_abilityicon_dota2_gameasset.png/24px-Lich_Chain_Frost_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "lich_ice_spire",
+      "name": "Lich Ice Spire",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/40/Lich_Ice_Spire_abilityicon_dota2_gameasset.png/24px-Lich_Ice_Spire_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "bloodseeker_bloodrage",
+      "name": "Bloodseeker Bloodrage",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/15/Bloodseeker_Bloodrage_abilityicon_dota2_gameasset.png/24px-Bloodseeker_Bloodrage_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "lich_sinister_gaze",
+      "name": "Lich Sinister Gaze",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/8/88/Lich_Sinister_Gaze_abilityicon_dota2_gameasset.png/21px-Lich_Sinister_Gaze_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "nature%27s_prophet_sprout",
+      "name": "Nature%27s Prophet Sprout",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/39/Nature%27s_Prophet_Sprout_abilityicon_dota2_gameasset.png/21px-Nature%27s_Prophet_Sprout_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "lina_dragon_slave",
+      "name": "Lina Dragon Slave",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/bf/Lina_Dragon_Slave_abilityicon_dota2_gameasset.png/21px-Lina_Dragon_Slave_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "sven_storm_hammer",
+      "name": "Sven Storm Hammer",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/16/Sven_Storm_Hammer_abilityicon_dota2_gameasset.png/21px-Sven_Storm_Hammer_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "oracle_fortune%27s_end",
+      "name": "Oracle Fortune%27s End",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d2/Oracle_Fortune%27s_End_abilityicon_dota2_gameasset.png/21px-Oracle_Fortune%27s_End_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "winter_wyvern_winter%27s_curse",
+      "name": "Winter Wyvern Winter%27s Curse",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/6e/Winter_Wyvern_Winter%27s_Curse_abilityicon_dota2_gameasset.png/21px-Winter_Wyvern_Winter%27s_Curse_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "bristleback_warpath",
+      "name": "Bristleback Warpath",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/b9/Bristleback_Warpath_abilityicon_dota2_gameasset.png/24px-Bristleback_Warpath_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "earthshaker_aftershock",
+      "name": "Earthshaker Aftershock",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/18/Earthshaker_Aftershock_abilityicon_dota2_gameasset.png/24px-Earthshaker_Aftershock_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "death_prophet_exorcism",
+      "name": "Death Prophet Exorcism",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/74/Death_Prophet_Exorcism_abilityicon_dota2_gameasset.png/24px-Death_Prophet_Exorcism_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "lina_fiery_soul",
+      "name": "Lina Fiery Soul",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/09/Lina_Fiery_Soul_abilityicon_dota2_gameasset.png/24px-Lina_Fiery_Soul_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "outworld_destroyer_essence_flux",
+      "name": "Outworld Destroyer Essence Flux",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/94/Outworld_Destroyer_Essence_Flux_abilityicon_dota2_gameasset.png/24px-Outworld_Destroyer_Essence_Flux_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "storm_spirit_overload",
+      "name": "Storm Spirit Overload",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/b9/Storm_Spirit_Overload_abilityicon_dota2_gameasset.png/24px-Storm_Spirit_Overload_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "silencer_last_word",
+      "name": "Silencer Last Word",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/0e/Silencer_Last_Word_abilityicon_dota2_gameasset.png/24px-Silencer_Last_Word_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "puck_phase_shift",
+      "name": "Puck Phase Shift",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/13/Puck_Phase_Shift_abilityicon_dota2_gameasset.png/21px-Puck_Phase_Shift_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "beastmaster_call_of_the_wild_hawk",
+      "name": "Beastmaster Call of the Wild Hawk",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/7/7c/Beastmaster_Call_of_the_Wild_Hawk_abilityicon_dota2_gameasset.png/24px-Beastmaster_Call_of_the_Wild_Hawk_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "courier_auto_deliver",
+      "name": "Courier Auto Deliver",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/2/2f/Courier_Auto_Deliver_abilityicon_dota2_gameasset.png/24px-Courier_Auto_Deliver_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "elder_titan_natural_order",
+      "name": "Elder Titan Natural Order",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/64/Elder_Titan_Natural_Order_abilityicon_dota2_gameasset.png/24px-Elder_Titan_Natural_Order_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "enchantress_little_friends",
+      "name": "Enchantress Little Friends",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/e/e3/Enchantress_Little_Friends_abilityicon_dota2_gameasset.png/24px-Enchantress_Little_Friends_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "beastmaster_hawk_dive_bomb",
+      "name": "Beastmaster Hawk Dive Bomb",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/92/Beastmaster_Hawk_Dive_Bomb_abilityicon_dota2_gameasset.png/24px-Beastmaster_Hawk_Dive_Bomb_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "hill_troll_priest_heal",
+      "name": "Hill Troll Priest Heal",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/59/Hill_Troll_Priest_Heal_abilityicon_dota2_gameasset.png/24px-Hill_Troll_Priest_Heal_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "invoker_exort",
+      "name": "Invoker Exort",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/3/34/Invoker_Exort_abilityicon_dota2_gameasset.png/24px-Invoker_Exort_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "invoker_invoke",
+      "name": "Invoker Invoke",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d2/Invoker_Invoke_abilityicon_dota2_gameasset.png/24px-Invoker_Invoke_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "invoker_quas",
+      "name": "Invoker Quas",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/f7/Invoker_Quas_abilityicon_dota2_gameasset.png/24px-Invoker_Quas_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "invoker_wex",
+      "name": "Invoker Wex",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/6/63/Invoker_Wex_abilityicon_dota2_gameasset.png/24px-Invoker_Wex_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "io_break_tether",
+      "name": "Io Break Tether",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/00/Io_Break_Tether_abilityicon_dota2_gameasset.png/24px-Io_Break_Tether_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "largo_bullbelly_blitz",
+      "name": "Largo Bullbelly Blitz",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/0/04/Largo_Bullbelly_Blitz_abilityicon_dota2_gameasset.png/24px-Largo_Bullbelly_Blitz_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "largo_hotfeet_hustle",
+      "name": "Largo Hotfeet Hustle",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/99/Largo_Hotfeet_Hustle_abilityicon_dota2_gameasset.png/24px-Largo_Hotfeet_Hustle_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "largo_island_elixir",
+      "name": "Largo Island Elixir",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/5b/Largo_Island_Elixir_abilityicon_dota2_gameasset.png/24px-Largo_Island_Elixir_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "monkey_king_mischief",
+      "name": "Monkey King Mischief",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/c/c6/Monkey_King_Mischief_abilityicon_dota2_gameasset.png/24px-Monkey_King_Mischief_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "monkey_king_tree_dance",
+      "name": "Monkey King Tree Dance",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/b2/Monkey_King_Tree_Dance_abilityicon_dota2_gameasset.png/24px-Monkey_King_Tree_Dance_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "nyx_assassin_burrow",
+      "name": "Nyx Assassin Burrow",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/a/ab/Nyx_Assassin_Burrow_abilityicon_dota2_gameasset.png/24px-Nyx_Assassin_Burrow_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "templar_assassin_psionic_trap_trap",
+      "name": "Templar Assassin Psionic Trap Trap",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/16/Templar_Assassin_Psionic_Trap_Trap_abilityicon_dota2_gameasset.png/24px-Templar_Assassin_Psionic_Trap_Trap_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "pugna_life_drain",
+      "name": "Pugna Life Drain",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/53/Pugna_Life_Drain_abilityicon_dota2_gameasset.png/24px-Pugna_Life_Drain_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "razor_plasma_field",
+      "name": "Razor Plasma Field",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/5/5c/Razor_Plasma_Field_abilityicon_dota2_gameasset.png/24px-Razor_Plasma_Field_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "ringmaster_funhouse_mirror",
+      "name": "Ringmaster Funhouse Mirror",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/d/d9/Ringmaster_Funhouse_Mirror_abilityicon_dota2_gameasset.png/24px-Ringmaster_Funhouse_Mirror_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "ringmaster_strongman_tonic",
+      "name": "Ringmaster Strongman Tonic",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/f5/Ringmaster_Strongman_Tonic_abilityicon_dota2_gameasset.png/24px-Ringmaster_Strongman_Tonic_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "ringmaster_whoopee_cushion",
+      "name": "Ringmaster Whoopee Cushion",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/4e/Ringmaster_Whoopee_Cushion_abilityicon_dota2_gameasset.png/24px-Ringmaster_Whoopee_Cushion_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "broodmother_spin_web_destroy_spin_web",
+      "name": "Broodmother Spin Web Destroy Spin Web",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/fc/Broodmother_Spin_Web_Destroy_Spin_Web_abilityicon_dota2_gameasset.png/24px-Broodmother_Spin_Web_Destroy_Spin_Web_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "techies_remote_mine_pinpoint_detonate",
+      "name": "Techies Remote Mine Pinpoint Detonate",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/b/b8/Techies_Remote_Mine_Pinpoint_Detonate_abilityicon_dota2_gameasset.png/24px-Techies_Remote_Mine_Pinpoint_Detonate_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "techies_minefield_sign",
+      "name": "Techies Minefield Sign",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/9/94/Techies_Minefield_Sign_abilityicon_dota2_gameasset.png/24px-Techies_Minefield_Sign_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "templar_assassin_psionic_projection",
+      "name": "Templar Assassin Psionic Projection",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/4/4d/Templar_Assassin_Psionic_Projection_abilityicon_dota2_gameasset.png/24px-Templar_Assassin_Psionic_Projection_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "tidehunter_anchor_smash",
+      "name": "Tidehunter Anchor Smash",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/f/f6/Tidehunter_Anchor_Smash_abilityicon_dota2_gameasset.png/24px-Tidehunter_Anchor_Smash_abilityicon_dota2_gameasset.png"
+    },
+    {
+      "id": "attribute_bonus",
+      "name": "Attribute Bonus",
+      "nameCn": "",
+      "iconUrl": "https://liquipedia.net/commons/images/thumb/1/1d/Attribute_Bonus_abilityicon_dota2_gameasset.png/21px-Attribute_Bonus_abilityicon_dota2_gameasset.png"
+    }
+  ]
+}

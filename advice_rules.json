@@ -1,0 +1,53 @@
+{
+  "Rules": [
+    {
+      "Id": 1,
+      "Condition": {
+        "HeroCombination": null,
+        "EquipmentCombination": null,
+        "HealthThreshold": 30.0,
+        "MapRegion": null,
+        "Phase": null,
+        "SkillConditions": null,
+        "CustomConditions": null
+      },
+      "AdviceContent": "血量较低，建议撤退或使用恢复道具",
+      "Priority": 8,
+      "Type": 4,
+      "IsEnabled": true
+    },
+    {
+      "Id": 2,
+      "Condition": {
+        "HeroCombination": null,
+        "EquipmentCombination": null,
+        "HealthThreshold": null,
+        "MapRegion": null,
+        "Phase": 1,
+        "SkillConditions": null,
+        "CustomConditions": null
+      },
+      "AdviceContent": "游戏前期，建议优先发育和积累资源",
+      "Priority": 5,
+      "Type": 1,
+      "IsEnabled": true
+    },
+    {
+      "Id": 3,
+      "Condition": {
+        "HeroCombination": null,
+        "EquipmentCombination": null,
+        "HealthThreshold": null,
+        "MapRegion": null,
+        "Phase": 3,
+        "SkillConditions": null,
+        "CustomConditions": null
+      },
+      "AdviceContent": "游戏后期，建议抱团推进，避免单独行动",
+      "Priority": 7,
+      "Type": 1,
+      "IsEnabled": true
+    }
+  ],
+  "NextId": 4
+}
