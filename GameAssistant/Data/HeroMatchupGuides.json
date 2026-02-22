@@ -1,0 +1,69 @@
+{
+  "description": "英雄对位攻略：我方英雄 vs 敌方英雄时的出装与技能搭配。ourHeroId/versusHeroId 与 Data/Dota2Heroes_FromWeb.json 的 id 一致。",
+  "source": "网络攻略整理",
+  "matchups": [
+    {
+      "ourHeroId": "disruptor",
+      "ourHeroNameCn": "干扰者",
+      "versusHeroId": "shadow_shaman",
+      "versusHeroNameCn": "暗影萨满",
+      "itemBuild": "秘法鞋、以太之镜、推推/微光保命；对方控制多可早出吹风或 BKB。避免站桩吃枷锁，优先推推或吹风解控。",
+      "skillBuild": "主雷霆之击（消耗与清线），副动能立场/静默风暴；有大点大，团战用大招拉回配合动能立场留人。对线期用雷霆之击耗血，注意小y 枷锁距离别被先手。",
+      "tips": "小y 枷锁、妖术控制链长，保持距离用雷霆之击消耗；团战等小y 交完枷锁或妖术再进场放大。做视野避免被蛇棒推塔时无视野。"
+    },
+    {
+      "ourHeroId": "shadow_shaman",
+      "ourHeroNameCn": "暗影萨满",
+      "versusHeroId": "disruptor",
+      "versusHeroNameCn": "干扰者",
+      "itemBuild": "秘法、以太、跳刀、魔晶、微光/A杖；可选推推、吹风防萨尔大招拉回。相位鞋撑护甲对线更稳。",
+      "skillBuild": "主叉形闪电（清线发育），前两级升枷锁保证控制；闪电满后点满妖术。团战先手枷锁或妖术配合队友秒萨尔，避免被静默风暴罩住后拉回。",
+      "tips": "萨尔动能立场+大招克制站桩；插蛇棒前注意立场范围，用推推或队友打断萨尔施法。对线用闪电耗血，注意蓝量。"
+    },
+    {
+      "ourHeroId": "axe",
+      "ourHeroNameCn": "斧王",
+      "versusHeroId": "phantom_assassin",
+      "versusHeroNameCn": "幻影刺客",
+      "itemBuild": "先锋盾、相位鞋、跳刀、刃甲（核心）；后续梅肯、推推、BKB。刃甲是克制 PA 的关键，闪避无法躲刃甲反伤。",
+      "skillBuild": "主反击螺旋，副战斗饥渴；对线期用战斗饥渴和吼消耗。有大点大，跳刀吼住接刃甲可秒未成型 PA。",
+      "tips": "PA 前期弱，对线期压制发育；团战跳刀+吼+刃甲连招，约 1800–2200 伤害可秒 PA。注意 BKB 时机，等 PA  BKB 结束再吼。"
+    },
+    {
+      "ourHeroId": "phantom_assassin",
+      "ourHeroNameCn": "幻影刺客",
+      "versusHeroId": "axe",
+      "versusHeroNameCn": "斧王",
+      "itemBuild": "对线期尽早相位、狂战或电锤；中期 BKB 必出防吼+刃甲，可出金箍棒针对闪避。脆皮怕刃甲，避免先手砍斧王。",
+      "skillBuild": "主窒息之刃/闪烁突袭视对线；BKB 前少接团，等斧王交完吼或刃甲再切入。",
+      "tips": "斧王+刃甲是 PA 克星，团战别第一个吃吼；用 BKB 躲吼或等斧王先手交完再上。对线期猥琐发育，少对拼。"
+    },
+    {
+      "ourHeroId": "lion",
+      "ourHeroNameCn": "莱恩",
+      "versusHeroId": "phantom_assassin",
+      "versusHeroNameCn": "幻影刺客",
+      "itemBuild": "秘法、推推/吹风保命，A杖羊刀后期；可出绿杖防 PA 暴击。",
+      "skillBuild": "主穿刺副抽蓝，有大点大。团战留变羊给 PA 切入，先手控住配合队友秒杀。",
+      "tips": "PA 怕控制与爆发；变羊、穿刺链控可秒 PA。注意站位别被 BKB  PA 先手，留技能给 PA。"
+    },
+    {
+      "ourHeroId": "antimage",
+      "ourHeroNameCn": "敌法师",
+      "versusHeroId": "invoker",
+      "versusHeroNameCn": "祈求者",
+      "itemBuild": "狂战、假腿、分身、BKB/大晕；魔抗装针对法系。",
+      "skillBuild": "主闪烁，副法力损毁；B 克法师，团战切卡尔或后排。",
+      "tips": "卡尔技能多且 CD 长，用 B 削蓝、闪烁躲关键技能；BKB 后切卡尔，注意吹风磁暴。"
+    },
+    {
+      "ourHeroId": "invoker",
+      "ourHeroNameCn": "祈求者",
+      "versusHeroId": "antimage",
+      "versusHeroNameCn": "敌法师",
+      "itemBuild": "吹风、BKB、A杖、刷新；保命推推、绿杖。AM 切后排时留吹风或磁暴。",
+      "skillBuild": "根据流派；面对 AM 留控制与逃生，磁暴可削 AM 蓝。",
+      "tips": "AM 克法师，少落单；抱团时 AM 难切入。吹风接技能秒 AM 或逼 BKB，注意别被 B 削空蓝。"
+    }
+  ]
+}
