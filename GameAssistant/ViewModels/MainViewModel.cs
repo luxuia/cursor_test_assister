@@ -183,5 +183,63 @@ namespace GameAssistant.ViewModels
 
             return string.Join("\n", lines);
         }
+
+        /// <summary>
+        /// 捕获一帧画面（用于调试窗口）。调用方负责 Dispose。
+        /// </summary>
+        public async Task<Bitmap?> CaptureOneFrameAsync()
+        {
+            var config = ConfigurationService.GetGameWindowConfig();
+            if (config.WindowHandle == IntPtr.Zero)
+                return null;
+
+            Bitmap? frame = null;
+            if (_screenCapture != null && _screenCapture.IsCapturing)
+            {
+                frame = await _screenCapture.CaptureFrameAsync();
+            }
+            else
+            {
+                using var cap = new WindowsScreenCapture(config.WindowHandle);
+                frame = await cap.CaptureFrameAsync();
+            }
+
+            if (frame == null) return null;
+            var clone = frame.Clone() as Bitmap;
+            frame.Dispose();
+            return clone;
+        }
+
+        /// <summary>
+        /// 对指定画面执行一次识别，返回各模块结果。用于调试窗口。
+        /// 每个识别任务使用独立克隆，避免多线程对同一 Bitmap 并发 Clone 导致 “object is currently in use elsewhere”。
+        /// </summary>
+        public async Task<(HeroRosterResult Hero, MinimapResult Minimap, EquipmentResult Equipment, StatusResult Status)> RecognizeFrameAsync(Bitmap frame)
+        {
+            Bitmap? heroFrame = null, minimapFrame = null, equipmentFrame = null, statusFrame = null;
+            try
+            {
+                heroFrame = frame.Clone() as Bitmap;
+                minimapFrame = frame.Clone() as Bitmap;
+                equipmentFrame = frame.Clone() as Bitmap;
+                statusFrame = frame.Clone() as Bitmap;
+                if (heroFrame == null || minimapFrame == null || equipmentFrame == null || statusFrame == null)
+                    return (null!, null!, null!, null!);
+
+                var heroTask = _imageRecognizer.RecognizeHeroRosterAsync(heroFrame);
+                var minimapTask = _imageRecognizer.RecognizeMinimapAsync(minimapFrame);
+                var equipmentTask = _imageRecognizer.RecognizeEquipmentAsync(equipmentFrame);
+                var statusTask = _imageRecognizer.RecognizeStatusAsync(statusFrame);
+                await Task.WhenAll(heroTask, minimapTask, equipmentTask, statusTask);
+                return (await heroTask, await minimapTask, await equipmentTask, await statusTask);
+            }
+            finally
+            {
+                heroFrame?.Dispose();
+                minimapFrame?.Dispose();
+                equipmentFrame?.Dispose();
+                statusFrame?.Dispose();
+            }
+        }
     }
 }

@@ -22,8 +22,9 @@
                     <ComboBox x:Name="TypeComboBox" Width="120" SelectedIndex="0">
                         <ComboBoxItem Content="英雄"/>
                         <ComboBoxItem Content="物品"/>
+                        <ComboBoxItem Content="技能"/>
                     </ComboBox>
-                    <Button x:Name="LoadButton" Content="加载列表" Width="120" Height="30" 
+                    <Button x:Name="LoadButton" Content="从网页加载" Width="100" Height="30" 
                             Margin="10,0" Click="LoadButton_Click"/>
                     <Button x:Name="DownloadButton" Content="开始下载" Width="120" Height="30" 
                             Margin="10,0" Click="DownloadButton_Click" IsEnabled="False"/>

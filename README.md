@@ -15,8 +15,8 @@
 - **.NET 8.0** - 开发框架
 - **WPF** - UI框架
 - **OpenCvSharp4** - 图像处理
-- **SQLite** - 建议规则数据库
 - **Win32 API** - 窗口捕获
+- **AngleSharp** - HTML解析（用于Liquipedia数据抓取）
 
 ## 项目结构
 
@@ -73,10 +73,10 @@ GameAssistant/
 
 ### 建议规则添加
 
-建议规则存储在SQLite数据库中，可以通过以下方式添加：
+建议规则存储在JSON文件中，可以通过以下方式添加：
 
 1. 使用`IAdviceDatabase.AddRuleAsync()`方法
-2. 直接编辑数据库文件
+2. 直接编辑`Data/advice_rules.json`文件
 3. 在设置界面管理规则（待实现）
 
 ### 性能优化
@@ -88,8 +88,6 @@ GameAssistant/
 ## 依赖项
 
 - OpenCvSharp4 (4.10.0.20240103)
-- Microsoft.Data.Sqlite (8.0.0)
-- System.Data.SQLite.Core (1.0.118)
 - Newtonsoft.Json (13.0.3)
 
 ## 注意事项
