@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using GameAssistant.Core.Models;
+using GameAssistant.Tools;
 using GameAssistant.ViewModels;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -273,12 +274,20 @@ namespace GameAssistant.Views
                     HeroesList.ItemsSource = null;
                 }
 
-                // 更新小地图标记
-                if (minimap != null)
+                // 更新小地图标记：仅有效项、带序号、最多 10 条，显式构建列表避免空白行
+                if (minimap != null && minimap.HeroPositions != null)
                 {
-                    var markers = minimap.HeroPositions.Select(p => 
-                        $"位置: ({p.MinimapCoordinate.X}, {p.MinimapCoordinate.Y})"
-                    ).ToList();
+                    const int maxMarkers = 10;
+                    var markers = new List<MinimapMarkerItem>();
+                    int index = 1;
+                    foreach (var p in minimap.HeroPositions)
+                    {
+                        if (p == null || index > maxMarkers) break;
+                        string text = $"{index}. 位置: ({p.MinimapCoordinate.X}, {p.MinimapCoordinate.Y})";
+                        if (string.IsNullOrWhiteSpace(text)) continue;
+                        markers.Add(new MinimapMarkerItem { Text = text });
+                        index++;
+                    }
                     MinimapMarkersList.ItemsSource = markers;
                 }
                 else
@@ -313,7 +322,112 @@ namespace GameAssistant.Views
                     ManaText.Text = "魔法: --";
                     SkillsList.ItemsSource = null;
                 }
+
+                // 在画面上只绘制识别出来的内容（装备、技能、小地图标记）的框和序号，并隐藏四大识别区域框避免重叠
+                if (_currentFrame != null)
+                    UpdateAnnotatedRegionImage(_currentFrame, equipment, status, minimap);
+                HeroRegionRect.Visibility = Visibility.Collapsed;
+                MinimapRegionRect.Visibility = Visibility.Collapsed;
+                EquipmentRegionRect.Visibility = Visibility.Collapsed;
+                StatusRegionRect.Visibility = Visibility.Collapsed;
             });
+        }
+
+        /// <summary>
+        /// 小地图标记列表项，用于绑定避免空白行
+        /// </summary>
+        private sealed class MinimapMarkerItem
+        {
+            public string Text { get; set; } = string.Empty;
+        }
+
+        /// <summary>
+        /// 在画面上绘制识别出的装备、技能、小地图标记的框和序号（不画大区域框）。
+        /// </summary>
+        private void UpdateAnnotatedRegionImage(Bitmap frame, EquipmentResult? equipment, StatusResult? status, MinimapResult? minimap)
+        {
+            try
+            {
+                using var annotated = frame.Clone() as Bitmap;
+                if (annotated == null) return;
+
+                using (var g = Graphics.FromImage(annotated))
+                {
+                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    int fontSize = Math.Max(10, annotated.Width / 80);
+                    using var font = new System.Drawing.Font("Segoe UI", fontSize, System.Drawing.FontStyle.Bold);
+
+                    // 装备：每个识别到的装备画框 + 序号 + 匹配度
+                    if (equipment?.EquipmentList != null)
+                    {
+                        using var equipPen = new Pen(System.Drawing.Color.Lime, 2);
+                        using var equipBrush = new SolidBrush(System.Drawing.Color.Lime);
+                        int idx = 1;
+                        foreach (var item in equipment.EquipmentList)
+                        {
+                            if (item.Bounds == null) continue;
+                            var r = item.Bounds.Value;
+                            g.DrawRectangle(equipPen, r.X, r.Y, r.Width, r.Height);
+                            var numStr = idx.ToString();
+                            var size = g.MeasureString(numStr, font);
+                            g.DrawString(numStr, font, equipBrush, r.X, r.Y - size.Height - 1);
+                            var scoreStr = $"{(int)(item.MatchScore * 100)}%";
+                            g.DrawString(scoreStr, font, equipBrush, r.X, r.Y + r.Height + 1);
+                            idx++;
+                        }
+                    }
+
+                    // 技能：每个识别到的技能画框 + 序号 + 匹配度
+                    if (status?.Skills != null)
+                    {
+                        using var skillPen = new Pen(System.Drawing.Color.Yellow, 2);
+                        using var skillBrush = new SolidBrush(System.Drawing.Color.Yellow);
+                        int idx = 1;
+                        foreach (var s in status.Skills)
+                        {
+                            if (s.Bounds == null) continue;
+                            var r = s.Bounds.Value;
+                            g.DrawRectangle(skillPen, r.X, r.Y, r.Width, r.Height);
+                            var numStr = idx.ToString();
+                            var size = g.MeasureString(numStr, font);
+                            g.DrawString(numStr, font, skillBrush, r.X, r.Y - size.Height - 1);
+                            var scoreStr = $"{(int)(s.MatchScore * 100)}%";
+                            g.DrawString(scoreStr, font, skillBrush, r.X, r.Y + r.Height + 1);
+                            idx++;
+                        }
+                    }
+
+                    // 小地图标记点：小框 + 序号
+                    if (minimap?.HeroPositions != null && minimap.HeroPositions.Count > 0)
+                    {
+                        using var markerFont = new System.Drawing.Font("Segoe UI", Math.Max(8, annotated.Width / 120), System.Drawing.FontStyle.Bold);
+                        using var markerPen = new Pen(System.Drawing.Color.Cyan, 2);
+                        using var markerBrush = new SolidBrush(System.Drawing.Color.Cyan);
+                        int idx = 1;
+                        foreach (var pos in minimap.HeroPositions.Take(10))
+                        {
+                            if (pos == null) continue;
+                            int x = pos.MinimapCoordinate.X, y = pos.MinimapCoordinate.Y;
+                            int box = 6;
+                            g.DrawRectangle(markerPen, x - box, y - box, box * 2, box * 2);
+                            var numStr = idx.ToString();
+                            var ms = g.MeasureString(numStr, markerFont);
+                            g.DrawString(numStr, markerFont, markerBrush, x - ms.Width / 2f, y - ms.Height / 2f);
+                            idx++;
+                        }
+                    }
+                }
+
+                using (var clone = annotated.Clone() as Bitmap)
+                {
+                    if (clone != null)
+                        RegionImage.Source = ConvertBitmap(clone);
+                }
+            }
+            catch
+            {
+                // 失败时保持原图
+            }
         }
 
         private static Dictionary<string, string>? _itemCnById;
@@ -326,11 +440,9 @@ namespace GameAssistant.Views
             _abilityCnById = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             try
             {
-                var baseDir = AppDomain.CurrentDomain.BaseDirectory;
-                var dataDir = System.IO.Path.Combine(baseDir, "Data");
-                var curData = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "Data");
-                foreach (var dir in new[] { dataDir, curData })
+                foreach (var dir in DataPathHelper.GetCandidateDataDirectories())
                 {
+                    // 旧格式：categories 嵌套
                     foreach (var fileName in new[] { "Dota2Items_Complete.json", "Dota2Items.json" })
                     {
                         var path = System.IO.Path.Combine(dir, fileName);
@@ -343,12 +455,36 @@ namespace GameAssistant.Views
                                 {
                                     if (string.IsNullOrEmpty(it.nameCn)) continue;
                                     var id = (it.id ?? "").Trim();
-                                    if (!string.IsNullOrEmpty(id)) _itemCnById[id] = it.nameCn;
+                                    if (!string.IsNullOrEmpty(id))
+                                    {
+                                        _itemCnById[id] = it.nameCn;
+                                        if (id.StartsWith("item_", StringComparison.OrdinalIgnoreCase))
+                                            _itemCnById[id.Substring(5)] = it.nameCn;
+                                    }
                                 }
                     }
+                    // FromWeb 格式：根节点 items 数组（含 Steam API 保存的 item_xxx id，同时注册无前缀键便于匹配模板 id）
+                    var itemsFromWebPath = System.IO.Path.Combine(dir, "Dota2Items_FromWeb.json");
+                    if (File.Exists(itemsFromWebPath))
+                    {
+                        var fromWeb = JsonConvert.DeserializeObject<ItemsFromWebRoot>(File.ReadAllText(itemsFromWebPath));
+                        if (fromWeb?.items != null)
+                            foreach (var it in fromWeb.items)
+                            {
+                                if (string.IsNullOrEmpty(it.nameCn)) continue;
+                                var id = (it.id ?? "").Trim();
+                                if (!string.IsNullOrEmpty(id))
+                                {
+                                    _itemCnById[id] = it.nameCn;
+                                    if (id.StartsWith("item_", StringComparison.OrdinalIgnoreCase))
+                                        _itemCnById[id.Substring(5)] = it.nameCn;
+                                }
+                            }
+                    }
                 }
-                foreach (var dir in new[] { dataDir, curData })
+                foreach (var dir in DataPathHelper.GetCandidateDataDirectories())
                 {
+                    // 旧格式：Abilities/abilities 数组
                     foreach (var fileName in new[] { "Dota2Abilities_Complete.json", "Dota2Abilities.json" })
                     {
                         var path = System.IO.Path.Combine(dir, fileName);
@@ -363,6 +499,32 @@ namespace GameAssistant.Views
                             if (!string.IsNullOrEmpty(id) && !string.IsNullOrEmpty(nameCn))
                                 _abilityCnById[id] = nameCn;
                         }
+                    }
+                    // FromWeb 格式：根节点 abilities 数组
+                    var abilitiesFromWebPath = System.IO.Path.Combine(dir, "Dota2Abilities_FromWeb.json");
+                    if (File.Exists(abilitiesFromWebPath))
+                    {
+                        var fromWeb = JsonConvert.DeserializeObject<AbilitiesFromWebRoot>(File.ReadAllText(abilitiesFromWebPath));
+                        if (fromWeb?.abilities != null)
+                            foreach (var a in fromWeb.abilities)
+                            {
+                                if (string.IsNullOrEmpty(a.nameCn)) continue;
+                                var id = (a.id ?? "").Trim();
+                                if (!string.IsNullOrEmpty(id)) _abilityCnById[id] = a.nameCn;
+                            }
+                    }
+                    // 补充：仅 id -> nameCn 的映射文件（用于补全 FromWeb 里缺中文的技能）
+                    var nameCnPath = System.IO.Path.Combine(dir, "Dota2Abilities_NameCn.json");
+                    if (File.Exists(nameCnPath))
+                    {
+                        var nameCnData = JsonConvert.DeserializeObject<AbilityNameCnRoot>(File.ReadAllText(nameCnPath));
+                        if (nameCnData?.abilities != null)
+                            foreach (var x in nameCnData.abilities)
+                            {
+                                if (string.IsNullOrEmpty(x.nameCn)) continue;
+                                var id = (x.id ?? x.Id ?? "").Trim();
+                                if (!string.IsNullOrEmpty(id)) _abilityCnById[id] = x.nameCn ?? x.NameCn ?? "";
+                            }
                     }
                 }
             }
@@ -391,6 +553,7 @@ namespace GameAssistant.Views
 
         private class ItemDataForMerge { public Dictionary<string, Dictionary<string, List<ItemInfoForMerge>>>? categories { get; set; } }
         private class ItemInfoForMerge { public string id { get; set; } = ""; public string? nameCn { get; set; } }
+        private class ItemsFromWebRoot { public List<ItemInfoForMerge>? items { get; set; } }
         private class AbilityDataForMerge
         {
             [JsonProperty("abilities")] public List<AbilityInfoForMerge>? abilities { get; set; }
@@ -403,6 +566,8 @@ namespace GameAssistant.Views
             [JsonProperty("nameCn")] public string? nameCn { get; set; }
             [JsonProperty("NameCn")] public string? NameCn { get; set; }
         }
+        private class AbilitiesFromWebRoot { public List<AbilityInfoForMerge>? abilities { get; set; } }
+        private class AbilityNameCnRoot { public List<AbilityInfoForMerge>? abilities { get; set; } }
 
         public void UpdateFrame(Bitmap frame)
         {

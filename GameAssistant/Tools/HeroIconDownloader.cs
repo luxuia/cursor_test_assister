@@ -3,24 +3,32 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace GameAssistant.Tools
 {
     /// <summary>
-    /// 英雄和物品图标下载工具
+    /// 英雄和物品图标下载工具（并发下载，与技能一致）
     /// </summary>
     public class HeroIconDownloader
     {
+        private const int MaxConcurrentDownloads = 12;
+
         private readonly HttpClient _httpClient;
         private readonly string _downloadDirectory;
 
         public HeroIconDownloader(string downloadDirectory = "Templates/Heroes")
         {
-            _httpClient = new HttpClient();
-            // Liquipedia 要求带联系方式的 User-Agent，并需控制请求频率
-            _httpClient.DefaultRequestHeaders.Add("User-Agent", "GameAssistant/1.0 (https://github.com/luxuia/cursor_test_assister; Dota2 icon download)");
+            var handler = new HttpClientHandler();
+            try
+            {
+                handler.ServerCertificateCustomValidationCallback = (_, __, ___, ____) => true;
+            }
+            catch { }
+            _httpClient = new HttpClient(handler) { Timeout = TimeSpan.FromSeconds(30) };
+            _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "GameAssistant/1.0 (https://github.com/luxuia/cursor_test_assister; Dota2 icon download)");
             _downloadDirectory = downloadDirectory;
             
             if (!Directory.Exists(_downloadDirectory))
@@ -56,60 +64,50 @@ namespace GameAssistant.Tools
         }
 
         /// <summary>
-        /// 通用图标下载方法
+        /// 通用图标下载方法（并发，最多 MaxConcurrentDownloads 路同时下载）
         /// </summary>
         private async Task DownloadIconsAsync(List<IconInfo> icons, IProgress<string>? progress = null)
         {
             int total = icons.Count;
-            int completed = 0;
+            int successCount = 0;
+            var semaphore = new SemaphoreSlim(MaxConcurrentDownloads);
 
-            foreach (var icon in icons)
+            async Task DownloadOne(IconInfo icon)
             {
+                await semaphore.WaitAsync().ConfigureAwait(false);
                 try
                 {
-                    progress?.Report($"正在下载: {icon.Name} ({completed + 1}/{total})");
-
-                    // Liquipedia 建议：每 2 秒不超过 1 次请求，避免 403
-                    await Task.Delay(2100);
-
-                    // 尝试多个可能的URL
                     string[] iconUrls = icon.IconUrl != null
                         ? new[] { icon.IconUrl }
                         : BuildLiquipediaIconUrls(icon.Id, icon.Name);
-
-                    bool downloaded = false;
                     foreach (var iconUrl in iconUrls)
                     {
                         try
                         {
-                            await DownloadIconAsync(icon.Id, iconUrl);
-                            downloaded = true;
-                            break;
+                            await DownloadIconAsync(icon.Id, iconUrl).ConfigureAwait(false);
+                            int n = Interlocked.Increment(ref successCount);
+                            progress?.Report($"完成: {icon.Name} ({n}/{total})");
+                            return;
                         }
                         catch
                         {
-                            await Task.Delay(500);
-                            continue;
+                            await Task.Delay(200).ConfigureAwait(false);
                         }
                     }
-
-                    if (downloaded)
-                    {
-                        completed++;
-                        progress?.Report($"完成: {icon.Name} ({completed}/{total})");
-                    }
-                    else
-                    {
-                        progress?.Report($"下载失败 {icon.Name}: 所有URL都失败");
-                    }
+                    progress?.Report($"下载失败 {icon.Name}: 所有URL都失败");
                 }
                 catch (Exception ex)
                 {
                     progress?.Report($"下载失败 {icon.Name}: {ex.Message}");
                 }
+                finally
+                {
+                    semaphore.Release();
+                }
             }
 
-            progress?.Report($"下载完成！成功: {completed}/{total}");
+            await Task.WhenAll(icons.Select(DownloadOne)).ConfigureAwait(false);
+            progress?.Report($"下载完成！成功: {successCount}/{total}");
         }
 
         /// <summary>
@@ -117,20 +115,16 @@ namespace GameAssistant.Tools
         /// </summary>
         private async Task DownloadIconAsync(string itemId, string iconUrl)
         {
-            try
-            {
-                var response = await _httpClient.GetAsync(iconUrl);
-                response.EnsureSuccessStatusCode();
-
-                var imageData = await response.Content.ReadAsByteArrayAsync();
-                string filePath = Path.Combine(_downloadDirectory, $"{itemId}.png");
-                
-                await File.WriteAllBytesAsync(filePath, imageData);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"下载图标失败 {itemId}: {ex.Message}", ex);
-            }
+            if (string.IsNullOrWhiteSpace(iconUrl))
+                throw new Exception($"图标 URL 为空（{itemId}），可能数据来自 Steam API 无图标链接，请先从 Liquipedia 加载再下载图标");
+            var response = await _httpClient.GetAsync(iconUrl).ConfigureAwait(false);
+            if (!response.IsSuccessStatusCode)
+                throw new Exception($"HTTP {(int)response.StatusCode}: {iconUrl}");
+            var imageData = await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
+            if (imageData == null || imageData.Length == 0)
+                throw new Exception("响应内容为空");
+            string filePath = Path.Combine(_downloadDirectory, $"{itemId}.png");
+            await File.WriteAllBytesAsync(filePath, imageData).ConfigureAwait(false);
         }
 
         /// <summary>

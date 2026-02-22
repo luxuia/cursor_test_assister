@@ -28,6 +28,40 @@ namespace GameAssistant.Tools
         /// <summary> 并发下载数，避免单线程过慢且不过度请求服务器 </summary>
         private const int MaxConcurrentDownloads = 12;
 
+        /// <summary>
+        /// 将 Liquipedia/Wikimedia 缩略图 URL 转为原图 URL（页面常用 21px/60px 缩略图，分辨率很低）。
+        /// 例：.../thumb/3/3d/File.png/21px-File.png → .../3/3d/File.png
+        /// </summary>
+        private static string ToFullSizeImageUrl(string url)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(url)) return url ?? "";
+                if (url.IndexOf("/thumb/", StringComparison.OrdinalIgnoreCase) < 0) return url;
+                url = url.Replace("/thumb/", "/");
+                int lastSlash = url.LastIndexOf('/');
+                if (lastSlash > 0 && lastSlash < url.Length)
+                {
+                    string tail = url.Substring(lastSlash);
+                    if (Regex.IsMatch(tail, @"\/\d+px-", RegexOptions.IgnoreCase))
+                        return url.Substring(0, lastSlash);
+                }
+                return url;
+            }
+            catch { return url ?? ""; }
+        }
+
+        /// <summary> 生成可用于文件名的安全字符串，避免非法字符导致崩溃 </summary>
+        private static string SafeFileName(string id)
+        {
+            if (string.IsNullOrEmpty(id)) return "unknown";
+            char[] invalid = Path.GetInvalidFileNameChars();
+            var sb = new System.Text.StringBuilder(id.Length);
+            foreach (char c in id)
+                sb.Append(Array.IndexOf(invalid, c) >= 0 ? '_' : c);
+            return sb.Length > 0 ? sb.ToString() : "unknown";
+        }
+
         static LiquipediaScraper()
         {
             ServicePointManager.ServerCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) =>
@@ -256,74 +290,146 @@ namespace GameAssistant.Tools
         }
 
         /// <summary>
-        /// 从 Liquipedia Dota2 技能页获取技能列表（Portal:Abilities 或 /dota2/Abilities）
+        /// 技能列表仅从各英雄页（/dota2/英雄名）抓取：解析英雄链接后逐页取 img[src*='abilityicon_dota2_gameasset']，同 id 不重复，缩略图 URL 转原图。
         /// </summary>
         public async Task<List<AbilityInfo>> FetchAbilitiesAsync(IProgress<string>? progress = null)
         {
-            progress?.Report("正在从网页获取技能列表...");
-            var abilities = new List<AbilityInfo>();
+            progress?.Report("正在解析英雄列表...");
+            var unique = new Dictionary<string, AbilityInfo>(StringComparer.OrdinalIgnoreCase);
 
             try
             {
-                string url = $"{LiquipediaBaseUrl}/dota2/index.php?title=Portal:Abilities";
-                string html;
-                try
+                var heroPaths = await GetHeroWikiPathsAsync(progress);
+                if (heroPaths.Count == 0)
                 {
-                    html = await _httpClient.GetStringAsync(url);
+                    progress?.Report("未获取到英雄页，无法拉取技能");
+                    return new List<AbilityInfo>();
                 }
-                catch
+                progress?.Report($"从英雄页获取技能 (0/{heroPaths.Count})…");
+                var semaphore = new SemaphoreSlim(2);
+                var dictLock = new object();
+                int doneCount = 0;
+                int totalHeroes = heroPaths.Count;
+                await Task.Delay(800);
+                var tasks = heroPaths.Select(async path =>
                 {
-                    html = await _httpClient.GetStringAsync($"{LiquipediaBaseUrl}/dota2/Abilities");
-                }
-                var document = await _htmlParser.ParseDocumentAsync(html);
-
-                var abilityImages = document.QuerySelectorAll("img[src*='abilityicon_dota2_gameasset']");
-
-                foreach (var image in abilityImages)
-                {
-                    var iconUrl = image.GetAttribute("src");
-                    if (string.IsNullOrEmpty(iconUrl)) continue;
-
-                    var match = Regex.Match(iconUrl, @"([^/]+)_abilityicon_dota2_gameasset\.png");
-                    if (!match.Success) continue;
-
-                    var name = match.Groups[1].Value.Replace("_", " ").Trim();
-
-                    if (iconUrl.StartsWith("//"))
+                    await semaphore.WaitAsync();
+                    try
                     {
-                        iconUrl = "https:" + iconUrl;
+                        await Task.Delay(450);
+                        string? heroHtml = await FetchStringWithRetryAsync(LiquipediaBaseUrl + path, progress);
+                        if (string.IsNullOrEmpty(heroHtml)) return;
+                        var heroDoc = await _htmlParser.ParseDocumentAsync(heroHtml);
+                        var imgs = heroDoc.QuerySelectorAll("img[src*='abilityicon_dota2_gameasset']");
+                        foreach (var img in imgs)
+                            TryAddAbilityFromImg(img, unique, dictLock);
                     }
-                    else if (iconUrl.StartsWith("/"))
+                    catch { /* 单英雄页失败忽略 */ }
+                    finally
                     {
-                        iconUrl = LiquipediaBaseUrl + iconUrl;
+                        semaphore.Release();
+                        int n = Interlocked.Increment(ref doneCount);
+                        if (n % 8 == 0 || n == totalHeroes)
+                            progress?.Report($"从英雄页获取技能 ({n}/{totalHeroes})…");
                     }
-
-                    abilities.Add(new AbilityInfo
-                    {
-                        Id = name.ToLower().Replace(" ", "_").Replace("'", "").Replace("-", "_"),
-                        Name = name,
-                        NameCn = "",
-                        IconUrl = iconUrl
-                    });
-                }
-
-                var unique = new Dictionary<string, AbilityInfo>();
-                foreach (var ability in abilities)
-                {
-                    if (!unique.ContainsKey(ability.Id))
-                    {
-                        unique[ability.Id] = ability;
-                    }
-                }
-
+                });
+                await Task.WhenAll(tasks);
                 progress?.Report($"成功获取 {unique.Count} 个技能");
                 return new List<AbilityInfo>(unique.Values);
             }
             catch (Exception ex)
             {
                 progress?.Report($"获取技能列表失败: {ex.Message}");
-                return abilities;
+                return new List<AbilityInfo>(unique.Values);
             }
+        }
+
+        /// <summary> 从单个 img 元素解析技能并加入字典（若 id 已存在则不覆盖）。lockObj 为多线程时传入用于加锁。返回是否新增。 </summary>
+        private static bool TryAddAbilityFromImg(AngleSharp.Dom.IElement image, Dictionary<string, AbilityInfo> unique, object? lockObj)
+        {
+            var iconUrl = image.GetAttribute("src");
+            if (string.IsNullOrEmpty(iconUrl)) return false;
+            var match = Regex.Match(iconUrl, @"([^/]+)_abilityicon_dota2_gameasset\.png");
+            if (!match.Success) return false;
+            var name = match.Groups[1].Value.Replace("_", " ").Trim();
+            if (iconUrl.StartsWith("//")) iconUrl = "https:" + iconUrl;
+            else if (iconUrl.StartsWith("/")) iconUrl = LiquipediaBaseUrl + iconUrl;
+            iconUrl = ToFullSizeImageUrl(iconUrl);
+            var id = name.ToLower().Replace(" ", "_").Replace("'", "").Replace("-", "_");
+            var info = new AbilityInfo { Id = id, Name = name, NameCn = "", IconUrl = iconUrl };
+            bool added = false;
+            void Add()
+            {
+                if (!unique.ContainsKey(id)) { unique[id] = info; added = true; }
+            }
+            if (lockObj != null) lock (lockObj) Add(); else Add();
+            return added;
+        }
+
+        /// <summary> 请求 URL 获取 HTML，遇 429/5xx 时等待后重试，避免被限流导致 0 条技能 </summary>
+        private async Task<string?> FetchStringWithRetryAsync(string url, IProgress<string>? progress, int maxRetries = 2)
+        {
+            for (int attempt = 0; attempt <= maxRetries; attempt++)
+            {
+                try
+                {
+                    using var response = await _httpClient.GetAsync(url);
+                    if ((int)response.StatusCode == 429 || (int)response.StatusCode >= 500)
+                    {
+                        if (attempt < maxRetries)
+                        {
+                            int waitMs = 5000 + attempt * 3000;
+                            progress?.Report($"请求被限流或服务繁忙，{waitMs / 1000} 秒后重试…");
+                            await Task.Delay(waitMs);
+                            continue;
+                        }
+                        return null;
+                    }
+                    response.EnsureSuccessStatusCode();
+                    return await response.Content.ReadAsStringAsync();
+                }
+                catch (HttpRequestException)
+                {
+                    if (attempt < maxRetries)
+                    {
+                        await Task.Delay(4000 + attempt * 2000);
+                        continue;
+                    }
+                    return null;
+                }
+            }
+            return null;
+        }
+
+        /// <summary> 从 Portal:Heroes 解析出各英雄的 wiki 路径，如 /dota2/Axe </summary>
+        private async Task<List<string>> GetHeroWikiPathsAsync(IProgress<string>? progress)
+        {
+            var paths = new List<string>();
+            try
+            {
+                string html = await _httpClient.GetStringAsync($"{LiquipediaBaseUrl}/dota2/index.php?title=Portal:Heroes");
+                var document = await _htmlParser.ParseDocumentAsync(html);
+                var links = document.QuerySelectorAll("div.heroes-panel__hero-card__title a[href*='/dota2/']");
+                var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                foreach (var a in links)
+                {
+                    var href = a.GetAttribute("href");
+                    if (string.IsNullOrEmpty(href) || href.Contains("Portal:", StringComparison.OrdinalIgnoreCase) ||
+                        href.Contains("Category:", StringComparison.OrdinalIgnoreCase) || href.Contains("File:", StringComparison.OrdinalIgnoreCase))
+                        continue;
+                    href = href.TrimStart('/');
+                    if (!href.StartsWith("dota2/", StringComparison.OrdinalIgnoreCase)) continue;
+                    string path = "/" + href;
+                    if (path.Contains("?")) path = path.Substring(0, path.IndexOf('?'));
+                    if (seen.Add(path)) paths.Add(path);
+                }
+                progress?.Report($"已解析 {paths.Count} 个英雄页用于补充技能");
+            }
+            catch (Exception ex)
+            {
+                progress?.Report($"解析英雄列表失败(仅用 Portal 技能): {ex.Message}");
+            }
+            return paths;
         }
 
         public async Task<int> DownloadHeroIconsAsync(List<HeroInfo> heroes, string outputDirectory, IProgress<string>? progress = null)
@@ -338,7 +444,7 @@ namespace GameAssistant.Tools
                 await semaphore.WaitAsync();
                 try
                 {
-                    await DownloadImageAsync(hero.IconUrl ?? "", Path.Combine(outputDirectory, $"{hero.Id}.png"));
+                    await DownloadImageAsync(ToFullSizeImageUrl(hero.IconUrl ?? ""), Path.Combine(outputDirectory, $"{hero.Id}.png"));
                     int n = Interlocked.Increment(ref successCount);
                     progress?.Report($"下载英雄: {hero.Name} ({n}/{total})");
                 }
@@ -366,7 +472,7 @@ namespace GameAssistant.Tools
                 await semaphore.WaitAsync();
                 try
                 {
-                    await DownloadImageAsync(item.IconUrl ?? "", Path.Combine(outputDirectory, $"{item.Id}.png"));
+                    await DownloadImageAsync(ToFullSizeImageUrl(item.IconUrl ?? ""), Path.Combine(outputDirectory, $"{item.Id}.png"));
                     int n = Interlocked.Increment(ref successCount);
                     progress?.Report($"下载物品: {item.Name} ({n}/{total})");
                 }
@@ -384,17 +490,39 @@ namespace GameAssistant.Tools
 
         public async Task<int> DownloadAbilityIconsAsync(List<AbilityInfo> abilities, string outputDirectory, IProgress<string>? progress = null)
         {
-            Directory.CreateDirectory(outputDirectory);
+            if (abilities == null || abilities.Count == 0)
+            {
+                progress?.Report("没有可下载的技能");
+                return 0;
+            }
+            try
+            {
+                Directory.CreateDirectory(outputDirectory);
+            }
+            catch (Exception ex)
+            {
+                progress?.Report($"无法创建目录: {ex.Message}");
+                return 0;
+            }
             int total = abilities.Count;
             int successCount = 0;
             var semaphore = new SemaphoreSlim(MaxConcurrentDownloads);
 
             async Task DownloadOne(AbilityInfo ability)
             {
+                if (ability == null) return;
                 await semaphore.WaitAsync();
                 try
                 {
-                    await DownloadImageAsync(ability.IconUrl ?? "", Path.Combine(outputDirectory, $"{ability.Id}.png"));
+                    string url = ToFullSizeImageUrl(ability.IconUrl ?? "");
+                    if (string.IsNullOrWhiteSpace(url))
+                    {
+                        progress?.Report($"跳过(无链接): {ability.Name}");
+                        return;
+                    }
+                    string safeName = SafeFileName(ability.Id);
+                    string outputPath = Path.Combine(outputDirectory, $"{safeName}.png");
+                    await DownloadImageAsync(url, outputPath);
                     int n = Interlocked.Increment(ref successCount);
                     progress?.Report($"下载技能: {ability.Name} ({n}/{total})");
                 }
@@ -405,16 +533,20 @@ namespace GameAssistant.Tools
                 finally { semaphore.Release(); }
             }
 
-            await Task.WhenAll(abilities.Select(DownloadOne));
+            await Task.WhenAll(abilities.Where(a => a != null).Select(DownloadOne));
             progress?.Report($"技能图标下载完成: {successCount}/{total}");
             return successCount;
         }
 
         private async Task DownloadImageAsync(string url, string outputPath)
         {
+            if (string.IsNullOrWhiteSpace(url))
+                throw new ArgumentException("图片地址为空", nameof(url));
             var response = await _httpClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
-            var imageData = await response.Content.ReadAsByteArrayAsync();
+            byte[]? imageData = await response.Content.ReadAsByteArrayAsync();
+            if (imageData == null || imageData.Length == 0)
+                throw new InvalidOperationException("响应内容为空");
             await File.WriteAllBytesAsync(outputPath, imageData);
         }
     }

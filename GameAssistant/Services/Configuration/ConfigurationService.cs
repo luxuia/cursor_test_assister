@@ -137,17 +137,17 @@ namespace GameAssistant.Services.Configuration
                 },
                 EquipmentRecognition = new EquipmentRecognitionParameters
                 {
-                    EquipmentMatchThreshold = 0.7,
+                    EquipmentMatchThreshold = 0.8,
                     SlotDetectionThreshold = 0.5,
                     SlotSizeTolerance = 5,
                     MaxEquipmentSlots = 6
                 },
                 SkillRecognition = new SkillRecognitionParameters
                 {
-                    SkillMatchThreshold = 0.65,
+                    SkillMatchThreshold = 0.8,
                     SkillAvailabilityThreshold = 100,
                     SkillCooldownThreshold = 0.7,
-                    MaxSkillCount = 4
+                    MaxSkillCount = 10
                 },
                 HealthRecognition = new HealthRecognitionParameters
                 {
