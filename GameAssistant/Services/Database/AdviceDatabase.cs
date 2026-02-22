@@ -162,22 +162,67 @@ namespace GameAssistant.Services.Database
             });
         }
 
+        /// <summary>
+        /// 规则条件与当前游戏条件匹配：规则中未设置的维度不限制；所有设置的维度均满足才通过。
+        /// </summary>
         private bool MatchesCondition(AdviceCondition ruleCondition, AdviceCondition gameCondition)
         {
-            // 简单的匹配逻辑，实际应该更复杂
+            // 血量：规则要求“低于某值触发”，则游戏血量需 <= 规则阈值
             if (ruleCondition.HealthThreshold.HasValue && gameCondition.HealthThreshold.HasValue)
             {
                 if (gameCondition.HealthThreshold.Value > ruleCondition.HealthThreshold.Value)
                     return false;
             }
 
+            // 阶段：必须一致
             if (ruleCondition.Phase.HasValue && gameCondition.Phase.HasValue)
             {
                 if (ruleCondition.Phase.Value != gameCondition.Phase.Value)
                     return false;
             }
 
-            // TODO: 实现更复杂的匹配逻辑
+            // 英雄：规则中列出的英雄在游戏阵容中至少出现一个即满足
+            if (ruleCondition.HeroCombination != null && ruleCondition.HeroCombination.Count > 0)
+            {
+                if (gameCondition.HeroCombination == null || gameCondition.HeroCombination.Count == 0)
+                    return false;
+                var gameSet = new HashSet<string>(gameCondition.HeroCombination, StringComparer.OrdinalIgnoreCase);
+                if (!ruleCondition.HeroCombination.Any(h => gameSet.Contains(h)))
+                    return false;
+            }
+
+            // 装备：规则中列出的装备在游戏装备中至少有一个即满足
+            if (ruleCondition.EquipmentCombination != null && ruleCondition.EquipmentCombination.Count > 0)
+            {
+                if (gameCondition.EquipmentCombination == null || gameCondition.EquipmentCombination.Count == 0)
+                    return false;
+                var gameSet = new HashSet<string>(gameCondition.EquipmentCombination, StringComparer.OrdinalIgnoreCase);
+                if (!ruleCondition.EquipmentCombination.Any(e => gameSet.Contains(e)))
+                    return false;
+            }
+
+            // 技能状态：规则中每个 skillId -> isAvailable 需与游戏状态一致
+            if (ruleCondition.SkillConditions != null && ruleCondition.SkillConditions.Count > 0)
+            {
+                if (gameCondition.SkillConditions == null)
+                    return false;
+                foreach (var kv in ruleCondition.SkillConditions)
+                {
+                    if (!gameCondition.SkillConditions.TryGetValue(kv.Key, out var gameAvail) || gameAvail != kv.Value)
+                        return false;
+                }
+            }
+
+            // 对位：规则要求敌方存在某英雄时，当前对局敌方列表需包含其中至少一个
+            if (ruleCondition.VersusHeroCombination != null && ruleCondition.VersusHeroCombination.Count > 0)
+            {
+                if (gameCondition.VersusHeroCombination == null || gameCondition.VersusHeroCombination.Count == 0)
+                    return false;
+                var gameSet = new HashSet<string>(gameCondition.VersusHeroCombination, StringComparer.OrdinalIgnoreCase);
+                if (!ruleCondition.VersusHeroCombination.Any(h => gameSet.Contains(h)))
+                    return false;
+            }
+
             return true;
         }
 
