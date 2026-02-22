@@ -38,6 +38,11 @@ namespace GameAssistant.Core.Models
         public Dictionary<string, bool>? SkillConditions { get; set; }
 
         /// <summary>
+        /// 对位/敌方英雄 ID 列表（规则触发需敌方存在其中至少一人）
+        /// </summary>
+        public List<string>? VersusHeroCombination { get; set; }
+
+        /// <summary>
         /// 自定义条件（键值对）
         /// </summary>
         public Dictionary<string, object>? CustomConditions { get; set; }

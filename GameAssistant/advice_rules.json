@@ -5,14 +5,14 @@
       "Condition": {
         "HeroCombination": null,
         "EquipmentCombination": null,
-        "HealthThreshold": 30.0,
+        "HealthThreshold": 30,
         "MapRegion": null,
         "Phase": null,
         "SkillConditions": null,
         "CustomConditions": null
       },
-      "AdviceContent": "血量较低，建议撤退或使用恢复道具",
-      "Priority": 8,
+      "AdviceContent": "血量较低，建议撤退或使用恢复道具，避免被秒",
+      "Priority": 9,
       "Type": 4,
       "IsEnabled": true
     },
@@ -21,15 +21,15 @@
       "Condition": {
         "HeroCombination": null,
         "EquipmentCombination": null,
-        "HealthThreshold": null,
+        "HealthThreshold": 50,
         "MapRegion": null,
-        "Phase": 1,
+        "Phase": null,
         "SkillConditions": null,
         "CustomConditions": null
       },
-      "AdviceContent": "游戏前期，建议优先发育和积累资源",
+      "AdviceContent": "血量过半，注意走位与技能预留，必要时使用恢复",
       "Priority": 5,
-      "Type": 1,
+      "Type": 4,
       "IsEnabled": true
     },
     {
@@ -39,15 +39,191 @@
         "EquipmentCombination": null,
         "HealthThreshold": null,
         "MapRegion": null,
+        "Phase": 1,
+        "SkillConditions": null,
+        "CustomConditions": null
+      },
+      "AdviceContent": "游戏前期：优先发育和积累资源，按推荐出装从上往下买",
+      "Priority": 5,
+      "Type": 1,
+      "IsEnabled": true
+    },
+    {
+      "Id": 4,
+      "Condition": {
+        "HeroCombination": null,
+        "EquipmentCombination": null,
+        "HealthThreshold": null,
+        "MapRegion": null,
+        "Phase": 1,
+        "SkillConditions": null,
+        "CustomConditions": null
+      },
+      "AdviceContent": "前期对线：掌握最后一击补刀，用 S 键取消普攻后摇精准补刀",
+      "Priority": 4,
+      "Type": 1,
+      "IsEnabled": true
+    },
+    {
+      "Id": 5,
+      "Condition": {
+        "HeroCombination": null,
+        "EquipmentCombination": null,
+        "HealthThreshold": null,
+        "MapRegion": null,
+        "Phase": 2,
+        "SkillConditions": null,
+        "CustomConditions": null
+      },
+      "AdviceContent": "游戏中期：兼顾功能装与坦度，逆风优先保命装（永恒之盘、黑皇杖）",
+      "Priority": 6,
+      "Type": 2,
+      "IsEnabled": true
+    },
+    {
+      "Id": 6,
+      "Condition": {
+        "HeroCombination": null,
+        "EquipmentCombination": null,
+        "HealthThreshold": null,
+        "MapRegion": null,
+        "Phase": 2,
+        "SkillConditions": null,
+        "CustomConditions": null
+      },
+      "AdviceContent": "中期视野：布置野区与河道眼位，插眼前用真眼反眼避免被秒排",
+      "Priority": 6,
+      "Type": 1,
+      "IsEnabled": true
+    },
+    {
+      "Id": 7,
+      "Condition": {
+        "HeroCombination": null,
+        "EquipmentCombination": null,
+        "HealthThreshold": null,
+        "MapRegion": null,
+        "Phase": 2,
+        "SkillConditions": null,
+        "CustomConditions": null
+      },
+      "AdviceContent": "对方控制多时，中期尽早考虑出黑皇杖（BKB）保证团战输出",
+      "Priority": 5,
+      "Type": 2,
+      "IsEnabled": true
+    },
+    {
+      "Id": 8,
+      "Condition": {
+        "HeroCombination": null,
+        "EquipmentCombination": null,
+        "HealthThreshold": null,
+        "MapRegion": null,
         "Phase": 3,
         "SkillConditions": null,
         "CustomConditions": null
       },
-      "AdviceContent": "游戏后期，建议抱团推进，避免单独行动",
-      "Priority": 7,
+      "AdviceContent": "游戏后期：抱团推进，避免单独带线或落单被秒",
+      "Priority": 8,
       "Type": 1,
+      "IsEnabled": true
+    },
+    {
+      "Id": 9,
+      "Condition": {
+        "HeroCombination": null,
+        "EquipmentCombination": null,
+        "HealthThreshold": null,
+        "MapRegion": null,
+        "Phase": 3,
+        "SkillConditions": null,
+        "CustomConditions": null
+      },
+      "AdviceContent": "后期团战前：布置真假眼掌握视野，等对方 BKB 结束后再交关键控制",
+      "Priority": 7,
+      "Type": 0,
+      "IsEnabled": true
+    },
+    {
+      "Id": 10,
+      "Condition": {
+        "HeroCombination": null,
+        "EquipmentCombination": ["item_black_king_bar"],
+        "HealthThreshold": null,
+        "MapRegion": null,
+        "Phase": null,
+        "SkillConditions": null,
+        "CustomConditions": null
+      },
+      "AdviceContent": "已出 BKB：团战开启或被控前激活，注意每次使用持续时间会递减（最低 6 秒）",
+      "Priority": 6,
+      "Type": 2,
+      "IsEnabled": true
+    },
+    {
+      "Id": 11,
+      "Condition": {
+        "HeroCombination": null,
+        "EquipmentCombination": null,
+        "HealthThreshold": null,
+        "MapRegion": null,
+        "Phase": 3,
+        "SkillConditions": null,
+        "CustomConditions": null
+      },
+      "AdviceContent": "后期出装：物理多出强袭/刃甲，法系多出挑战头巾，避免只堆肉无输出",
+      "Priority": 5,
+      "Type": 2,
+      "IsEnabled": true
+    },
+    {
+      "Id": 12,
+      "Condition": {
+        "HeroCombination": null,
+        "EquipmentCombination": null,
+        "HealthThreshold": null,
+        "MapRegion": null,
+        "Phase": 1,
+        "SkillConditions": null,
+        "CustomConditions": null
+      },
+      "AdviceContent": "前期多用小地图观察动向，预防 Gank，河道与野区入口尤其注意",
+      "Priority": 5,
+      "Type": 3,
+      "IsEnabled": true
+    },
+    {
+      "Id": 13,
+      "Condition": {
+        "HeroCombination": null,
+        "EquipmentCombination": null,
+        "HealthThreshold": null,
+        "MapRegion": null,
+        "Phase": 2,
+        "SkillConditions": null,
+        "CustomConditions": null
+      },
+      "AdviceContent": "中期不要只堆伤害，兼顾发育与团队需求，顺风可扩大优势装",
+      "Priority": 4,
+      "Type": 2,
+      "IsEnabled": true
+    },
+    {
+      "Id": 14,
+      "Condition": {
+        "HeroCombination": null,
+        "EquipmentCombination": null,
+        "HealthThreshold": null,
+        "MapRegion": null,
+        "Phase": 3,
+        "SkillConditions": null,
+        "CustomConditions": null
+      },
+      "AdviceContent": "后期团战：辅助站核心侧翼保护，先手/反手前确保视野与技能就绪",
+      "Priority": 6,
+      "Type": 3,
       "IsEnabled": true
     }
   ],
-  "NextId": 4
+  "NextId": 15
 }

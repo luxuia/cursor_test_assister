@@ -37,6 +37,11 @@ namespace GameAssistant.Core.Models
         /// 游戏阶段（前期/中期/后期）
         /// </summary>
         public GamePhase Phase { get; set; } = GamePhase.Unknown;
+
+        /// <summary>
+        /// 敌方/对位英雄 ID 列表（与 Dota2Heroes id 一致，用于对位攻略匹配；若未识别则为空）
+        /// </summary>
+        public List<string>? EnemyHeroes { get; set; }
     }
 
     /// <summary>

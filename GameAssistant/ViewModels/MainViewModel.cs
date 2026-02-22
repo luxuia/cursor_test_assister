@@ -128,8 +128,9 @@ namespace GameAssistant.ViewModels
                     Minimap = await minimapTask,
                     Equipment = await equipmentTask,
                     Status = await statusTask,
-                    Phase = DetermineGamePhase(await statusTask)
+                    Phase = GamePhase.Unknown
                 };
+                gameState.Phase = DecisionEngine.DetermineGamePhase(gameState);
 
                 // 生成建议
                 var adviceList = await _decisionEngine.AnalyzeAsync(gameState);
@@ -160,12 +161,6 @@ namespace GameAssistant.ViewModels
             // 帧已捕获，识别逻辑在定时器中处理
         }
 
-        private GamePhase DetermineGamePhase(StatusResult? status)
-        {
-            // 简单的阶段判断逻辑
-            // TODO: 实现更复杂的判断
-            return GamePhase.Unknown;
-        }
 
         public string GetGameStateText()
         {
