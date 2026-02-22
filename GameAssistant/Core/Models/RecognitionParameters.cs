@@ -90,9 +90,9 @@ namespace GameAssistant.Core.Models
     public class EquipmentRecognitionParameters
     {
         /// <summary>
-        /// 装备图标匹配阈值
+        /// 装备图标匹配阈值（每槽仅保留最高分一项）
         /// </summary>
-        public double EquipmentMatchThreshold { get; set; } = 0.7;
+        public double EquipmentMatchThreshold { get; set; } = 0.8;
 
         /// <summary>
         /// 装备槽位检测阈值
@@ -118,7 +118,7 @@ namespace GameAssistant.Core.Models
         /// <summary>
         /// 技能图标匹配阈值
         /// </summary>
-        public double SkillMatchThreshold { get; set; } = 0.65;
+        public double SkillMatchThreshold { get; set; } = 0.8;
 
         /// <summary>
         /// 技能可用判断阈值（亮度）
@@ -131,9 +131,9 @@ namespace GameAssistant.Core.Models
         public double SkillCooldownThreshold { get; set; } = 0.7;
 
         /// <summary>
-        /// 最大技能数量
+        /// 状态栏最大技能数量（4 技能+大招+中立等，最多保留条数）
         /// </summary>
-        public int MaxSkillCount { get; set; } = 4;
+        public int MaxSkillCount { get; set; } = 10;
     }
 
     /// <summary>

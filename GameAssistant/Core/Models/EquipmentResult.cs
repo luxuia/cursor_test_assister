@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace GameAssistant.Core.Models
 {
@@ -52,6 +53,16 @@ namespace GameAssistant.Core.Models
         /// 装备槽位
         /// </summary>
         public int Slot { get; set; }
+
+        /// <summary>
+        /// 在原图中的检测框（用于调试绘制）
+        /// </summary>
+        public Rectangle? Bounds { get; set; }
+
+        /// <summary>
+        /// 模板匹配相似度 0～1，用于显示匹配程度
+        /// </summary>
+        public double MatchScore { get; set; }
 
         /// <summary>
         /// 装备属性（键值对）

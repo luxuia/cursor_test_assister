@@ -98,7 +98,7 @@
                             <ItemsControl x:Name="MinimapMarkersList">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding}" Foreground="White" FontSize="11" Margin="5,2"/>
+                                        <TextBlock Text="{Binding Text}" Foreground="White" FontSize="11" Margin="2,1"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -108,7 +108,13 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Border Background="#AA333333" CornerRadius="3" Margin="0,2" Padding="5">
-                                            <TextBlock Text="{Binding DisplayName}" Foreground="White" FontSize="11"/>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding DisplayName}" Foreground="White" FontSize="11"/>
+                                                <TextBlock Foreground="#FFAAAAAA" FontSize="10">
+                                                    <Run Text="匹配度: "/>
+                                                    <Run Text="{Binding MatchScore, StringFormat={}{0:P0}}"/>
+                                                </TextBlock>
+                                            </StackPanel>
                                         </Border>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
@@ -125,7 +131,11 @@
                                             <Border Background="#AA333333" CornerRadius="3" Margin="0,2" Padding="5">
                                                 <StackPanel>
                                                     <TextBlock Text="{Binding DisplayName}" Foreground="White" FontSize="11"/>
-                                                    <TextBlock>
+                                                    <TextBlock Foreground="#FFAAAAAA" FontSize="10">
+                                                        <Run Text="匹配度: "/>
+                                                        <Run Text="{Binding MatchScore, StringFormat={}{0:P0}}"/>
+                                                    </TextBlock>
+                                                    <TextBlock FontSize="10">
                                                         <Run Text="可用: "/>
                                                         <Run Text="{Binding IsAvailable}"/>
                                                         <Run Text=" 冷却: "/>

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -272,6 +273,21 @@ namespace GameAssistant.Services.ImageRecognition
                     });
                 }
 
+                // 合并距离过近的标记并限制数量，减少噪点与空白行
+                const int mergeDistancePx = 12;
+                var merged = new List<HeroPosition>();
+                foreach (var pos in result.HeroPositions)
+                {
+                    if (merged.Count >= 10) break;
+                    var p = pos.MinimapCoordinate;
+                    bool tooClose = merged.Any(m =>
+                        Math.Abs(m.MinimapCoordinate.X - p.X) <= mergeDistancePx &&
+                        Math.Abs(m.MinimapCoordinate.Y - p.Y) <= mergeDistancePx);
+                    if (!tooClose)
+                        merged.Add(pos);
+                }
+                result.HeroPositions = merged;
+
                 allyMask.Dispose();
                 enemyMask.Dispose();
                 combinedMask.Dispose();
@@ -314,79 +330,86 @@ namespace GameAssistant.Services.ImageRecognition
         private EquipmentResult RecognizeEquipmentByTemplate(Mat regionMat, Rectangle region)
         {
             var result = new EquipmentResult();
-            
-            // 获取装备模板目录
             string equipmentTemplateDir = Path.Combine("Templates", "Equipment");
             if (!Directory.Exists(equipmentTemplateDir))
                 return result;
 
-            // 定义装备槽位位置（需要根据实际游戏UI调整）
-            var slotPositions = new[]
-            {
-                new { Slot = 0, X = 0, Y = 0 }, // 示例位置，需要实际配置
-                new { Slot = 1, X = 50, Y = 0 },
-                new { Slot = 2, X = 100, Y = 0 },
-                new { Slot = 3, X = 0, Y = 50 },
-                new { Slot = 4, X = 50, Y = 50 },
-                new { Slot = 5, X = 100, Y = 50 }
-            };
-
-            // 获取所有装备模板
+            using Mat grayRegion = ToGrayOnce(regionMat);
             var templateFiles = Directory.GetFiles(equipmentTemplateDir, "*.png");
-            
-            foreach (var templateFile in templateFiles)
+            var allCandidates = new ConcurrentBag<EquipmentInfo>();
+            double threshold = _parameters.EquipmentRecognition.EquipmentMatchThreshold;
+
+            Parallel.ForEach(templateFiles, templateFile =>
             {
                 string equipmentId = Path.GetFileNameWithoutExtension(templateFile);
                 _templateMatcher.LoadTemplate($"Equipment/{equipmentId}", templateFile);
-                
-                var matchResults = _templateMatcher.Match(regionMat, $"Equipment/{equipmentId}", _parameters.EquipmentRecognition.EquipmentMatchThreshold);
-                
+                var matchResults = _templateMatcher.MatchGray(grayRegion, $"Equipment/{equipmentId}", threshold, multiScale: true);
                 foreach (var match in matchResults)
                 {
-                    // 确定装备槽位（根据位置判断）
-                    int slot = DetermineEquipmentSlot(match.Location, slotPositions);
-                    
-                    result.EquipmentList.Add(new EquipmentInfo
+                    allCandidates.Add(new EquipmentInfo
                     {
                         EquipmentId = equipmentId,
                         EquipmentName = equipmentId,
-                        Slot = slot,
+                        Slot = 0,
+                        Bounds = new System.Drawing.Rectangle(region.X + match.Location.X, region.Y + match.Location.Y, match.TemplateSize.Width, match.TemplateSize.Height),
+                        MatchScore = match.Confidence,
                         Properties = new Dictionary<string, object>()
                     });
                 }
-            }
+            });
 
-            // 按 (EquipmentId, Slot) 去重，每组只保留一条
-            result.EquipmentList = result.EquipmentList
-                .GroupBy(e => (e.EquipmentId, e.Slot))
-                .Select(g => g.First())
-                .ToList();
+            result.EquipmentList = DedupeOverlappingEquipment(allCandidates.ToList(), maxCount: 10);
+            for (int i = 0; i < result.EquipmentList.Count; i++)
+                result.EquipmentList[i].Slot = i;
 
             result.Confidence = result.EquipmentList.Count > 0 ? 0.75 : 0.0;
             return result;
         }
 
-        private int DetermineEquipmentSlot(OpenCvSharp.Point location, dynamic[] slotPositions)
+        /// <summary>将区域 Mat 转为灰度（CV_8UC1），仅分配一次供多模板复用。</summary>
+        private static Mat ToGrayOnce(Mat source)
         {
-            // 根据位置找到最近的槽位
-            int minDistance = int.MaxValue;
-            int closestSlot = 0;
-            
-            foreach (var slotPos in slotPositions)
+            if (source.Channels() == 1 && source.Depth() == MatType.CV_8U)
+                return source.Clone();
+            var gray = new Mat();
+            if (source.Channels() == 3)
+                Cv2.CvtColor(source, gray, ColorConversionCodes.BGR2GRAY);
+            else if (source.Channels() == 4)
+                Cv2.CvtColor(source, gray, ColorConversionCodes.BGRA2GRAY);
+            else
+                gray = source.Clone();
+            return gray;
+        }
+
+        /// <summary>
+        /// 重叠去重：按匹配度从高到低取，与已保留框重叠的丢弃，最多 maxCount 条
+        /// </summary>
+        private static List<EquipmentInfo> DedupeOverlappingEquipment(List<EquipmentInfo> candidates, int maxCount)
+        {
+            var sorted = candidates.OrderByDescending(e => e.MatchScore).ToList();
+            var kept = new List<EquipmentInfo>();
+            const double overlapCenterThreshold = 25; // 两框中心距离小于此视为重叠
+
+            foreach (var c in sorted)
             {
-                int distance = (int)Math.Sqrt(
-                    Math.Pow(location.X - slotPos.X, 2) + 
-                    Math.Pow(location.Y - slotPos.Y, 2)
-                );
-                
-                if (distance < minDistance)
+                if (kept.Count >= maxCount) break;
+                var r = c.Bounds;
+                if (r == null) continue;
+                double cx = r.Value.X + r.Value.Width / 2.0;
+                double cy = r.Value.Y + r.Value.Height / 2.0;
+                bool overlaps = false;
+                foreach (var k in kept)
                 {
-                    minDistance = distance;
-                    closestSlot = slotPos.Slot;
+                    if (k.Bounds == null) continue;
+                    var kr = k.Bounds.Value;
+                    double kcx = kr.X + kr.Width / 2.0;
+                    double kcy = kr.Y + kr.Height / 2.0;
+                    double dist = Math.Sqrt((cx - kcx) * (cx - kcx) + (cy - kcy) * (cy - kcy));
+                    if (dist < overlapCenterThreshold) { overlaps = true; break; }
                 }
+                if (!overlaps) kept.Add(c);
             }
-            
-            return closestSlot;
+            return kept;
         }
 
         public async Task<StatusResult> RecognizeStatusAsync(Bitmap frame)
@@ -408,8 +431,8 @@ namespace GameAssistant.Services.ImageRecognition
                     // 识别血量百分比
                     result.HealthPercentage = RecognizeHealthPercentage(mat);
                     
-                    // 识别技能状态
-                    result.Skills = RecognizeSkills(mat);
+                    // 识别技能状态（传入区域以便计算 Bounds）
+                    result.Skills = RecognizeSkills(mat, region);
                     
                     result.Confidence = 0.7;
                 }
@@ -543,57 +566,80 @@ namespace GameAssistant.Services.ImageRecognition
         }
 
         /// <summary>
-        /// 识别技能状态
+        /// 识别技能状态：直接匹配 + 重叠去重，不做槽位预计算。statusRegion 为状态栏在原图中的区域。
         /// </summary>
-        private List<SkillStatus> RecognizeSkills(Mat statusMat)
+        private List<SkillStatus> RecognizeSkills(Mat statusMat, System.Drawing.Rectangle statusRegion)
         {
-            var skills = new List<SkillStatus>();
-            
+            var allMatches = new ConcurrentBag<(MatchResult match, string skillId)>();
             try
             {
-                // 获取技能模板目录
                 string skillsTemplateDir = Path.Combine("Templates", "Skills");
                 if (!Directory.Exists(skillsTemplateDir))
-                    return skills;
+                    return new List<SkillStatus>();
 
-                // 获取所有技能模板
                 var templateFiles = Directory.GetFiles(skillsTemplateDir, "*.png");
-                int slotIndex = 0;
+                double threshold = _parameters.SkillRecognition.SkillMatchThreshold;
+                using Mat grayStatus = ToGrayOnce(statusMat);
 
-                foreach (var templateFile in templateFiles)
+                Parallel.ForEach(templateFiles, templateFile =>
                 {
                     string skillId = Path.GetFileNameWithoutExtension(templateFile);
                     _templateMatcher.LoadTemplate($"Skills/{skillId}", templateFile);
-                    
-                    var matchResults = _templateMatcher.Match(statusMat, $"Skills/{skillId}", _parameters.SkillRecognition.SkillMatchThreshold);
-                    
+                    var matchResults = _templateMatcher.MatchGray(grayStatus, $"Skills/{skillId}", threshold, multiScale: true);
                     foreach (var match in matchResults)
-                    {
-                        // 检测技能是否可用（通过灰度值或透明度判断）
-                        bool isAvailable = DetectSkillAvailability(statusMat, match);
-                        
-                        // 检测冷却时间（通过技能图标灰度/透明度）
-                        double cooldown = DetectSkillCooldown(statusMat, match);
-                        
-                        skills.Add(new SkillStatus
-                        {
-                            SkillId = skillId,
-                            SkillName = skillId,
-                            IsAvailable = isAvailable,
-                            CooldownSeconds = cooldown,
-                            Slot = slotIndex++
-                        });
-                    }
-                }
+                        allMatches.Add((match, skillId));
+                });
             }
             catch
             {
-                // 忽略错误，返回空列表
+                return new List<SkillStatus>();
             }
 
-            // 按 SkillId 去重，每个技能只保留一条（同一图标可能被多次匹配）
-            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            return skills.Where(s => seen.Add(s.SkillId)).ToList();
+            int maxSlots = Math.Min(10, Math.Max(1, _parameters.SkillRecognition.MaxSkillCount));
+            var kept = DedupeOverlappingSkillMatches(allMatches.ToList(), maxSlots, centerThresholdPx: 22);
+
+            var skills = new List<SkillStatus>();
+            for (int i = 0; i < kept.Count; i++)
+            {
+                var (match, skillId) = kept[i];
+                bool isAvailable = DetectSkillAvailability(statusMat, match);
+                double cooldown = DetectSkillCooldown(statusMat, match);
+                skills.Add(new SkillStatus
+                {
+                    SkillId = skillId,
+                    SkillName = skillId,
+                    IsAvailable = isAvailable,
+                    CooldownSeconds = cooldown,
+                    Slot = i,
+                    Bounds = new System.Drawing.Rectangle(statusRegion.X + match.Location.X, statusRegion.Y + match.Location.Y, match.TemplateSize.Width, match.TemplateSize.Height),
+                    MatchScore = match.Confidence
+                });
+            }
+            return skills;
+        }
+
+        /// <summary>
+        /// 技能匹配重叠去重：按置信度排序，中心距离过近的只保留最高分，最多 maxCount 条
+        /// </summary>
+        private static List<(MatchResult match, string skillId)> DedupeOverlappingSkillMatches(
+            List<(MatchResult match, string skillId)> candidates, int maxCount, double centerThresholdPx)
+        {
+            var sorted = candidates.OrderByDescending(x => x.match.Confidence).ToList();
+            var kept = new List<(MatchResult match, string skillId)>();
+            foreach (var c in sorted)
+            {
+                if (kept.Count >= maxCount) break;
+                double cx = c.match.Location.X + c.match.TemplateSize.Width / 2.0;
+                double cy = c.match.Location.Y + c.match.TemplateSize.Height / 2.0;
+                bool overlaps = kept.Any(k =>
+                {
+                    double kcx = k.match.Location.X + k.match.TemplateSize.Width / 2.0;
+                    double kcy = k.match.Location.Y + k.match.TemplateSize.Height / 2.0;
+                    return Math.Sqrt((cx - kcx) * (cx - kcx) + (cy - kcy) * (cy - kcy)) < centerThresholdPx;
+                });
+                if (!overlaps) kept.Add(c);
+            }
+            return kept;
         }
 
         /// <summary>

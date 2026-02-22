@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using OpenCvSharp;
@@ -7,12 +8,18 @@ using OpenCvSharp;
 namespace GameAssistant.Services.ImageRecognition
 {
     /// <summary>
-    /// 模板匹配器
+    /// 模板匹配器（支持多尺度预计算与灰度图重载以加速匹配）
     /// </summary>
     public class TemplateMatcher
     {
         private readonly Dictionary<string, Mat> _templateCache = new Dictionary<string, Mat>();
         private readonly string _templateDirectory;
+
+        /// <summary>多尺度因子（与优化前一致，覆盖约 0.75x～1.25x UI 缩放，预计算后不牺牲识别数量）</summary>
+        private static readonly double[] MultiScaleFactors = { 0.75, 0.85, 0.95, 1.0, 1.08, 1.16, 1.25 };
+
+        private static string ScaleCacheKey(string templateName, double scale) =>
+            templateName + "_s" + (scale == 1.0 ? "1" : scale.ToString("G", CultureInfo.InvariantCulture));
 
         public TemplateMatcher(string templateDirectory = "Templates")
         {
@@ -44,6 +51,23 @@ namespace GameAssistant.Services.ImageRecognition
                     if (template != loaded)
                         loaded.Dispose();
                     _templateCache[templateName] = template;
+                    // 装备/技能多尺度预计算，避免每帧 Resize
+                    if (templateName.StartsWith("Equipment/", StringComparison.Ordinal) || templateName.StartsWith("Skills/", StringComparison.Ordinal))
+                    {
+                        foreach (double s in MultiScaleFactors)
+                        {
+                            string key = ScaleCacheKey(templateName, s);
+                            if (_templateCache.ContainsKey(key)) continue;
+                            if (s == 1.0)
+                                _templateCache[key] = template;
+                            else
+                            {
+                                var scaled = new Mat();
+                                Cv2.Resize(template, scaled, new OpenCvSharp.Size((int)(template.Width * s), (int)(template.Height * s)));
+                                _templateCache[key] = scaled;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -59,17 +83,15 @@ namespace GameAssistant.Services.ImageRecognition
         }
 
         /// <summary>
-        /// 模板匹配（支持多尺度）
+        /// 模板匹配（支持多尺度）。内部转灰度后调用 MatchGray。
         /// </summary>
         public List<MatchResult> Match(Mat source, string templateName, double threshold = 0.8, bool multiScale = false)
         {
-            if (!_templateCache.TryGetValue(templateName, out var template))
+            if (!_templateCache.TryGetValue(templateName, out _))
             {
                 LoadTemplate(templateName);
-                if (!_templateCache.TryGetValue(templateName, out template))
-                {
+                if (!_templateCache.TryGetValue(templateName, out _))
                     return new List<MatchResult>();
-                }
             }
 
             Mat source8u = source;
@@ -84,9 +106,6 @@ namespace GameAssistant.Services.ImageRecognition
                 needDisposeSource = true;
             }
 
-            var results = new List<MatchResult>();
-            
-            // 转为单通道灰度，与模板类型一致，满足 MatchTemplate 的 type == templ.type() 断言
             Mat graySource = new Mat();
             if (source8u.Channels() == 3)
                 Cv2.CvtColor(source8u, graySource, ColorConversionCodes.BGR2GRAY);
@@ -95,44 +114,55 @@ namespace GameAssistant.Services.ImageRecognition
             else
                 graySource = source8u.Clone();
 
+            try
+            {
+                return MatchGray(graySource, templateName, threshold, multiScale);
+            }
+            finally
+            {
+                graySource.Dispose();
+                if (needDisposeSource)
+                    source8u.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// 使用已为灰度的图像进行匹配（调用方保证 graySource 为 CV_8UC1）。用于区域只转一次灰度并并行匹配时加速。
+        /// </summary>
+        public List<MatchResult> MatchGray(Mat graySource, string templateName, double threshold = 0.8, bool multiScale = false)
+        {
+            if (!_templateCache.TryGetValue(templateName, out var template))
+            {
+                LoadTemplate(templateName);
+                if (!_templateCache.TryGetValue(templateName, out template))
+                    return new List<MatchResult>();
+            }
+
+            var results = new List<MatchResult>();
+
             if (multiScale)
             {
-                // 多尺度匹配
-                double[] scales = { 0.8, 0.9, 1.0, 1.1, 1.2 };
-                foreach (double scale in scales)
+                foreach (double scale in MultiScaleFactors)
                 {
-                    int newWidth = (int)(template.Width * scale);
-                    int newHeight = (int)(template.Height * scale);
-                    
-                    if (newWidth > graySource.Width || newHeight > graySource.Height)
+                    string key = ScaleCacheKey(templateName, scale);
+                    if (!_templateCache.TryGetValue(key, out var scaledTemplate))
+                        scaledTemplate = template;
+                    if (scaledTemplate.Width > graySource.Width || scaledTemplate.Height > graySource.Height)
                         continue;
-                    
-                    Mat scaledTemplate = new Mat();
-                    Cv2.Resize(template, scaledTemplate, new OpenCvSharp.Size(newWidth, newHeight));
-                    
                     Mat result = new Mat();
                     Cv2.MatchTemplate(graySource, scaledTemplate, result, TemplateMatchModes.CCoeffNormed);
-                    
                     FindMatches(result, scaledTemplate, threshold, results, templateName);
-                    
-                    scaledTemplate.Dispose();
                     result.Dispose();
                 }
             }
             else
             {
-                // 单尺度匹配
                 Mat result = new Mat();
                 Cv2.MatchTemplate(graySource, template, result, TemplateMatchModes.CCoeffNormed);
                 FindMatches(result, template, threshold, results, templateName);
                 result.Dispose();
             }
 
-            graySource.Dispose();
-            if (needDisposeSource)
-                source8u.Dispose();
-
-            // 去重：如果多个匹配结果位置相近，只保留置信度最高的
             return RemoveDuplicateMatches(results);
         }
 
@@ -253,14 +283,12 @@ namespace GameAssistant.Services.ImageRecognition
         }
 
         /// <summary>
-        /// 清理缓存
+        /// 清理缓存（多尺度与基模板可能共享同一 Mat 引用，仅对引用去重后 Dispose）
         /// </summary>
         public void ClearCache()
         {
-            foreach (var template in _templateCache.Values)
-            {
+            foreach (var template in _templateCache.Values.Distinct())
                 template.Dispose();
-            }
             _templateCache.Clear();
         }
     }

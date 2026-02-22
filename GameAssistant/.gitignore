@@ -1,0 +1,9 @@
+# Steam API Key（勿提交到公开仓库）
+Data/steam_api_key.txt
+
+# Build / IDE
+bin/
+obj/
+.vs/
+*.user
+*.suo
